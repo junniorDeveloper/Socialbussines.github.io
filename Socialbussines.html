@@ -77,9 +77,17 @@
             align-items: center;
             z-index: 1000;
         }
+
+        .content-img{
+            width: 100%;
+            height: 100%;
+            display: flex; 
+            flex-direction: column; 
+            justify-content: center;
+            align-items: center;
+        }
         .preview-image {
             width: auto; /* Ancho automático del 80% */
-            max-width: 800px; /* Máximo ancho para la imagen */
             height: 80%;
         }
         .nav-button {
@@ -175,12 +183,21 @@
         </div>
     </div>
 
+
+
     <!-- Contenedor de la vista previa -->
     <div class="preview-container" id="previewContainer" onclick="hidePreview()">
         <button class="nav-button left-button" onclick="changeImage(-1); event.stopPropagation()">&#10094;</button>
-        <img src="" id="previewImage" class="preview-image" alt="Vista Previa">
+        
+        <div class="content-img">
+            <img src="" id="previewImage" class="preview-image" alt="Vista Previa">
+            <div id="imageCounter" style="color: white; margin-top: 10px;"></div>
+        </div>
+        
         <button class="nav-button right-button" onclick="changeImage(1); event.stopPropagation()">&#10095;</button>
     </div>
+
+
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
     <script>
@@ -206,6 +223,11 @@
             const previewContainer = document.getElementById('previewContainer');
             const previewImage = document.getElementById('previewImage');
             previewImage.src = imageArray[currentImageIndex];
+            
+            // Actualizar el contador
+            const imageCounter = document.getElementById('imageCounter');
+            imageCounter.innerText = `${currentImageIndex + 1} / ${imageArray.length}`;
+            
             previewContainer.style.display = 'flex'; // Mostrar el contenedor
         }
 
@@ -223,7 +245,12 @@
             }
             const previewImage = document.getElementById('previewImage');
             previewImage.src = imageArray[currentImageIndex]; // Cambiar la imagen
+
+            // Actualizar el contador
+            const imageCounter = document.getElementById('imageCounter');
+            imageCounter.innerText = `${currentImageIndex + 1} / ${imageArray.length}`;
         }
+
     </script>
 </body>
 </html>
