@@ -3,254 +3,148 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="socialbussines.css">
     <title>SocialBussines</title>
-    <style>
-        body {
-            background-color: #f0f2f5;
-            font-family: 'Roboto', sans-serif;
-        }
-        .card {
-            border-radius: 0px;
-            margin: 20px 0;
-            overflow: hidden;
-        }
-        .card-title {
-            font-size: 15px;
-            font-weight: 600;
-            margin: 4px 7px;
-            color: #333;
-        }
-        .card-body {
-            padding: 0;
-            /* border: 1px solid black; */
-        }
-        .btn-link {
-            color: #333;
-            font-size: 14px;
-            padding: 0px 10px;
-            padding-bottom: 7px;
-            /* border: 1px solid black; */
-        }
-        
-        .card-text{
-            font-size: 14px;
-            padding: 0px 10px;
-            margin: 0;
-        }
-
-        .card-img-top{
-            display: flex;
-            justify-content: center;
-        }
-        .img-post {
-            width: 95%;
-            height: 300px;
-            object-fit: cover;
-            cursor: pointer; /* Cambiar el cursor al pasar sobre la imagen */
-        }
-
-        .card-body-price {
-            padding: 5px;
-        }
-        
-        .price-discount {
-            font-size: 15px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-top: 5px;
-            padding: 0px 10px;
-        }
-        /* Estilos para la vista previa de la imagen */
-        .preview-container {
-            display: none; /* Ocultar por defecto */
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.8);
-            justify-content: center;
-            align-items: center;
-            z-index: 1000;
-        }
-
-        .content-img{
-            width: 100%;
-            height: 100%;
-            display: flex; 
-            flex-direction: column; 
-            justify-content: center;
-            align-items: center;
-        }
-        .preview-image {
-            width: auto; /* Ancho automático del 80% */
-            height: 80%;
-        }
-        .nav-button {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background-color: rgba(255, 255, 255, 0.7);
-            border: none;
-            cursor: pointer;
-            padding: 10px;
-            z-index: 1001;
-        }
-        .left-button {
-            left: 10px;
-        }
-        .right-button {
-            right: 10px;
-        }
-
-        @media(max-width:768px) {
-            .preview-image {
-                width: 95%; /* Ancho automático del 80% */
-                height: auto;
-            }
-        }
-    </style>
 </head>
 <body>
-    <div class="container mt-4">
-        <div class="row justify-content-center">
-            <div class="col-md-6 col-lg-4">
-                <div class="card shadow-sm">
-                    <h5 class="card-title">Tasas Motivadoras</h5>
 
-                    <div class="card-body">
-                        <p class="card-text d-none" id="desc1">Esto es una descripción más extensa que se puede mostrar o ocultar para la imagen 1.</p>
-                        <button class="btn btn-link" onclick="toggleDescription('desc1')">Detalles</button>
-                    </div>
-
-                    <div class="card-img-top">
-                        <img src="img/1.jpg" class="img-post" alt="Post Image" onclick="showPreview(['img/1.jpg', 'img/2.jpg', 'img/3.jpg'], 0)">
-                    </div>
-                    <div class="card-body-price">
-                        <div class="price-discount">
-                            <span>Precio: S/30.00</span>
-                            <!-- <span>Descuento: 20%</span> -->
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Repite para las otras tarjetas -->
-            <div class="col-md-6 col-lg-4">
-                <div class="card shadow-sm">
-                    <h5 class="card-title">Tasas Motivadoras</h5>
-
-                    <div class="card-body">
-                        <p class="card-text d-none" id="desc2">Esto es una descripción más extensa que se puede mostrar o ocultar para la imagen 2.</p>
-                        <button class="btn btn-link" onclick="toggleDescription('desc2')">Detalles</button>
-                    </div>
-
-                    <div class="card-img-top">
-                        <img src="img/2.jpg" class="img-post" alt="Post Image" onclick="showPreview(['img/2.jpg', 'img/1.jpg', 'img/3.jpg'], 0)">
-                    </div>
-                    <div class="card-body-price">
-                        <div class="price-discount">
-                            <span>Precio: S/40.00</span>
-                            <!-- <span>Descuento: 20%</span> -->
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-6 col-lg-4">
-                <div class="card shadow-sm">
-                    <h5 class="card-title">Tasas Motivadoras</h5>
-
-                    <div class="card-body">
-                        <p class="card-text d-none" id="desc3">Esto es una descripción más extensa que se puede mostrar o ocultar para la imagen 3.</p>
-                        <button class="btn btn-link" onclick="toggleDescription('desc3')">Detalles</button>
-                    </div>
-
-                    <div class="card-img-top">
-                        <img src="img/3.jpg" class="img-post" alt="Post Image" onclick="showPreview(['img/3.jpg', 'img/1.jpg', 'img/2.jpg'], 0)">
-                    </div>
-                    <div class="card-body-price">
-                        <div class="price-discount">
-                            <span>Precio: S/100.00</span>
-                            <!-- <span>Descuento: 20%</span> -->
-                        </div>
-                    </div>
-                </div>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top" id="navbar">
+    
+        <a class="navbar-brand" href="#">SocialBussines</a>
+    
+        <div class="collapse navbar-collapse show" id="navbarNav"> <!-- Se muestra automáticamente -->
+            <div class="ms-auto content-list"> <!-- Alineación a la derecha -->
+                <ul class="nav-list">
+                    <li><a href="#" id="btn-todos" class="nav-link"><i class="fas fa-th"></i>Todos</a></li>
+                    <li><a href="#" id="btn-categoria-1" class="nav-link"><i class="fas fa-tv"></i>Electrónica</a></li>
+                    <li><a href="#" id="btn-categoria-2" class="nav-link"><i class="fas fa-gift"></i>Regalos</a></li>
+                    <li><a href="#" id="btn-categoria-3" class="nav-link"><i class="fas fa-home"></i>Decoración</a></li>
+                </ul>
             </div>
         </div>
-    </div>
+    </nav>
+    
 
 
 
-    <!-- Contenedor de la vista previa -->
     <div class="preview-container" id="previewContainer" onclick="hidePreview()">
-        <button class="nav-button left-button" onclick="changeImage(-1); event.stopPropagation()">&#10094;</button>
-        
         <div class="content-img">
             <img src="" id="previewImage" class="preview-image" alt="Vista Previa">
-            <div id="imageCounter" style="color: white; margin-top: 10px;"></div>
         </div>
-        
-        <button class="nav-button right-button" onclick="changeImage(1); event.stopPropagation()">&#10095;</button>
     </div>
 
+    <div class="container mt-4">
 
+        <div class="row justify-content-center" id="product-card-container"></div>
+    </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
     <script>
-        let currentImageIndex = 0;
-        let imageArray = [];
+        const baseUrl = 'http://localhost:3000/api'; // URL base
 
-        // Función para ocultar la descripción
-        function toggleDescription(id) {
-            const desc = document.getElementById(id);
-            if (desc.classList.contains('d-none')) {
-                desc.classList.remove('d-none');
-                desc.classList.add('d-block');
-            } else {
-                desc.classList.remove('d-block');
-                desc.classList.add('d-none');
+        async function fetchProduct(endpoint) {
+            const url = `${baseUrl}${endpoint}`; 
+            try {
+                const response = await fetch(url);
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                const data = await response.json();
+                const products = data.product; 
+                displayProducts(products); 
+            } catch (error) {
+                console.error('Error fetching product:', error);
             }
         }
 
-        // Función para mostrar la vista previa de los productos
-        function showPreview(images, index) {
-            imageArray = images; // Guardar el array de imágenes
-            currentImageIndex = index; // Guardar el índice actual
+        function displayProducts(products) {
+            const container = document.getElementById('product-card-container');
+            container.innerHTML = ''; 
+
+            products.forEach(displayProduct); 
+        }
+
+        function displayProduct(product) {
+            const container = document.getElementById('product-card-container');
+
+            if (!product.images || !Array.isArray(product.images)) {
+                console.error('No hay imágenes disponibles para el producto:', product.name);
+                return;
+            }
+
+            const images = product.images.map((img, index) => `
+                <div class="content-item ${index === 0 ? 'active' : ''}">
+                    <img src="${img.content}" class="d-block w-100" alt="${product.name}" onclick="showPreview('${img.content}')">
+                </div>
+            `).join('');
+
+            const cardHTML = `
+                <div class="col-md-6 col-lg-4">
+                    <div class="card shadow-sm">
+                        <h5 class="card-title">${product.name}</h5>
+                        <div class="card-body">
+                            <p class="card-text d-none" id="desc${product.id_product}">${product.descriptions}</p>
+                            <button class="btn btn-link" onclick="toggleDescription('desc${product.id_product}')">Detalles</button>
+                        </div>
+                        <div ${product.id_product} class="card-img-top" data-bs-ride="carousel">
+                            <div class="img-post">
+                                ${images}
+                            </div>
+                        </div>
+                        
+                        <div class="card-body-price">
+                                <span>Precio: S/${product.price}</span>
+                        </div>
+                    </div>
+                </div>
+            `;
+            container.innerHTML += cardHTML;
+        }
+
+        function toggleDescription(id) {
+            const desc = document.getElementById(id);
+            desc.classList.toggle('d-none');
+        }
+
+        function showPreview(imageSrc) {
             const previewContainer = document.getElementById('previewContainer');
             const previewImage = document.getElementById('previewImage');
-            previewImage.src = imageArray[currentImageIndex];
-            
-            // Actualizar el contador
-            const imageCounter = document.getElementById('imageCounter');
-            imageCounter.innerText = `${currentImageIndex + 1} / ${imageArray.length}`;
-            
-            previewContainer.style.display = 'flex'; // Mostrar el contenedor
+            previewImage.src = imageSrc;
+            previewContainer.style.display = 'flex';
         }
 
         function hidePreview() {
             const previewContainer = document.getElementById('previewContainer');
-            previewContainer.style.display = 'none'; // Ocultar el contenedor
+            previewContainer.style.display = 'none';
         }
 
-        function changeImage(direction) {
-            currentImageIndex += direction;
-            if (currentImageIndex < 0) {
-                currentImageIndex = imageArray.length - 1; // Volver al último si está en el primero
-            } else if (currentImageIndex >= imageArray.length) {
-                currentImageIndex = 0; // Volver al primero si está en el último
-            }
-            const previewImage = document.getElementById('previewImage');
-            previewImage.src = imageArray[currentImageIndex]; // Cambiar la imagen
+        document.getElementById('btn-todos').addEventListener('click', () => fetchProduct('/products/A'));
+        document.getElementById('btn-categoria-1').addEventListener('click', () => fetchProduct('/categories/A/1'));
+        document.getElementById('btn-categoria-2').addEventListener('click', () => fetchProduct('/categories/A/2'));
+        document.getElementById('btn-categoria-3').addEventListener('click', () => fetchProduct('/categories/A/3'));
 
-            // Actualizar el contador
-            const imageCounter = document.getElementById('imageCounter');
-            imageCounter.innerText = `${currentImageIndex + 1} / ${imageArray.length}`;
-        }
-
+        fetchProduct('/products/A');
     </script>
+
+    <script>
+        let lastScrollTop = 0;
+        const navbar = document.getElementById("navbar");
+
+        window.addEventListener("scroll", function() {
+            let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+            if (scrollTop > lastScrollTop) {
+                // Scroll hacia abajo
+                navbar.style.top = "-120px"; // Oculta el menú
+            } else {
+                // Scroll hacia arriba
+                navbar.style.top = "0"; // Muestra el menú
+            }
+            lastScrollTop = scrollTop <= 0 ? 0 : scrollTop; // Para evitar valores negativos
+        });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
 </body>
 </html>
