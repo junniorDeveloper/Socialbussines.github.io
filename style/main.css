@@ -1,0 +1,65 @@
+ .description-content {
+     overflow: hidden;
+     max-height: 0;
+     transition: max-height 0.3s ease;
+ }
+
+ .description-content.show {
+     max-height: 300px;
+     /* Ajusta según el contenido promedio */
+ }
+
+ /* Estilos para el modo oscuro */
+ .dark .bg-gray-900 {
+     background-color: #1a202c;
+ }
+
+ .dark .bg-white {
+     background-color: #2d3748;
+ }
+
+ .dark .text-white {
+     color: #f7fafc;
+ }
+
+ .dark .text-gray-800 {
+     color: #e2e8f0;
+ }
+
+ .dark .text-gray-600 {
+     color: #edf2f4;
+ }
+
+ .dark .text-gray-500 {
+     color: #cbd5e0;
+ }
+
+ .floating-button {
+     position: fixed;
+     bottom: 20px;
+     right: 20px;
+     background-color: #4073e0;
+     color: white;
+     border: none;
+     border-radius: 50%;
+     width: 60px;
+     height: 60px;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+     cursor: pointer;
+ }
+
+ .cart {
+     position: fixed;
+     bottom: 100px;
+     right: 20px;
+     background-color: white;
+     border: 1px solid #ccc;
+     border-radius: 8px;
+     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+     padding: 10px;
+     display: none;
+     z-index: 1000;
+ }

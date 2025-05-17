@@ -1,0 +1,110 @@
+body{
+    margin-top: 50px;
+}
+
+.navbar {
+    background-color: #f8f9fa; /* Color de fondo */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: top 0.3s ease; /* Transición suave */
+    z-index: 1;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    display: inline-block;
+    justify-items: center;
+    align-items: center;
+}
+
+.navbar-brand {
+    margin: 10px;
+    font-size: 24px; /* Tamaño de la fuente */
+    color: #000; /* Color del texto */
+    text-decoration: none; /* Sin subrayado */
+    padding: 10px;
+    display: flex;
+}
+
+
+.navbar-logo {
+    height: 40px; /* Ajusta la altura según sea necesario */
+    margin-right: 10px; /* Espaciado entre la imagen y el texto */
+    vertical-align: middle; /* Alinea la imagen verticalmente con el texto */
+}
+
+.content-list {
+    display: flex;
+    justify-content: center; /* Alineación a la derecha */
+    width: 90%;
+    overflow-x: auto; /* Permite desplazamiento horizontal */
+    white-space: nowrap; /* Evita el salto de línea */
+
+}
+
+.nav-list {
+    display: flex;
+    list-style-type: none; /* Sin viñetas */
+    padding: 0; /* Sin relleno */
+    margin: 0; /* Sin margen */
+    min-width: 100px;
+
+}
+
+.nav-list li {
+    margin: 10px 15px; /* Espaciado entre elementos de la lista */
+    font-family: Arial, sans-serif;
+}
+
+.nav-list li samp{
+    font-family: Arial, sans-serif;
+    color: #007bff;
+}
+
+.nav-list i {
+    color: #007bff;
+    margin-right: 8px; /* Espaciado entre el ícono y el texto */
+}
+
+.nav-link {
+    color: #000; /* Color del texto */
+    text-decoration: none; /* Sin subrayado */
+}
+
+.nav-link:hover {
+    color: #007bff; /* Color al pasar el mouse */
+}
+
+@media(max-width: 768px) {
+    body {
+        margin-top: 70px;
+    }
+
+    .navbar {
+        padding-top: 10px;
+    }
+
+    .navbar-brand {
+        margin-left: 0px;
+        margin: 0px;
+    }
+
+    .content-list {
+        margin-top: 15px;
+        display: flex;
+        justify-content: center;
+    }
+
+    .nav-list {
+        width: auto; /* Ancho fijo de la lista */
+        overflow-x: auto; /* Permite desplazamiento horizontal */
+        white-space: nowrap; /* Evita el salto de línea */
+    }
+
+    .nav-list li {
+        margin-right: 10px; /* Espaciado entre los elementos */
+        margin-left: 10px;
+    }
+
+    .nav-list li:last-child {
+        margin-right: 0; /* Elimina el margen derecho del último elemento */
+    }
+}

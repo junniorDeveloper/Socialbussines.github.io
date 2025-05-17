@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catálogo de Productos</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style/navar.css">
+    <link rel="stylesheet" href="style/main.css">
+</head>
+
+<body class="bg-gray-100 font-sans">
+
+    <!-- MENU DE NAVEGACION -->
+    <nav class="navbar bg-white" id="navbar">
+        <a class="navbar-brand text-white" href="#">
+            <img src="https://images.icon-icons.com/1826/PNG/512/4202070logoshazamsocialsocialmedia-115618_115683.png"
+                class="navbar-logo">
+            SocialBussines
+        </a>
+        <div class="content-list">
+            <ul class="nav-list">
+                <li><a href="#" id="darkModeToggle" class="nav-link text-white"> <i class="fas fa-moon"></i>Modo Oscuro</a></li>
+                <li><a href="#" id="btn-todos" class="nav-link text-white"><i class="fas fa-envelope"></i>Contactanos</a></li>
+                <li><a href="#" id="btn-todos" class="nav-link text-white"> <i class="fas fa-map-marker-alt"></i>Ubicanos</a></li>
+                <li><a href="#" class="nav-link text-white" onclick="filterProducts('todos')"><i class="fas fa-list"></i><samp>Todos</samp></a></li>
+                <li><a href="#" class="nav-link text-white" onclick="filterProducts('Electronica')"><i class="fas fa-tv"></i><samp>Electrónica</samp></a></li>
+                <li><a href="#" class="nav-link text-white" onclick="filterProducts('Regalos')"><i class="fas fa-gift"></i><samp>Regalos</samp></a></li>
+                <li><a href="#" class="nav-link text-white" onclick="filterProducts('Audio')"><i class="fas fa-headphones"></i><samp>Audio</samp></a></li>
+                <li><a href="#" class="nav-link text-white" onclick="filterProducts('Portatil')"><i class="fas fa-laptop"></i><samp>Portátiles</samp></a></li>
+                <li><a href="#" class="nav-link text-white" onclick="filterProducts('Consolas')"><i class="fas fa-gamepad"></i><samp>Consolas</samp></a></li>
+                <li><a href="#" class="nav-link text-white" onclick="filterProducts('Accesorios')"><i class="fas fa-bolt"></i><samp>Accesorios</samp></a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <script src="javascript/menu.js"></script>
+    <script src="javascript/darkmode.js"></script>
+
+    <!-- LISTADO DE LOS PRODUCTOS -->
+    <div class="container mx-auto p-6 ">
+        <div id="product-list"
+            class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 items-start mt-20">
+        </div>
+    </div>
+
+    <!-- BOTON FLOTANTE DE CARRITO DE COMPRAS -->
+    <div class="floating-button" id="cartButton">
+        <i class="fas fa-shopping-cart"></i>
+    </div>
+
+    <!-- LISTA DE CARRITO DE COMPRAS -->
+    <div class="cart bg-white" id="cart">
+        <h2 class="text-lg font-semibold mb-4 ">Carrito de Compras</h2>
+        <div class="overflow-y-auto max-h-96">
+            <div class="space-y-4" id="cartItems">
+            </div>
+        </div>
+        <div class="mt-4">
+            <p id="totalPrice" class="font-bold"></p>
+
+            <button id="checkout" class="mt-2 bg-blue-500 text-white px-4 py-2 rounded flex items-center">
+                <i class="fas fa-file-pdf mr-2"></i> Exportar
+            </button>
+        </div>
+    </div>
+
+    <script type="module">
+        import './javascript/product.js';
+        import './javascript/cart-ordered.js';
+    </script>
+
+</body>
+
+</html>
