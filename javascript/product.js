@@ -29,7 +29,7 @@ window.filterProducts = function (category) {
         // ID único basado en el índice
         const uniqueId = `desc-${index}`; 
         const productDiv = document.createElement('div');
-        productDiv.className = 'bg-white shadow-md rounded-lg overflow-hidden transition-transform transform hover:scale-105';
+        productDiv.className = 'bg-white shadow-md rounded-lg overflow-hidden transition-transform transform';
         productDiv.innerHTML = `
                     <img src="${product.image}" alt="${product.name}" class="w-full h-64 object-contain mx-auto">
 
