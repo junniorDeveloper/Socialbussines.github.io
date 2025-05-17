@@ -1,7 +1,7 @@
 // interface.js
 
-// Definición de la interfaz Product (solo como referencia, no se puede usar directamente en JavaScript)
-export class Product {
+// Definición de la interfaz Product (ahora en el ámbito global)
+class Product {
     constructor(id_product, name, category, description, image, price, price_end, stock, message_stock, state) {
         this.id_product = id_product;
         this.name = name;
@@ -17,7 +17,7 @@ export class Product {
 }
 
 // Función para obtener productos desde un archivo JSON
-export async function fetchProducts() {
+async function fetchProducts() {
     const response = await fetch('data.json');
     if (!response.ok) {
         throw new Error('Error al cargar los productos');
@@ -36,3 +36,7 @@ export async function fetchProducts() {
         product.state
     ));
 }
+
+// Hacer que la función fetchProducts y la clase Product estén disponibles globalmente
+window.Product = Product; // Exponer la clase Product
+window.fetchProducts = fetchProducts; // Exponer la función fetchProducts
