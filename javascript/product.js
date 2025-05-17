@@ -3,7 +3,7 @@ let allProducts = [];
 // CONSUME LOS PRODUCTOS DE LA API
 async function displayProducts() {
     try {
-        const products = await fetchProducts(); // Asegúrate de que fetchProducts esté definido globalmente
+        const products = await fetchProducts();
         allProducts = products;
 
         // Mostrar todos los productos al inicio
@@ -47,8 +47,8 @@ window.filterProducts = function (category) {
                             <span class="line-through text-gray-500"> (S/${product.price.toFixed(2)})</span>
                         </p>
                     </div>
-                    <button class="mt-2 bg-blue-500 text-white px-4 py-2 rounded" onclick="addToCart(${JSON.stringify(product).replace(/"/g, '&quot;')})">
-                        <i class="fas fa-plus"></i>
+                    <button class="mt-2 bg-whire text-gray-600 px-4 py-2 effect" onclick="addToCart(${JSON.stringify(product).replace(/"/g, '&quot;')})">
+                        <i class="fas fa-shopping-cart"></i>
                     </button>
                 </div>
             </div>

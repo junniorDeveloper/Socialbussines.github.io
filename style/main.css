@@ -1,4 +1,5 @@
- .description-content {
+
+.description-content {
      overflow: hidden;
      max-height: 0;
      transition: max-height 0.3s ease;
@@ -50,11 +51,25 @@
      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
      cursor: pointer;
  }
+ 
+.floating-button {
+  transition: transform 0.3s ease;
+  animation: floating 3s ease-in-out infinite;
+}
+
+@keyframes floating {
+  0%, 100% {
+    transform: scale(1) translateY(0);
+  }
+  50% {
+    transform: scale(1.1) translateY(-10px);
+  }
+}
 
  .cart {
      position: fixed;
      bottom: 100px;
-     right: 20px;
+     right: 0px;
      background-color: white;
      border: 1px solid #ccc;
      border-radius: 8px;
@@ -63,3 +78,15 @@
      display: none;
      z-index: 1000;
  }
+
+
+ /* EFECTO DEL ICONO DE COMPRA EN CADA PRODUCTO */
+@keyframes rotate {
+  0% { transform: rotate(-7deg); }
+  50% { transform: rotate(10deg); }
+  100% { transform: rotate(-7deg); }
+}
+
+.effect {
+  animation: rotate 2s infinite;
+}

@@ -44,6 +44,8 @@ window.addToCart = function (product) {
         cart.push({ ...product, quantity: 1 });
     }
     updateCart();
+
+    
 };
 
 // FUNCION PARA ACTUALIZAR CANTIDAD AL PULSAR AGREGAR
