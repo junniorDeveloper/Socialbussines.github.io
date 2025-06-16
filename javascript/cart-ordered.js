@@ -32,21 +32,65 @@ const updateCart = () => {
         cartItemsDiv.appendChild(productCard);
     });
 
+    const updateCartCount = () => {
+        const cartCount = document.getElementById('cartCount');
+        const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+
+        if (totalItems > 0) {
+            cartCount.innerText = totalItems;
+            cartCount.classList.remove('hidden');
+        } else {
+            cartCount.classList.add('hidden');
+        }
+    };
+
+    updateCartCount();
+
     document.getElementById('totalPrice').innerText = `Total: S/${total.toFixed(2)} | Ahorro: S/${(totalOriginal - total).toFixed(2)}`;
 };
 
 // FUNCION PARA AGREGAR PRODUCTOS AL CARRITO
 window.addToCart = function (product) {
-    const existingProduct = cart.find(item => item.name === product.name);
-    if (existingProduct) {
-        existingProduct.quantity++;
-    } else {
-        cart.push({ ...product, quantity: 1 });
-    }
-    updateCart();
+    Swal.fire({
+        html: `<h3 style="font-size: 18px;">¿Deseas agregar <strong>${product.name}</strong> al carrito?</h3>`,
+        imageUrl: product.image,
+        imageWidth: 300,
+        showCancelButton: true,
+        confirmButtonText: 'Agregar',
+        cancelButtonText: 'Cancelar',
+        showCloseButton: true,
+        reverseButtons: true
+        
+    }).then((result) => {
+        if (result.isConfirmed) {
+            const existingProduct = cart.find(item => item.name === product.name);
+            if (existingProduct) {
+                existingProduct.quantity++;
+            } else {
+                cart.push({ ...product, quantity: 1 });
+            }
+            updateCart();
 
-    
+            Swal.fire({
+                html: `<h3 style="font-size: 22px;">¡Agregado!</h3>`,
+                icon: 'success',
+                timer: 1200,
+                showConfirmButton: false,
+                draggable: true
+            });
+        } else {
+            Swal.fire({
+                html: `<h3 style="font-size: 22px;">Cancelado</h3>`,
+                icon: 'info',
+                timer: 1000,
+                showConfirmButton: false,
+                draggable: true
+            });
+        }
+    });
 };
+
+
 
 // FUNCION PARA ACTUALIZAR CANTIDAD AL PULSAR AGREGAR
 window.updateQuantity = function (index, quantity) {

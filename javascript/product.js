@@ -47,8 +47,8 @@ window.filterProducts = function (category) {
                             <span class="line-through text-gray-500"> (S/${product.price.toFixed(2)})</span>
                         </p>
                     </div>
-                    <button class="mt-2 bg-whire text-gray-600 px-4 py-2 effect" onclick="addToCart(${JSON.stringify(product).replace(/"/g, '&quot;')})">
-                        <i class="fas fa-shopping-cart"></i>
+                    <button class="mt-2 bg-gray-100 text-gray-600 px-4 py-2" onclick="addToCart(${JSON.stringify(product).replace(/"/g, '&quot;')})">
+                        <i class="fas fa-shopping-cart effect"></i>
                     </button>
                 </div>
             </div>
