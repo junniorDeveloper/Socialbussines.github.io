@@ -58,13 +58,13 @@
 
     <!-- FONDO GRIS SUAVE Y MODAL CARRITO CENTRADO -->
     <div id="cartOverlay" class="fixed inset-0 bg-gray-600 bg-opacity-60 flex items-center justify-center z-50 hidden">
-        <div id="cart" class="bg-white rounded-xl shadow-lg p-6 w-[500px] xl:w-[700px] max-h-[90vh] overflow-y-auto">
+        <div id="cart" class="bg-white rounded-xl shadow-lg p-6 w-[500px] xl:w-1/4 max-h-[90vh] overflow-y-auto">
             <h2 class="text-lg font-semibold mb-4">Carrito de Compras</h2>
             <div class="overflow-y-auto max-h-96">
                 <div class="space-y-4" id="cartItems"></div>
             </div>
             <div class="mt-4">
-                <p id="totalPrice" class="font-bold"></p>
+                <p id="totalPrice" class="font-bold text-gray-800 text-sm md:text-base flex flex-col gap-1"></p>
                 <button id="checkout" class="mt-2 bg-blue-500 text-white px-4 py-2 rounded flex items-center">
                     <i class="fas fa-file-pdf mr-2"></i> Exportar
                 </button>

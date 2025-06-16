@@ -112,9 +112,29 @@ window.updateQuantity = function (index, quantity) {
 
 // FUNCION PARA ELIMINAR UN PRODUCTO DEL CARRITO
 window.removeFromCart = function (index) {
-    cart.splice(index, 1);
-    updateCart();
+    Swal.fire({
+        title: '<h3 style="font-size: 22px;">¿Estás seguro?</h3>',
+        text: "¡No podrás revertir esto!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        cancelButtonText: 'Cancelar',
+        confirmButtonText: 'Sí, eliminar',
+
+    }).then((result) => {
+        if (result.isConfirmed) {
+            cart.splice(index, 1);
+            updateCart();
+            Swal.fire(
+                '¡Eliminado!',
+                'El producto ha sido eliminado del carrito.',
+                'success',
+            );
+        }
+    });
 };
+
 
 
 // FUNCIÓN PARA MOSTRAR/OCULTAR EL CARRITO USANDO SOLO TAILWIND
