@@ -87,20 +87,6 @@
 /* -------------------------------- */
 
 
- .cart {
-     position: fixed;
-     bottom: 100px;
-     right: 0px;
-     background-color: white;
-     border: 1px solid #ccc;
-     border-radius: 8px;
-     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-     padding: 10px;
-     display: none;
-     z-index: 1000;
- }
-
-
  /* EFECTO DEL ICONO DE COMPRA EN CADA PRODUCTO */
 @keyframes rotate {
   0% { transform: rotate(-7deg); }
