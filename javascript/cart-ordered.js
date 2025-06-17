@@ -1,5 +1,8 @@
 
 let cart = [];
+const savedCart = localStorage.getItem('cart');
+cart = savedCart ? JSON.parse(savedCart) : [];
+
 
 // FUNCION PARA ACTUALIZAR AL AGREGAR UN PRODUCTO AL CARRITO Y ESTRUCTURA DE LA LISTA
 const updateCart = () => {
@@ -14,9 +17,9 @@ const updateCart = () => {
         totalOriginal += item.price * item.quantity;
 
         const productCard = document.createElement('div');
-        productCard.className = 'bg-white shadow-md rounded-lg overflow-hidden flex items-center';
+        productCard.className = 'bg-white rounded-lg overflow-hidden flex items-center border';
         productCard.innerHTML = `
-                <img src="${item.image}" alt="${item.name}" class="w-20 h-20 object-contain mr-4">
+                <img src="${item.image}" alt="${item.name}" class="w-20 h-20 object-contain mr-2 ml-2">
                 <div class="flex-1">
                     <h3 class="text-sm md:text-base font-semibold">${item.name}</h3>
                     <p class="text-sm md:text-base text-gray-600">Cantidad: ${item.quantity}</p>
@@ -34,6 +37,7 @@ const updateCart = () => {
 
     document.getElementById('totalPrice').innerText = `Total: S/${total.toFixed(2)} | Ahorro: S/${(totalOriginal - total).toFixed(2)}`;
 
+    // CONTADOR DE NOTIFICACION DEL CARRO DE COMPRAS
     const updateCartCount = () => {
         const cartCount = document.getElementById('cartCount');
         const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
@@ -47,7 +51,30 @@ const updateCart = () => {
     };
 
     updateCartCount();
+
+    // LOCAL STORAGE
+    localStorage.setItem('cart', JSON.stringify(cart));
 };
+
+window.onload = () => {
+    updateCart();
+};
+
+const shareCartAsText = () => {
+    let message = '*Mi carrito de compras:*\n\n';
+    cart.forEach(item => {
+        message += `• ${item.name} x${item.quantity} - S/${(item.price_end * item.quantity).toFixed(2)}\n`;
+    });
+    const total = cart.reduce((sum, item) => sum + item.price_end * item.quantity, 0);
+    message += `\n*Total:* S/${total.toFixed(2)}`;
+
+    // Número en formato internacional sin el signo +
+    const phone = '51967212987';
+    const url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
+    window.open(url, '_blank');
+};
+
+
 
 // FUNCION PARA AGREGAR PRODUCTOS AL CARRITO
 window.addToCart = function (product) {
@@ -65,13 +92,11 @@ window.addToCart = function (product) {
     }
 
     Swal.fire({
-        html: `<h3 style="font-size: 18px;">¿Deseas agregar <strong>${product.name}</strong> al carrito?</h3>`,
+        html: `<h3 style="font-size: 16px;">¿Deseas agregar <strong>${product.name}</strong> al carrito?</h3>`,
         imageUrl: product.image,
         imageWidth: 300,
-        showCancelButton: true,
         confirmButtonColor: '#3085d6',
         confirmButtonText: 'Agregar',
-        cancelButtonText: 'Cancelar',
         showCloseButton: true,
         reverseButtons: true
         
@@ -92,15 +117,7 @@ window.addToCart = function (product) {
                 showConfirmButton: false,
                 draggable: true
             });
-        } else {
-            Swal.fire({
-                html: `<h3 style="font-size: 22px;">Cancelado</h3>`,
-                icon: 'info',
-                timer: 1000,
-                showConfirmButton: false,
-                draggable: true
-            });
-        }
+        } 
     });
 };
 
@@ -121,6 +138,9 @@ window.removeFromCart = function (index) {
         cancelButtonColor: '#d33',
         cancelButtonText: 'Cancelar',
         confirmButtonText: 'Sí, eliminar',
+        reverseButtons: true,
+        showCloseButton: true,
+
 
     }).then((result) => {
         if (result.isConfirmed) {
