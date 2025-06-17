@@ -60,6 +60,7 @@ window.onload = () => {
     updateCart();
 };
 
+// FUNCION PARA ENVIA TEXTO DEL PEDIDO POR WHATSAPP
 const shareCartAsText = () => {
     let message = '*Mi carrito de compras:*\n\n';
 
@@ -78,7 +79,6 @@ const shareCartAsText = () => {
     const url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
     window.open(url, '_blank');
 };
-
 
 
 // FUNCION PARA AGREGAR PRODUCTOS AL CARRITO
@@ -138,8 +138,8 @@ window.removeFromCart = function (index) {
         text: "¡No podrás revertir esto!",
         icon: 'warning',
         showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
+        confirmButtonColor: '#d33',
+        cancelButtonColor: '#3085d6',
         cancelButtonText: 'Cancelar',
         confirmButtonText: 'Sí, eliminar',
         reverseButtons: true,
@@ -149,16 +149,53 @@ window.removeFromCart = function (index) {
         if (result.isConfirmed) {
             cart.splice(index, 1);
             updateCart();
-            Swal.fire(
-                '¡Eliminado!',
-                'El producto ha sido eliminado del carrito.',
-                'success',
-            );
+            Swal.fire({
+                icon: 'success',
+                title: '<h3 style="font-size: 22px;">¡Eliminado!</h3>',
+                html: `<h3 style="font-size: 18px;">El producto ha sido eliminado del carrito.</h3>`,
+                showConfirmButton: false,
+                timer: 1200
+            });
         }
     });
 };
 
+// FUNCION PARA LIMPIAR TODA LA LISTA DEL CARRITO
+function clearCart() {
+    if (cart.length === 0) {
+        Swal.fire({
+            icon: 'info',
+            title: 'Carrito vacío',
+            text: 'El carrito ya está vacío.',
+            confirmButtonText: 'OK'
+        });
+        return;
+    }
 
+    Swal.fire({
+        title: '¿Vaciar carrito?',
+        text: 'Se eliminarán todos los productos del carrito.',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#d33',
+        cancelButtonColor: '#3085d6',
+        confirmButtonText: 'Sí, vaciar',
+        cancelButtonText: 'Cancelar',
+        reverseButtons: true,
+    }).then((result) => {
+        if (result.isConfirmed) {
+            cart = [];
+            updateCart();
+            localStorage.removeItem('cart');
+            Swal.fire({
+                icon: 'success',
+                title: 'Carrito vaciado',
+                showConfirmButton: false,
+                timer: 1200
+            });
+        }
+    });
+}
 
 // FUNCIÓN PARA MOSTRAR/OCULTAR EL CARRITO USANDO SOLO TAILWIND
 document.getElementById('cartButton').addEventListener('click', () => {

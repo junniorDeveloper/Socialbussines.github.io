@@ -65,8 +65,11 @@
             </div>
             <div class="mt-4">
                 <p id="totalPrice" class="font-bold text-gray-800 text-sm md:text-base flex flex-col gap-1"></p>
-                <button onclick="shareCartAsText()" class="mt-2 bg-green-500 text-white px-4 py-2 rounded flex items-center">
+                <button onclick="shareCartAsText()" class="mt-2 bg-green-500 text-white px-4 py-2 rounded flex items-center justify-center w-full">
                     <i class="fab fa-whatsapp mr-2"></i> Compartir por WhatsApp
+                </button>
+                <button onclick="clearCart()" class="mt-2 bg-red-500 text-white px-4 py-2 rounded flex items-center justify-center w-full">
+                    <i class="fas fa-trash-alt mr-2"></i> Vaciar Carrito
                 </button>
             </div>
         </div>
