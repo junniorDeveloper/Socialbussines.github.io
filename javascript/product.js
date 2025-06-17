@@ -26,7 +26,10 @@ window.filterProducts = function (category) {
         const productDiv = document.createElement('div');
         productDiv.className = 'bg-white shadow-md overflow-hidden transition-transform transform';
         productDiv.innerHTML = `
-            <img src="${product.image}" alt="${product.name}" class="w-full h-64 object-contain mx-auto">
+            <div class="h-72 w-full flex items-center justify-center">
+                <img src="${product.image}" alt="${product.name}" class="w-64 h-64 object-cover">
+            </div>
+
             <div class="p-4">
                 <h2 class="text-xl font-semibold truncate-text">${product.name}</h2>
                 <p class="text-gray-600">
