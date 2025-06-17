@@ -1,4 +1,14 @@
 
+
+/* MUESTRA (...) CUANDO LA INFORMACION EXEDE DE COLUMNA */
+  .truncate-text {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 300px;
+  }
+
+  
 .description-content {
      overflow: hidden;
      max-height: 0;

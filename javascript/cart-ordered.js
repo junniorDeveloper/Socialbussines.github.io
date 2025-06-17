@@ -17,7 +17,7 @@ const updateCart = () => {
         totalOriginal += item.price * item.quantity;
 
         const productCard = document.createElement('div');
-        productCard.className = 'bg-white rounded-lg overflow-hidden flex items-center border';
+        productCard.className = 'bg-white overflow-hidden flex items-center';
         productCard.innerHTML = `
                 <img src="${item.image}" alt="${item.name}" class="w-20 h-20 object-contain mr-2 ml-2">
                 <div class="flex-1">
@@ -62,11 +62,16 @@ window.onload = () => {
 
 const shareCartAsText = () => {
     let message = '*Mi carrito de compras:*\n\n';
+
     cart.forEach(item => {
-        message += `• ${item.name} x${item.quantity} - S/${(item.price_end * item.quantity).toFixed(2)}\n`;
+        message += `• *${item.name}*\n  Cantidad: ${item.quantity}\n  Precio: S/${(item.price_end * item.quantity).toFixed(2)}\n\n`;
     });
+
     const total = cart.reduce((sum, item) => sum + item.price_end * item.quantity, 0);
-    message += `\n*Total:* S/${total.toFixed(2)}`;
+    message += `*Total:* S/${total.toFixed(2)}`;
+
+    // Mensaje adicional
+    message += 'Hola, estoy interesado en realizar este pedido.';
 
     // Número en formato internacional sin el signo +
     const phone = '51967212987';
@@ -98,8 +103,7 @@ window.addToCart = function (product) {
         confirmButtonColor: '#3085d6',
         confirmButtonText: 'Agregar',
         showCloseButton: true,
-        reverseButtons: true
-        
+        reverseButtons: true,
     }).then((result) => {
         if (result.isConfirmed) {
             const existingProduct = cart.find(item => item.name === product.name);
@@ -140,8 +144,7 @@ window.removeFromCart = function (index) {
         confirmButtonText: 'Sí, eliminar',
         reverseButtons: true,
         showCloseButton: true,
-
-
+        
     }).then((result) => {
         if (result.isConfirmed) {
             cart.splice(index, 1);

@@ -24,11 +24,11 @@ window.filterProducts = function (category) {
     filteredProducts.forEach((product, index) => {
         const uniqueId = `desc-${index}`; 
         const productDiv = document.createElement('div');
-        productDiv.className = 'bg-white shadow-md rounded-lg overflow-hidden transition-transform transform';
+        productDiv.className = 'bg-white shadow-md overflow-hidden transition-transform transform';
         productDiv.innerHTML = `
             <img src="${product.image}" alt="${product.name}" class="w-full h-64 object-contain mx-auto">
             <div class="p-4">
-                <h2 class="text-xl font-semibold">${product.name}</h2>
+                <h2 class="text-xl font-semibold truncate-text">${product.name}</h2>
                 <p class="text-gray-600">
                     <span class="${product.message_stock === 'Disponible' ? 'text-green-500' : product.message_stock === 'Limitado' ? 'text-yellow-500' : 'text-red-500'}">
                         ${product.message_stock}
