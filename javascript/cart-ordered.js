@@ -68,7 +68,7 @@ const shareCartAsText = () => {
     });
 
     const total = cart.reduce((sum, item) => sum + item.price_end * item.quantity, 0);
-    message += `*Total:* S/${total.toFixed(2)}`;
+    message += `*Total:* S/${total.toFixed(2)}\n\n`;
 
     // Mensaje adicional
     message += 'Hola, estoy interesado en realizar este pedido.';
