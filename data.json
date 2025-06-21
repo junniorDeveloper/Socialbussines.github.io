@@ -2,6 +2,7 @@
   {
     "id_product": 1,
     "name": "Laptop HP ENVY 17",
+    "brand": "hp",
     "category": "Portatil",
     "description": "Laptop HP ENVY 17 con procesador Intel Core i7, 16GB de RAM y 512GB de almacenamiento SSD. Pantalla de 17 pulgadas Full HD y tarjeta gráfica NVIDIA GeForce.",
     "image": "https://www.magitech.pe/media/catalog/product/cache/1/image/600x/040ec09b1e35df139433887a97daa66f/e/n/envy17-1.jpg",
@@ -14,9 +15,10 @@
   {
     "id_product": 2,
     "name": "Laptop LENOVO ThinkPad E14 version 4000 de ultima generacion modular",
+    "brand": "hp",
     "category": "Portatil",
     "description": "Laptop LENOVO ThinkPad E14 con procesador Intel Core i5, 8GB de RAM y 256GB de almacenamiento SSD. Pantalla de 14 pulgadas Full HD y teclado retroiluminado.",
-    "image": "https://sahuaperu.com.pe/wp-content/uploads/2024/07/LENOVO-THINKPAD-E14-GEN-4-a.jpg",
+    "image": "https://i.pinimg.com/564x/a8/87/43/a887431d7f66579b5253655af32320a9.jpg",
     "price": 849.99,
     "price_end": 739.99,
     "stock": 100,
@@ -26,6 +28,7 @@
   {
     "id_product": 3,
     "name": "Mouse inalámbrico HP",
+    "brand": "hp expres",
     "category": "Electronica",
     "description": "Mouse inalámbrico HP con sensor óptico de alta precisión y conexión USB. Diseño ergonómico para uso cómodo.",
     "image": "https://supertec.com.pe/img-apps/productos/MOUSE-HP-COMFORT-GRIP-WIRELES-H2L63AA-1.jpg",
@@ -38,6 +41,7 @@
   {
     "id_product": 4,
     "name": "Mouse inalámbrico ThinkPad cuarta generacion exportadora",
+    "brand": "ThinkPad",
     "category": "Electronica",
     "description": "Mouse inalámbrico LENOVO ThinkPad con sensor óptico de alta precisión y conexión USB. Diseño compacto y portátil.",
     "image": "https://www.memoryc.com/images/products/550x550/image_14212.jpg",
@@ -50,6 +54,7 @@
   {
     "id_product": 5,
     "name": "Soporte metálico para laptop",
+    "brand": "xms ready",
     "category": "Accesorios",
     "description": "Soporte metálico para laptop con diseño ajustable y antideslizante. Mejora la ergonomía y la ventilación de tu dispositivo.",
     "image": "https://www.idock.com.pe/wp-content/uploads/2021/10/i50-Diamond-iDock-11-300x300.webp",
@@ -62,6 +67,7 @@
   {
     "id_product": 6,
     "name": "Parlantes Logitech Z200",
+    "brand": "hp",
     "category": "Audio",
     "description": "Parlantes Logitech Z200 con sonido estéreo de alta calidad y controles de volumen integrados. Diseño compacto y elegante.",
     "image": "https://www.profesionalreview.com/wp-content/uploads/2019/12/03-logitech-z200.jpg",
@@ -74,6 +80,7 @@
   {
     "id_product": 7,
     "name": "Micrófono dorado de escritorio",
+    "brand": "lls max",
     "category": "Electronica",
     "description": "Micrófono de escritorio de color dorado con sonido de alta calidad y diseño elegante. Ideal para streaming, podcasts y conferencias.",
     "image": "https://m.media-amazon.com/images/I/61cjVe8AIuL.jpg",
@@ -86,6 +93,7 @@
   {
     "id_product": 8,
     "name": "Micrófono inalámbrico",
+    "brand": "micronics",
     "category": "Audio",
     "description": "Micrófono inalámbrico de alta calidad con conexión USB. Ideal para presentaciones, conferencias y eventos.",
     "image": "https://img.kentfaith.de/cache/catalog/products/de/KF10.054/KF10.054-1-518x518.jpg",
@@ -98,6 +106,7 @@
   {
     "id_product": 9,
     "name": "Soporte ajustable para celular",
+    "brand": "suppot",
     "category": "Accesorios",
     "description": "Soporte ajustable para celular con diseño de escritorio. Permite una visualización cómoda y mantiene tu dispositivo en posición vertical u horizontal.",
     "image": "https://electroimport.com.pa/wp-content/uploads/2022/05/SOPORTE-PARA-ESCRITORIO-COLORES.png",
@@ -110,6 +119,7 @@
   {
     "id_product": 10,
     "name": "Lámpara LED de escritorio",
+    "brand": "rgb",
     "category": "Accesorios",
     "description": "Lámpara LED de escritorio con diseño moderno y ajuste de brillo. Proporciona una iluminación suave y cálida para tu espacio de trabajo.",
     "image": "https://i.pinimg.com/564x/a8/87/43/a887431d7f66579b5253655af32320a9.jpg",

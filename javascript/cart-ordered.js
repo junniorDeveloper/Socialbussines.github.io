@@ -19,7 +19,7 @@ const updateCart = () => {
         const productCard = document.createElement('div');
         productCard.className = 'bg-white overflow-hidden flex items-center';
         productCard.innerHTML = `
-                <img src="${item.image}" alt="${item.name}" class="w-20 h-20 object-contain mr-2 ml-2">
+                <img src="https://qiziyaqqptpwcarbywsx.supabase.co/storage/v1/object/public/imagenes/products/${item.image}" alt="${item.name}" class="w-20 h-20 object-contain mr-2 ml-2">
                 <div class="flex-1">
                     <h3 class="text-sm md:text-base font-semibold">${item.name}</h3>
                     <p class="text-sm md:text-base text-gray-600">Cantidad: ${item.quantity}</p>
@@ -87,7 +87,7 @@ window.addToCart = function (product) {
         Swal.fire({
             title: '<h3 style="font-size: 20px;">¡Gracias por tu interés!</h3>',
             html: `<h3 style="font-size: 18px;">Nuestro <strong>${product.name}</strong> actualmente está agotado, pero pronto estará disponible nuevamente.</h3>`,
-            imageUrl: product.image,
+            imageUrl: `https://qiziyaqqptpwcarbywsx.supabase.co/storage/v1/object/public/imagenes/products/${product.image}`,
             confirmButtonColor: '#3085d6',
             imageWidth: 300,
             confirmButtonText: 'OK',
@@ -98,7 +98,7 @@ window.addToCart = function (product) {
 
     Swal.fire({
         html: `<h3 style="font-size: 16px;">¿Deseas agregar <strong>${product.name}</strong> al carrito?</h3>`,
-        imageUrl: product.image,
+        imageUrl: `https://qiziyaqqptpwcarbywsx.supabase.co/storage/v1/object/public/imagenes/products/${product.image}`,
         imageWidth: 300,
         confirmButtonColor: '#3085d6',
         confirmButtonText: 'Agregar',

@@ -27,11 +27,12 @@ window.filterProducts = function (category) {
         productDiv.className = 'bg-white shadow-md overflow-hidden transition-transform transform';
         productDiv.innerHTML = `
             <div class="h-72 w-full flex items-center justify-center">
-                <img src="${product.image}" alt="${product.name}" class="w-64 h-64 object-cover">
+                <img src="https://qiziyaqqptpwcarbywsx.supabase.co/storage/v1/object/public/imagenes/products/${product.image}" alt="${product.name}" class="w-64 h-64 object-cover">
             </div>
 
             <div class="p-4">
-                <h2 class="text-xl font-semibold truncate-text">${product.name}</h2>
+                <h2 class="text-lg font-semibold truncate-text">${product.name}</h2>
+                
                 <p class="text-gray-600">
                     <span class="${product.message_stock === 'Disponible' ? 'text-green-500' : product.message_stock === 'Limitado' ? 'text-yellow-500' : 'text-red-500'}">
                         ${product.message_stock}
@@ -41,6 +42,7 @@ window.filterProducts = function (category) {
                     <i class="fas fa-eye"></i> Ver descripción
                 </button>
                 <div id="${uniqueId}" class="description-content text-gray-500 mt-2 text-sm">
+                    <p class="text-gray-400 text-sm mb-2">Marca: ${product.brand}</p>
                     ${product.description}
                 </div>
                 <div class="flex items-center justify-between">
