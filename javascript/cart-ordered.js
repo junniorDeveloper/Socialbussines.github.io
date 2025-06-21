@@ -23,7 +23,7 @@ const updateCart = () => {
                 <div class="flex-1">
                     <h3 class="text-sm md:text-base font-semibold">${item.name}</h3>
                     <p class="text-sm md:text-base text-gray-600">Cantidad: ${item.quantity}</p>
-                    <p class="text-sm md:text-base text-gray-600">Unidad: ${item.price_end}</p>
+                    <p class="text-sm md:text-base text-gray-600">Unidad: S/${item.price_end.toFixed(2)}</p>
                     <p class="text-sm md:text-base text-gray-600">Precio: S/${itemTotal.toFixed(2)}</p>
                 </div>
                 <div class="px-4 py-2">
@@ -65,11 +65,11 @@ const shareCartAsText = () => {
     let message = '*Mi carrito de compras:*\n\n';
 
     cart.forEach(item => {
-        message += `• *${item.name}*\n  Cantidad: ${item.quantity}\n  Precio: S/${(item.price_end * item.quantity).toFixed(2)}\n\n`;
+        message += `• *${item.name}*\n  Cantidad: ${item.quantity}\n  Precio: S/ ${(item.price_end * item.quantity).toFixed(2)}\n\n`;
     });
 
     const total = cart.reduce((sum, item) => sum + item.price_end * item.quantity, 0);
-    message += `*Total:* S/${total.toFixed(2)}\n\n`;
+    message += `*Total:* S/ ${total.toFixed(2)}\n\n`;
 
     // Mensaje adicional
     message += 'Hola, estoy interesado en realizar este pedido.';
