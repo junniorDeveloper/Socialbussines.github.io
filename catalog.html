@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="style/main.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+    <script src="interface.js"></script> 
 </head>
 
 <body class="bg-gray-100 font-sans">
@@ -45,12 +46,36 @@
     <script src="javascript/menu.js"></script>
     <script src="javascript/darkmode.js"></script>
 
-      
+
+
+        
+  <!-- MUESTRA LAS SECCIONES DE CATEGORIAS DESDE html/category.html -->
+  <div id="SectionNuevos"></div>
+
+  <script>
+    fetch("html/section/nuevos.html")
+      .then(res => res.text())
+      .then(html => {
+        const container = document.getElementById("SectionNuevos");
+        container.innerHTML = html;
+
+        // Evalúa los <script> del contenido cargado
+        const scripts = container.querySelectorAll("script");
+        scripts.forEach(script => {
+          const newScript = document.createElement("script");
+          newScript.textContent = script.textContent;
+          document.body.appendChild(newScript);
+        });
+      });
+  </script>
+
+
+    
   <!-- MUESTRA LAS SECCIONES DE CATEGORIAS DESDE html/category.html -->
   <div id="Categorys"></div>
 
   <script>
-    fetch("html/category.html")
+    fetch("html/category/category.html")
       .then(res => res.text())
       .then(html => {
         const container = document.getElementById("Categorys");
@@ -102,7 +127,6 @@
         </div>
     </div>
 
-    <script src="interface.js"></script> <!-- Asegúrate de incluir interface.js -->
     <script src="javascript/product.js"></script>
     <script src="javascript/cart-ordered.js"></script>
 

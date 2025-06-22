@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="interface.js"></script> 
+
+    <style>
+        /* Ocultar scroll visible */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+    
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="container mx-auto p-6 px-4 py-8 relative">
+        <!-- Botón Atrás -->
+        <button id="prevBtn"
+            class="hidden sm:block absolute left-0 top-1/2 transform -translate-y-1/2 z-10 bg-gray-500 text-white px-3 py-2 rounded-l hover:bg-gray-600 text-sm sm:text-base">
+            <i class="fas fa-arrow-left"></i>
+        </button>
+
+        <!-- Botón Siguiente -->
+        <button id="nextBtn"
+            class="hidden sm:block absolute right-0 top-1/2 transform -translate-y-1/2 z-10 bg-gray-500 text-white px-3 py-2 rounded-r hover:bg-gray-600 text-sm sm:text-base">
+            <i class="fas fa-arrow-right"></i>
+        </button>
+
+        <!-- Contenedor con botones encima del carrusel -->
+        <div class=" md:p-8">
+
+            <!-- Carrusel -->
+            <div class="overflow-hidden">
+                <div id="carousel" class="flex overflow-x-auto no-scrollbar scroll-smooth space-x-4">
+                    <!-- Aquí se insertarán los productos dinámicamente -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const carousel = document.getElementById('carousel');
+        const gap = 16;
+        let slideWidth;
+
+        // Función para mostrar los productos en el carrusel
+        async function loadCarouselProducts() {
+            try {
+
+                const products = await fetchProducts();
+
+                // Filtrar productos que pertenezcan a la sección "nuevos"
+                const nuevosProducts = products.filter(product => product.section === "nuevos");
+
+                nuevosProducts.forEach(product => {
+                    const productCard = document.createElement('div');
+                    productCard.className = "w-40 md:w-64 flex-shrink-0 bg-white rounded-xl shadow-md overflow-hidden";
+                    productCard.innerHTML = `
+          <img src="https://qiziyaqqptpwcarbywsx.supabase.co/storage/v1/object/public/imagenes/products/${product.image}" alt="${product.name}" class="w-full h-35 md:h-64 object-cover">
+          <div class="p-2 md:p-4">
+            <h3 class="text-sm md:text-base font-semibold text-gray-800 truncate-text">${product.name}</h3>
+            <div>
+                <p class="text-xs sm:text-sm md:text-base mt-2">
+                    <strong class="font-semibold">Ahora:</strong> S/${product.price_end.toFixed(2)} 
+                    <span class="line-through text-gray-500"> (S/${product.price.toFixed(2)})</span>
+                </p>
+            </div>
+        `;
+                    carousel.appendChild(productCard);
+                });
+
+                // Ajustar slideWidth después de renderizar productos
+                if (nuevosProducts.length > 0) {
+                    slideWidth = carousel.querySelector('.flex-shrink-0').offsetWidth + gap;
+                }
+            } catch (error) {
+                console.error("Error al cargar productos:", error);
+            }
+        }
+
+        // Navegación del carrusel
+        document.getElementById('nextBtn').addEventListener('click', () => {
+            carousel.scrollBy({ left: slideWidth, behavior: 'smooth' });
+        });
+
+        document.getElementById('prevBtn').addEventListener('click', () => {
+            carousel.scrollBy({ left: -slideWidth, behavior: 'smooth' });
+        });
+
+        // Recalcular tamaño en cambio de pantalla
+        window.addEventListener('resize', () => {
+            slideWidth = carousel.querySelector('.flex-shrink-0').offsetWidth + gap;
+        });
+
+        // Cargar productos al iniciar
+        loadCarouselProducts();
+    </script>
+
+
+</body>
+
+</html>

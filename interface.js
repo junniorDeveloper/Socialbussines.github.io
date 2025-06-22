@@ -2,11 +2,12 @@
 
 // Definición de la interfaz Product (ahora en el ámbito global)
 class Product {
-    constructor(id_product, name, brand, category, description, image, price, price_end, stock, message_stock, state) {
+    constructor(id_product, name, brand, category, section, description, image, price, price_end, stock, message_stock, state) {
         this.id_product = id_product;
         this.name = name;
         this.brand = brand;
         this.category = category;
+        this.section = section;
         this.description = description;
         this.image = image;
         this.price = price;
@@ -30,6 +31,7 @@ async function fetchProducts() {
         product.name,
         product.brand,
         product.category,
+        product.section,
         product.description,
         product.image,
         product.price,

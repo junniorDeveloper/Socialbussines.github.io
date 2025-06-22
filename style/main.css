@@ -13,6 +13,8 @@ html{
   transform: translateY(0);
 }
 
+
+
 /* MUESTRA (...) CUANDO LA INFORMACION EXEDE DE COLUMNA */
   .truncate-text {
     white-space: nowrap;
