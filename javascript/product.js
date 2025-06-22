@@ -65,7 +65,7 @@ window.filterProducts = function (category) {
     const observerOptions = {
         root: null, // El viewport
         rootMargin: '0px',
-        threshold: 0.1 // 10% del elemento debe ser visible
+        threshold: 0.5 // 10% del elemento debe ser visible
     };
 
     const observer = new IntersectionObserver((entries) => {
