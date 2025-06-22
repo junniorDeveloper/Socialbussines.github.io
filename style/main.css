@@ -2,6 +2,17 @@ html{
   scroll-behavior: smooth;
 }
 
+.scroll-item{
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 0.5s ease-out;
+}
+
+.scroll-item.visible{
+  opacity: 1;
+  transform: translateY(0);
+}
+
 /* MUESTRA (...) CUANDO LA INFORMACION EXEDE DE COLUMNA */
   .truncate-text {
     white-space: nowrap;

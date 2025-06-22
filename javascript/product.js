@@ -24,7 +24,7 @@ window.filterProducts = function (category) {
     filteredProducts.forEach((product, index) => {
         const uniqueId = `desc-${index}`; 
         const productDiv = document.createElement('div');
-        productDiv.className = 'bg-white shadow-md overflow-hidden transition-transform transform';
+        productDiv.className = 'bg-white shadow-md overflow-hidden transition-transform transform scroll-item';
         productDiv.innerHTML = `
             <div class="h-72 w-full flex items-center justify-center">
                 <img src="https://qiziyaqqptpwcarbywsx.supabase.co/storage/v1/object/public/imagenes/products/${product.image}" alt="${product.name}" class="w-64 h-64 object-cover">
@@ -59,6 +59,29 @@ window.filterProducts = function (category) {
             </div>
         `;
         productList.appendChild(productDiv);
+    });
+
+    // Configuración del Intersection Observer
+    const observerOptions = {
+        root: null, // El viewport
+        rootMargin: '0px',
+        threshold: 0.1 // 10% del elemento debe ser visible
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            } else {
+                entry.target.classList.remove('visible');
+            }
+        });
+    }, observerOptions);
+
+    // Observa cada elemento de producto
+    const scrollItems = document.querySelectorAll('.scroll-item');
+    scrollItems.forEach(item => {
+        observer.observe(item);
     });
 }
 
