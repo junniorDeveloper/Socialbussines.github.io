@@ -27,17 +27,17 @@
                 <li><a href="#" id="darkModeToggle" class="nav-link text-white">Modo Oscuro</a></li>
                 <li><a href="#" id="btn-todos" class="nav-link text-white">Contactanos</a></li>
                 <li><a href="#" id="btn-todos" class="nav-link text-white">Ubicanos</a></li>
-                <li><a href="#" class="nav-link text-white " onclick="filterProducts('todos')"><samp>General</samp></a></li>
-                <li><a href="#" class="nav-link text-white" onclick="filterProducts('exploradoras')"><samp>Exploradoras</samp></a></li>
-                <li><a href="#" class="nav-link text-white" onclick="filterProducts('focos')"><samp>Focos</samp></a></li>
-                <li><a href="#" class="nav-link text-white" onclick="filterProducts('herrajes')"><samp>Herrajes</samp></a></li>
-                <li><a href="#" class="nav-link text-white" onclick="filterProducts('indumentaria')"><samp>Indumentaria</samp></a></li>
-                <li><a href="#" class="nav-link text-white" onclick="filterProducts('cascos')"><samp>Cascos</samp></a></li>
-                <li><a href="#" class="nav-link text-white" onclick="filterProducts('accesorios')"><samp>Accesorios</samp></a></li>
-                <li><a href="#" class="nav-link text-white" onclick="filterProducts('inoxidables')"><samp>Inoxidables</samp></a></li>
-                <li><a href="#" class="nav-link text-white" onclick="filterProducts('espejos')"><samp>Espejos</samp></a></li>
-                <li><a href="#" class="nav-link text-white" onclick="filterProducts('protectores')"><samp>Protectores</samp></a></li>
-                <li><a href="#" class="nav-link text-white" onclick="filterProducts('stickers')"><samp>Stickers</samp></a></li>
+                <li><a href="#listProduct" class="nav-link text-white " onclick="filterProducts('todos'); scrollToProducts()"><samp>General</samp></a></li>
+                <li><a href="#listProduct" class="nav-link text-white" onclick="filterProducts('exploradoras'); scrollToProducts()"><samp>Exploradoras</samp></a></li>
+                <li><a href="#listProduct" class="nav-link text-white" onclick="filterProducts('focos'); scrollToProducts()"><samp>Focos</samp></a></li>
+                <li><a href="#listProduct" class="nav-link text-white" onclick="filterProducts('herrajes'); scrollToProducts()"><samp>Herrajes</samp></a></li>
+                <li><a href="#listProduct" class="nav-link text-white" onclick="filterProducts('indumentaria'); scrollToProducts()"><samp>Indumentaria</samp></a></li>
+                <li><a href="#listProduct" class="nav-link text-white" onclick="filterProducts('cascos'); scrollToProducts()"><samp>Cascos</samp></a></li>
+                <li><a href="#listProduct" class="nav-link text-white" onclick="filterProducts('accesorios'); scrollToProducts()"><samp>Accesorios</samp></a></li>
+                <li><a href="#listProduct" class="nav-link text-white" onclick="filterProducts('inoxidables'); scrollToProducts()"><samp>Inoxidables</samp></a></li>
+                <li><a href="#listProduct" class="nav-link text-white" onclick="filterProducts('espejos'); scrollToProducts()"><samp>Espejos</samp></a></li>
+                <li><a href="#listProduct" class="nav-link text-white" onclick="filterProducts('protectores'); scrollToProducts()"><samp>Protectores</samp></a></li>
+                <li><a href="#listProduct" class="nav-link text-white" onclick="filterProducts('stickers'); scrollToProducts()"><samp>Stickers</samp></a></li>
             </ul>
         </div>
     </nav>
@@ -45,13 +45,36 @@
     <script src="javascript/menu.js"></script>
     <script src="javascript/darkmode.js"></script>
 
+      
+  <!-- MUESTRA LAS SECCIONES DE CATEGORIAS DESDE html/category.html -->
+  <div id="Categorys"></div>
 
+  <script>
+    fetch("html/category.html")
+      .then(res => res.text())
+      .then(html => {
+        const container = document.getElementById("Categorys");
+        container.innerHTML = html;
+
+        // Evalúa los <script> del contenido cargado
+        const scripts = container.querySelectorAll("script");
+        scripts.forEach(script => {
+          const newScript = document.createElement("script");
+          newScript.textContent = script.textContent;
+          document.body.appendChild(newScript);
+        });
+      });
+  </script>
+    
+    
     <!-- LISTADO DE LOS PRODUCTOS -->
-    <div class="container mx-auto p-6 ">
+    <div id="listProduct" class="container mx-auto p-6">
         <div id="product-list"
-            class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 items-start mt-20">
+            class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 items-start mt-10">
         </div>
     </div>
+
+
 
     <!-- BOTON FLOTANTE DE CARRITO DE COMPRAS -->
     <div class="floating-button relative" id="cartButton">

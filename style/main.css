@@ -1,4 +1,6 @@
-
+html{
+  scroll-behavior: smooth;
+}
 
 /* MUESTRA (...) CUANDO LA INFORMACION EXEDE DE COLUMNA */
   .truncate-text {
@@ -8,6 +10,9 @@
     max-width: 300px;
   }
 
+  .content-vh{
+    height: 100vh;
+  }
   
 .description-content {
      overflow: hidden;

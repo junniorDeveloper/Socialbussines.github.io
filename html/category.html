@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="container mx-auto p-6">
+        
+        <div class="mt-20">
+            <div class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
+                <!-- Fila 1 -->
+                <div onclick="filterProducts('exploradoras'); scrollToProducts()" href="#listProduct"
+                    class="w-auto h-40 md:h-64 flex items-center justify-center cursor-pointer text-white font-bold bg-center bg-cover rounded-lg"
+                    style="background-image: url('img/exploradoras.jpg');">
+                    <div class="bg-black bg-opacity-40 p-2 rounded w-full h-full flex items-center  justify-center">Exploradoras</div>
+                </div>
+                <div onclick="filterProducts('focos'); scrollToProducts()" href="#listProduct"
+                    class="w-auto h-40 md:h-64 flex items-center justify-center cursor-pointer text-white font-bold bg-center bg-cover rounded-lg"
+                    style="background-image: url('img/focos.jpg');">
+                    <div class="bg-black bg-opacity-40 p-2 rounded w-full h-full flex items-center  justify-center">Focos</div>
+                </div>
+                <div onclick="filterProducts('herrajes'); scrollToProducts()" href="#listProduct"
+                    class="w-auto h-40 md:h-64 flex items-center justify-center cursor-pointer text-white font-bold bg-center bg-cover rounded-lg"
+                    style="background-image: url('img/herrajes.jpg');">
+                    <div class="bg-black bg-opacity-40 p-2 rounded w-full h-full flex items-center  justify-center">Herrajes</div>
+                </div>
+                <div onclick="filterProducts('indumentaria'); scrollToProducts()" href="#listProduct"
+                    class="w-auto h-40 md:h-64 flex items-center justify-center cursor-pointer text-white font-bold bg-center bg-cover rounded-lg"
+                    style="background-image: url('img/indumentaria.jpg');">
+                    <div class="bg-black bg-opacity-40 p-2 rounded w-full h-full flex items-center  justify-center">Indumentaria</div>
+                </div>
+                <div onclick="filterProducts('cascos'); scrollToProducts()" href="#listProduct"
+                    class="w-auto h-40 md:h-64 flex items-center justify-center cursor-pointer text-white font-bold bg-center bg-cover rounded-lg"
+                    style="background-image: url('img/cascos.jpg');">
+                    <div class="bg-black bg-opacity-40 p-2 rounded w-full h-full flex items-center  justify-center">Cascos</div>
+                </div>
+
+                <!-- Fila 2 -->
+                <div onclick="filterProducts('accesorios'); scrollToProducts()" href="#listProduct"
+                    class="w-auto h-40 md:h-64 flex items-center justify-center cursor-pointer text-white font-bold bg-center bg-cover rounded-lg"
+                    style="background-image: url('img/accesorios.jpg');">
+                    <div class="bg-black bg-opacity-40 p-2 rounded w-full h-full flex items-center  justify-center">Accesorios</div>
+                </div>
+                <div onclick="filterProducts('inoxidables'); scrollToProducts()" href="#listProduct"
+                    class="w-auto h-40 md:h-64 flex items-center justify-center cursor-pointer text-white font-bold bg-center bg-cover rounded-lg"
+                    style="background-image: url('img/inoxidables.jpg');">
+                    <div class="bg-black bg-opacity-40 p-2 rounded w-full h-full flex items-center  justify-center">Inoxidables</div>
+                </div>
+                <div onclick="filterProducts('espejos'); scrollToProducts()" href="#listProduct"
+                    class="w-auto h-40 md:h-64 flex items-center justify-center cursor-pointer text-white font-bold bg-center bg-cover rounded-lg"
+                    style="background-image: url('img/espejos.jpg');">
+                    <div class="bg-black bg-opacity-40 p-2 rounded w-full h-full flex items-center  justify-center">Espejos</div>
+                </div>
+                <div onclick="filterProducts('protectores'); scrollToProducts()" href="#listProduct"
+                    class="w-auto h-40 md:h-64 flex items-center justify-center cursor-pointer text-white font-bold bg-center bg-cover rounded-lg"
+                    style="background-image: url('img/protectores.jpg');">
+                    <div class="bg-black bg-opacity-40 p-2 rounded w-full h-full flex items-center  justify-center">Protectores</div>
+                </div>
+                <div onclick="filterProducts('stickers'); scrollToProducts()" href="#listProduct"
+                    class="w-auto h-40 md:h-64 flex items-center justify-center cursor-pointer text-white font-bold bg-center bg-cover rounded-lg"
+                    style="background-image: url('img/stickers.jpg');">
+                    <div class="bg-black bg-opacity-40 p-2 rounded w-full h-full flex items-center  justify-center">Stickers</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function scrollToProducts() {
+            // Selecciona el elemento con id 'listProduct'
+            const element = document.getElementById('listProduct');
+            // Realiza scroll suave hacia el elemento
+            element.scrollIntoView({ behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>
