@@ -19,9 +19,9 @@
     <!-- MENU DE NAVEGACION -->
     <nav class="navbar bg-white" id="navbar">
         <a class="navbar-brand text-white" href="#body-top">
-            <img src="https://images.icon-icons.com/1826/PNG/512/4202070logoshazamsocialsocialmedia-115618_115683.png"
+            <img src="img/logo/copilogonew.png"
                 class="navbar-logo">
-            SocialBussines
+            J&L Biker Cañete
         </a>
         <div class="content-list">
             <ul class="nav-list">
@@ -115,14 +115,25 @@
     <!-- LISTADO DE LOS PRODUCTOS -->
     <div id="listProduct" class="container mx-auto p-6">
 
-        <div class="sticky top-0 z-10 bg-gray-100 flex items-center justify-between mb-2 border-b-2 border-gray-300 pt-4 pb-4 scroll-item">
+        <!-- TITULO ESTATICO -->
+        <!-- <div class="sticky top-0 z-10 bg-gray-100 flex items-center justify-between mb-2 border-b-2 border-gray-300 pt-4 pb-4 scroll-item">
             <h2 class="text-lg md:text-xl font-semibold text-gray-600">
                 Nuestros Productos
             </h2>
             <button class="bg-blue-500 text-white text-sm px-3 py-1 rounded hover:bg-blue-600" onclick="filterProducts('todos'); scrollToProducts()" href="#listProduct" >
                 Ver todo
             </button>
+        </div> -->
+
+        <div class="flex items-center justify-between mb-2 border-b-2 border-gray-300 pb-2 scroll-item">
+            <h2 class="text-lg md:text-xl font-semibold text-gray-600 ">
+                Nuestros Productos
+            </h2>
+            <button class="bg-blue-500 text-white text-sm px-3 py-1 rounded hover:bg-blue-600" onclick="filterProducts('todos'); scrollToProducts()" href="#listProduct">
+                Ver todo
+            </button>
         </div>
+
 
         <div id="product-list"
             class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 items-start mt-6">
@@ -130,7 +141,7 @@
         
         <!-- Botón Ver más -->
         <div class="flex justify-center mt-6">
-            <button id="loadMoreBtn" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 text-sm">
+            <button id="loadMoreBtn" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 text-sm scroll-item">
                 Ver más
             </button>
         </div>
@@ -168,6 +179,26 @@
     <script src="javascript/product.js"></script>
     <script src="javascript/cart-ordered.js"></script>
 
+      <!-- MUESTRA LAS SECCIONES DE CATEGORIAS DESDE html/category.html -->
+    <div id="Footer"></div>
+
+    <script>
+        fetch("html/footer/footer.html")
+        .then(res => res.text())
+        .then(html => {
+            const container = document.getElementById("Footer");
+            container.innerHTML = html;
+
+            // Evalúa los <script> del contenido cargado
+            const scripts = container.querySelectorAll("script");
+            scripts.forEach(script => {
+            const newScript = document.createElement("script");
+            newScript.textContent = script.textContent;
+            document.body.appendChild(newScript);
+            });
+        });
+    </script>
+        
 
 </body>
 

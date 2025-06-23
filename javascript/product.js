@@ -60,7 +60,7 @@ function loadMoreProducts() {
             </div>
 
             <div class="p-4">
-                <h2 class="text-lg font-semibold truncate-text">${product.name}</h2>
+                <h2 class="text-lg font-semibold truncate-text text-gray-600">${product.name}</h2>
                 
                 <p class="text-gray-600">
                     <span class="${product.message_stock === 'Disponible' ? 'text-green-500' : product.message_stock === 'Limitado' ? 'text-yellow-500' : 'text-red-500'}">
@@ -76,12 +76,12 @@ function loadMoreProducts() {
                 </div>
                 <div class="flex items-center justify-between">
                     <div>
-                        <p class="text-small mt-2">
+                        <p class="text-small mt-2 scroll-item">
                             <strong class="font-semibold">Precio:</strong> S/${product.price_end.toFixed(2)} 
                             <span class="line-through text-gray-500"> (S/${product.price.toFixed(2)})</span>
                         </p>
                     </div>
-                    <button class="mt-2 bg-gray-100 text-gray-600 px-4 py-2" onclick="addToCart(${JSON.stringify(product).replace(/"/g, '&quot;')})">
+                    <button class="mt-2 bg-gray-100 text-gray-600 px-4 py-2 scroll-item" onclick="addToCart(${JSON.stringify(product).replace(/"/g, '&quot;')})">
                         <i class="fas fa-shopping-cart effect"></i>
                     </button>
                 </div>
