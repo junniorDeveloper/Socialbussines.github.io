@@ -60,14 +60,14 @@ function loadMoreProducts() {
             </div>
 
             <div class="p-4">
-                <h2 class="text-lg font-semibold truncate-text text-gray-600">${product.name}</h2>
+                <h2 class="text-lg font-semibold truncate-text text-gray-600 scroll-item">${product.name}</h2>
                 
-                <p class="text-gray-600">
+                <p class="text-gray-600 scroll-item">
                     <span class="${product.message_stock === 'Disponible' ? 'text-green-500' : product.message_stock === 'Limitado' ? 'text-yellow-500' : 'text-red-500'}">
                         ${product.message_stock}
                     </span>
                 </p>
-                <button class="mt-2 text-gray-500" onclick="toggleDescription('${uniqueId}')">
+                <button class="mt-2 text-gray-500 scroll-item" onclick="toggleDescription('${uniqueId}')">
                     <i class="fas fa-eye"></i> Ver descripción
                 </button>
                 <div id="${uniqueId}" class="description-content text-gray-500 mt-2 text-sm">
