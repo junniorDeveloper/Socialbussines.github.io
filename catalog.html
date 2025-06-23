@@ -50,6 +50,26 @@
 
         
   <!-- MUESTRA LAS SECCIONES DE CATEGORIAS DESDE html/category.html -->
+  <div id="SectionDestacados"></div>
+
+  <script>
+    fetch("html/section/destacado.html")
+      .then(res => res.text())
+      .then(html => {
+        const container = document.getElementById("SectionDestacados");
+        container.innerHTML = html;
+
+        // Evalúa los <script> del contenido cargado
+        const scripts = container.querySelectorAll("script");
+        scripts.forEach(script => {
+          const newScript = document.createElement("script");
+          newScript.textContent = script.textContent;
+          document.body.appendChild(newScript);
+        });
+      });
+  </script>
+
+  <!-- MUESTRA LAS SECCIONES DE CATEGORIAS DESDE html/category.html -->
   <div id="SectionNuevos"></div>
 
   <script>
@@ -94,8 +114,18 @@
     
     <!-- LISTADO DE LOS PRODUCTOS -->
     <div id="listProduct" class="container mx-auto p-6">
+
+        <div class="flex items-center justify-between mb-2 border-b-2 border-gray-300 pb-2 scroll-item">
+            <h2 class="text-lg md:text-xl font-semibold text-gray-600 ">
+                Nuestros Productos
+            </h2>
+            <button class="bg-blue-500 text-white text-sm px-3 py-1 rounded hover:bg-blue-600" onclick="filterProducts('todos')">
+                Ver todo
+            </button>
+        </div>
+
         <div id="product-list"
-            class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 items-start mt-10">
+            class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 items-start mt-6">
         </div>
     </div>
 
