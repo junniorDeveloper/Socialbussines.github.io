@@ -115,11 +115,11 @@
     <!-- LISTADO DE LOS PRODUCTOS -->
     <div id="listProduct" class="container mx-auto p-6">
 
-        <div class="flex items-center justify-between mb-2 border-b-2 border-gray-300 pb-2 scroll-item">
-            <h2 class="text-lg md:text-xl font-semibold text-gray-600 ">
+        <div class="sticky top-0 z-10 bg-gray-100 flex items-center justify-between mb-2 border-b-2 border-gray-300 pt-4 pb-4 scroll-item">
+            <h2 class="text-lg md:text-xl font-semibold text-gray-600">
                 Nuestros Productos
             </h2>
-            <button class="bg-blue-500 text-white text-sm px-3 py-1 rounded hover:bg-blue-600" onclick="filterProducts('todos')">
+            <button class="bg-blue-500 text-white text-sm px-3 py-1 rounded hover:bg-blue-600" onclick="filterProducts('todos'); scrollToProducts()" href="#listProduct" >
                 Ver todo
             </button>
         </div>
@@ -127,6 +127,14 @@
         <div id="product-list"
             class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 items-start mt-6">
         </div>
+        
+        <!-- Botón Ver más -->
+        <div class="flex justify-center mt-6">
+            <button id="loadMoreBtn" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 text-sm">
+                Ver más
+            </button>
+        </div>
+        
     </div>
 
 
