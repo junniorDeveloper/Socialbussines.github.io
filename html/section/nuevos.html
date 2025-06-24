@@ -16,6 +16,17 @@
             -ms-overflow-style: none;
             scrollbar-width: none;
         }
+
+        /* para que no crescan las card */
+        .description-content-nuevo{
+            overflow: hidden;
+            max-height: 0;
+            transition: max-height 0.3s ease;
+        }
+
+        .description-content-nuevo.show {
+            max-height: 300px;
+        }
     </style>
 
 </head>
@@ -42,7 +53,7 @@
 
         <!-- Carrusel -->
         <div class="overflow-hidden px-4">
-            <div id="carousel" class="flex overflow-x-auto no-scrollbar scroll-smooth space-x-4 scroll-item">
+            <div id="carousel" class="flex overflow-x-auto no-scrollbar scroll-smooth space-x-4 scroll-item items-start">
                 <!-- Aquí se insertarán los productos dinámicamente -->
             </div>
         </div>
@@ -68,19 +79,30 @@
                 nuevosProducts.forEach(product => {
                     const productCard = document.createElement('div');
                     productCard.className = "w-44 md:w-64 flex-shrink-0 bg-white rounded-xl shadow-md overflow-hidden";
+
+                    const uniqueId = `desc-${product.id_product}`;
                     productCard.innerHTML = `
                     <img src="https://qiziyaqqptpwcarbywsx.supabase.co/storage/v1/object/public/imagenes/products/${product.image}" alt="${product.name}" class="w-full h-36 md:h-64 object-cover">
                     <div class="p-2 md:p-4">
                         <h3 class="text-sm md:text-base font-semibold text-gray-800 truncate-text">${product.name}</h3>
-                        
+                        <!-- Botón Ver descripción -->
+                        <button class="md:mt-2 text-blue-400 text-xs sm:text-sm" onclick="toggleDescriptionNuevo('${uniqueId}')">
+                            <i class="fas fa-eye"></i> Ver descripción
+                        </button>
+                        <!-- Contenido descripción oculto -->
+                        <div id="${uniqueId}" class="description-content-nuevo text-gray-500 mt-2 text-xs sm:text-sm">
+                            <p class="text-gray-400 text-xs sm:text-sm mb-1">Marca: ${product.brand}</p>
+                            ${product.description}
+                        </div>
+
                         <div>
-                            <p class="text-xs sm:text-sm md:text-base mt-2">
+                            <p class="text-xs sm:text-sm md:text-base mt-1">
                                 <strong class="font-semibold">Ahora:</strong> S/${product.price_end.toFixed(2)} 
                                 <span class="line-through text-gray-500"> (S/${product.price.toFixed(2)})</span>
                             </p>
                         </div>
                         
-                        <div class="flex justify-between items-center mt-2">
+                        <div class="flex justify-between items-center mt-1">
                             <!-- Stock a la izquierda -->
                             <p class="text-gray-600">
                                 <span class="text-xs sm:text-sm md:text-base ${product.message_stock === 'Disponible' ? 'text-green-500' : product.message_stock === 'Limitado' ? 'text-yellow-500' : 'text-red-500'}">
@@ -120,9 +142,25 @@
             slideWidth = carousel.querySelector('.flex-shrink-0').offsetWidth + gap;
         });
 
+        // FUNCION PARA MOSTRAR/OCULTAR LA DESCRIPCION DE LOS PRODUCTOS
+        window.toggleDescriptionNuevo = function (id) {
+        const allDescriptions = document.querySelectorAll('.description-content-nuevo');
+        allDescriptions.forEach(desc => {
+            if (desc.id !== id) {
+            desc.classList.remove('show');
+            }
+        });
+
+        const description = document.getElementById(id);
+        if (description) {
+            description.classList.toggle('show');
+        }
+        };
+
         // Cargar productos al iniciar
         loadCarouselProducts();
     </script>
+
 
 
 </body>

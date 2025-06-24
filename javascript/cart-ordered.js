@@ -81,31 +81,20 @@ const shareCartAsText = () => {
 };
 
 
-// FUNCION PARA AGREGAR PRODUCTOS AL CARRITO
+// FUNCIÓN PARA AGREGAR PRODUCTOS AL CARRITO USANDO ALERTIFYJS
 window.addToCart = function (product) {
     if (product.message_stock === "Agotado") {
-        Swal.fire({
-            title: '<h3 style="font-size: 20px;">¡Gracias por tu interés!</h3>',
-            html: `<h3 style="font-size: 18px;">Nuestro <strong>${product.name}</strong> actualmente está agotado, pero pronto estará disponible nuevamente.</h3>`,
-            imageUrl: `https://qiziyaqqptpwcarbywsx.supabase.co/storage/v1/object/public/imagenes/products/${product.image}`,
-            confirmButtonColor: '#3085d6',
-            imageWidth: 300,
-            confirmButtonText: 'OK',
-            showCloseButton: true,
-        });
+        alertify.alert(
+            '¡Gracias por tu interés!',
+            `Nuestro producto "${product.name}" está agotado, pero pronto estará disponible nuevamente.`
+        );
         return;
     }
 
-    Swal.fire({
-        html: `<h3 style="font-size: 16px;">¿Deseas agregar <strong>${product.name}</strong> al carrito?</h3>`,
-        imageUrl: `https://qiziyaqqptpwcarbywsx.supabase.co/storage/v1/object/public/imagenes/products/${product.image}`,
-        imageWidth: 300,
-        confirmButtonColor: '#3085d6',
-        confirmButtonText: 'Agregar',
-        showCloseButton: true,
-        reverseButtons: true,
-    }).then((result) => {
-        if (result.isConfirmed) {
+    alertify.confirm(
+        'Agregar al carrito',
+        `¿Deseas agregar "${product.name}" al carrito?`,
+        function () {
             const existingProduct = cart.find(item => item.name === product.name);
             if (existingProduct) {
                 existingProduct.quantity++;
@@ -113,17 +102,20 @@ window.addToCart = function (product) {
                 cart.push({ ...product, quantity: 1 });
             }
             updateCart();
-
-            Swal.fire({
-                html: `<h3 style="font-size: 22px;">¡Agregado!</h3>`,
-                icon: 'success',
-                timer: 1200,
-                showConfirmButton: false,
-                draggable: true
-            });
-        } 
+            alertify.set('notifier','position', 'top-right');
+            alertify.success('¡Producto agregado al carrito!');
+        },
+        function () {
+            alertify.set('notifier','position', 'top-right');
+            alertify.error('Operación cancelada');
+        }
+    ).set({
+        labels: { ok: 'Agregar', cancel: 'Cancelar' },
+        transition: 'fade',
+        reverseButtons: true
     });
 };
+
 
 // FUNCION PARA ACTUALIZAR CANTIDAD AL PULSAR AGREGAR
 window.updateQuantity = function (index, quantity) {
@@ -131,71 +123,58 @@ window.updateQuantity = function (index, quantity) {
     updateCart();
 };
 
-// FUNCION PARA ELIMINAR UN PRODUCTO DEL CARRITO
+// FUNCIÓN PARA ELIMINAR UN PRODUCTO DEL CARRITO USANDO ALERTIFYJS
 window.removeFromCart = function (index) {
-    Swal.fire({
-        title: '<h3 style="font-size: 22px;">¿Estás seguro?</h3>',
-        text: "¡No podrás revertir esto!",
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#d33',
-        cancelButtonColor: '#3085d6',
-        cancelButtonText: 'Cancelar',
-        confirmButtonText: 'Sí, eliminar',
-        reverseButtons: true,
-        showCloseButton: true,
-        
-    }).then((result) => {
-        if (result.isConfirmed) {
+    alertify.confirm(
+        '¿Estás seguro?',
+        '¡No podrás revertir esto!',
+        function () {
             cart.splice(index, 1);
             updateCart();
-            Swal.fire({
-                icon: 'success',
-                title: '<h3 style="font-size: 22px;">¡Eliminado!</h3>',
-                html: `<h3 style="font-size: 18px;">El producto ha sido eliminado del carrito.</h3>`,
-                showConfirmButton: false,
-                timer: 1200
-            });
+            alertify.set('notifier','position', 'top-right');
+            alertify.success('El producto ha sido eliminado del carrito.');
+        },
+        function () {
+            alertify.set('notifier','position', 'top-right');
+            alertify.error('Operación cancelada');
         }
+    ).set({
+        labels: { ok: 'Sí, eliminar', cancel: 'Cancelar' },
+        transition: 'fade',
+        reverseButtons: true
     });
 };
 
-// FUNCION PARA LIMPIAR TODA LA LISTA DEL CARRITO
+
+// FUNCIÓN PARA LIMPIAR TODA LA LISTA DEL CARRITO USANDO ALERTIFYJS
 function clearCart() {
     if (cart.length === 0) {
-        Swal.fire({
-            icon: 'info',
-            title: 'Carrito vacío',
-            text: 'El carrito ya está vacío.',
-            confirmButtonText: 'OK'
-        });
+        alertify.set('notifier','position', 'top-right');
+        alertify.alert('Carrito vacío', 'El carrito ya está vacío.');
         return;
     }
 
-    Swal.fire({
-        title: '¿Vaciar carrito?',
-        text: 'Se eliminarán todos los productos del carrito.',
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#d33',
-        cancelButtonColor: '#3085d6',
-        confirmButtonText: 'Sí, vaciar',
-        cancelButtonText: 'Cancelar',
-        reverseButtons: true,
-    }).then((result) => {
-        if (result.isConfirmed) {
+    alertify.confirm(
+        '¿Vaciar carrito?',
+        'Se eliminarán todos los productos del carrito.',
+        function () {
             cart = [];
             updateCart();
             localStorage.removeItem('cart');
-            Swal.fire({
-                icon: 'success',
-                title: 'Carrito vaciado',
-                showConfirmButton: false,
-                timer: 1200
-            });
+            alertify.set('notifier','position', 'top-right');
+            alertify.success('Carrito vaciado');
+        },
+        function () {
+            alertify.set('notifier','position', 'top-right');
+            alertify.error('Operación cancelada');
         }
+    ).set({
+        labels: { ok: 'Sí, vaciar', cancel: 'Cancelar' },
+        transition: 'fade', // puedes cambiar a 'pulse' o 'slide'
+        reverseButtons: true
     });
 }
+
 
 // FUNCIÓN PARA MOSTRAR/OCULTAR EL CARRITO USANDO SOLO TAILWIND
 document.getElementById('cartButton').addEventListener('click', () => {
