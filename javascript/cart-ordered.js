@@ -86,14 +86,24 @@ window.addToCart = function (product) {
     if (product.message_stock === "Agotado") {
         alertify.alert(
             '¡Gracias por tu interés!',
-            `Nuestro producto "${product.name}" está agotado, pero pronto estará disponible nuevamente.`
-        );
+            `<div style="text-align: center;">
+                <img src="https://qiziyaqqptpwcarbywsx.supabase.co/storage/v1/object/public/imagenes/products/${product.image}" 
+                    alt="Producto agotado" style="width: 250px; margin: 0 auto 10px auto; display: block;"  />
+                <p>Actualmente este producto está <strong>agotado</strong>. ¡Gracias por tu interés!</p>
+            </div>`
+        ).set('transition', 'zoom');
+        
         return;
     }
 
     alertify.confirm(
         'Agregar al carrito',
-        `¿Deseas agregar "${product.name}" al carrito?`,
+        `<div style="text-align: center;">
+            <img src="https://qiziyaqqptpwcarbywsx.supabase.co/storage/v1/object/public/imagenes/products/${product.image}" 
+                alt="Producto disponible" style="width: 250px; margin: 0 auto 10px auto; display: block;"  />
+            <p>¿Deseas agregar "${product.name}" al carrito?</p>
+        </div>`,
+        
         function () {
             const existingProduct = cart.find(item => item.name === product.name);
             if (existingProduct) {
@@ -102,16 +112,16 @@ window.addToCart = function (product) {
                 cart.push({ ...product, quantity: 1 });
             }
             updateCart();
-            alertify.set('notifier','position', 'top-right');
+            alertify.set('notifier','position', 'top-center');
             alertify.success('¡Producto agregado al carrito!');
         },
         function () {
-            alertify.set('notifier','position', 'top-right');
+            alertify.set('notifier','position', 'top-center');
             alertify.error('Operación cancelada');
         }
     ).set({
         labels: { ok: 'Agregar', cancel: 'Cancelar' },
-        transition: 'fade',
+        transition: 'zoom',
         reverseButtons: true
     });
 };
@@ -131,16 +141,16 @@ window.removeFromCart = function (index) {
         function () {
             cart.splice(index, 1);
             updateCart();
-            alertify.set('notifier','position', 'top-right');
-            alertify.success('El producto ha sido eliminado del carrito.');
+            alertify.set('notifier','position', 'top-center');
+            alertify.success('Producto eliminado del carrito.');
         },
         function () {
-            alertify.set('notifier','position', 'top-right');
+            alertify.set('notifier','position', 'top-center');
             alertify.error('Operación cancelada');
         }
     ).set({
         labels: { ok: 'Sí, eliminar', cancel: 'Cancelar' },
-        transition: 'fade',
+        transition: 'zoom',
         reverseButtons: true
     });
 };
@@ -149,7 +159,7 @@ window.removeFromCart = function (index) {
 // FUNCIÓN PARA LIMPIAR TODA LA LISTA DEL CARRITO USANDO ALERTIFYJS
 function clearCart() {
     if (cart.length === 0) {
-        alertify.set('notifier','position', 'top-right');
+        alertify.set('notifier','position', 'top-center');
         alertify.alert('Carrito vacío', 'El carrito ya está vacío.');
         return;
     }
@@ -161,16 +171,16 @@ function clearCart() {
             cart = [];
             updateCart();
             localStorage.removeItem('cart');
-            alertify.set('notifier','position', 'top-right');
+            alertify.set('notifier','position', 'top-center');
             alertify.success('Carrito vaciado');
         },
         function () {
-            alertify.set('notifier','position', 'top-right');
+            alertify.set('notifier','position', 'top-center');
             alertify.error('Operación cancelada');
         }
     ).set({
         labels: { ok: 'Sí, vaciar', cancel: 'Cancelar' },
-        transition: 'fade', // puedes cambiar a 'pulse' o 'slide'
+        transition: 'zoom', // puedes cambiar a 'pulse' o 'slide'
         reverseButtons: true
     });
 }
