@@ -91,7 +91,7 @@ window.addToCart = function (product) {
                     alt="Producto agotado" style="width: 250px; margin: 0 auto 10px auto; display: block;"  />
                 <p>Actualmente este producto está <strong>agotado</strong>. ¡Gracias por tu interés!</p>
             </div>`
-        ).set('transition', 'zoom');
+        ).set('transition', 'slide');
         
         return;
     }
@@ -116,12 +116,12 @@ window.addToCart = function (product) {
             alertify.success('¡Producto agregado al carrito!');
         },
         function () {
-            alertify.set('notifier','position', 'top-center');
-            alertify.error('Operación cancelada');
+            // alertify.set('notifier','position', 'top-center');
+            // alertify.error('Operación cancelada');
         }
     ).set({
         labels: { ok: 'Agregar', cancel: 'Cancelar' },
-        transition: 'zoom',
+        transition: 'slide',
         reverseButtons: true
     });
 };
@@ -145,12 +145,12 @@ window.removeFromCart = function (index) {
             alertify.success('Producto eliminado del carrito.');
         },
         function () {
-            alertify.set('notifier','position', 'top-center');
-            alertify.error('Operación cancelada');
+            // alertify.set('notifier','position', 'top-center');
+            // alertify.error('Operación cancelada');
         }
     ).set({
         labels: { ok: 'Sí, eliminar', cancel: 'Cancelar' },
-        transition: 'zoom',
+        transition: 'slide',
         reverseButtons: true
     });
 };
@@ -175,12 +175,12 @@ function clearCart() {
             alertify.success('Carrito vaciado');
         },
         function () {
-            alertify.set('notifier','position', 'top-center');
-            alertify.error('Operación cancelada');
+            // alertify.set('notifier','position', 'top-center');
+            // alertify.error('Operación cancelada');
         }
     ).set({
         labels: { ok: 'Sí, vaciar', cancel: 'Cancelar' },
-        transition: 'zoom', // puedes cambiar a 'pulse' o 'slide'
+        transition: 'slide', // puedes cambiar a 'pulse' o 'slide'
         reverseButtons: true
     });
 }
