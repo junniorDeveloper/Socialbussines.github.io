@@ -2,8 +2,14 @@ body{
     margin-top: 150px;
 }
 
+/* BORDE A IMG PNG */
+  /* .logo-biker-img {
+    filter: drop-shadow(0px 0px 2px rgb(206, 206, 206));
+  } */
+
+
 .navbar {
-    background-color: #f8f9fa; /* Color de fondo */
+    background-color: #000000; /* Color de fondo */
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     transition: top 0.3s ease; /* Transición suave */
     z-index: 20;
@@ -18,7 +24,7 @@ body{
 .navbar-brand {
     margin: 10px;
     font-size: 24px; /* Tamaño de la fuente */
-    color: #000; /* Color del texto */
+    color: #ffffff; /* Color del texto */
     text-decoration: none; /* Sin subrayado */
     padding: 10px;
     display: flex;
@@ -52,26 +58,40 @@ body{
 .nav-list li {
     margin: 10px 15px; /* Espaciado entre elementos de la lista */
     font-family: Arial, sans-serif;
+    position: relative; /* Para posicionar la línea */
 }
 
 .nav-list li samp{
     font-family: Arial, sans-serif;
-    color: #007bff;
+    color: #ffffff;
+}
+
+.line {
+    position: absolute;
+    bottom: -5px; /* Ajusta la posición según sea necesario */
+    left: 0;
+    width: 100%;
+    height: 2px; /* Altura de la línea */
+    background-color: #ffffff; /* Color de la línea */
+    transform: scaleX(0); /* Inicialmente oculta */
+    transition: transform 0.2s ease; /* Efecto de transición */
+}
+
+.nav-list li:hover .line,
+.nav-list li.active .line {
+    transform: scaleX(1); /* Muestra la línea */
 }
 
 .nav-list i {
-    color: #007bff;
+    color: #7f8488;
     margin-right: 8px; /* Espaciado entre el ícono y el texto */
 }
 
 .nav-link {
-    color: #000; /* Color del texto */
+    color: #ffffff; /* Color del texto */
     text-decoration: none; /* Sin subrayado */
 }
 
-.nav-link:hover {
-    color: #007bff; /* Color al pasar el mouse */
-}
 
 @media(max-width: 768px) {
     body {

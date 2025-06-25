@@ -41,13 +41,13 @@
     <div class="relative py-4">
       <!-- Botón Atrás -->
       <button id="prevBtnDestacados"
-        class="hidden sm:block absolute -left-6 top-1/2 transform -translate-y-1/2 z-10 bg-gray-400 text-white px-3 py-2  hover:bg-gray-500 text-sm sm:text-base scroll-item">
+        class="hidden sm:block absolute -left-6 top-1/2 transform -translate-y-1/2 z-10 bg-black text-white px-3 py-2 text-sm sm:text-base scroll-item">
         <i class="fas fa-arrow-left"></i>
       </button>
 
       <!-- Botón Siguiente -->
       <button id="nextBtnDestacados"
-        class="hidden sm:block absolute -right-6 top-1/2 transform -translate-y-1/2 z-10 bg-gray-400 text-white px-3 py-2 hover:bg-gray-500 text-sm sm:text-base scroll-item">
+        class="hidden sm:block absolute -right-6 top-1/2 transform -translate-y-1/2 z-10 bg-black text-white px-3 py-2 text-sm sm:text-base scroll-item">
         <i class="fas fa-arrow-right"></i>
       </button>
 
@@ -75,39 +75,43 @@
 
         destacados.forEach(product => {
           const productCard = document.createElement('div');
-          productCard.className = "product-card w-44 md:w-64 flex-shrink-0 bg-white rounded-xl shadow-md overflow-hidden";
+          productCard.className = "product-card w-44 md:w-64 flex-shrink-0 bg-black overflow-hidden";
 
           const uniqueId = `desc-${product.id_product}`;
           productCard.innerHTML = `
-            <img src="https://qiziyaqqptpwcarbywsx.supabase.co/storage/v1/object/public/imagenes/products/${product.image}" alt="${product.name}" class="w-full h-36 md:h-64 object-cover">
-            <div class="p-2 md:p-4">
-              <h3 class="text-sm md:text-base font-semibold text-gray-800 truncate-text">${product.name}</h3>
+              <div class="relative">
+                <img src="https://qiziyaqqptpwcarbywsx.supabase.co/storage/v1/object/public/imagenes/products/${product.image}" alt="${product.name}" class="w-full h-48 md:h-64 object-cover">
+                <div class="absolute bottom-0 left-0 right-0 bg-black gradient px-2 py-3">
+                  <h3 class="text-sm md:text-base font-semibold text-white truncate-text ">${product.name}</h3>
+                  <div>
+                    <p class="text-xs sm:text-sm md:text-base mt-0 ">
+                      <span class="text-white mr-2">Ahora: S/${product.price_end.toFixed(2)} </span> 
+                      <span class="line-through text-white"> (S/${product.price.toFixed(2)})</span>
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="px-2 flex justify-between items-center mb-1">
                 <!-- Botón Ver descripción -->
-                <button class="md:mt-2 text-blue-400 text-xs sm:text-sm" onclick="toggleDescriptionDestacado('${uniqueId}')">
+                <button class=" text-white text-xs sm:text-sm" onclick="toggleDescriptionDestacado('${uniqueId}')">
                   <i class="fas fa-eye"></i> Ver descripción
                 </button>
-                <!-- Contenido descripción oculto -->
-                <div id="${uniqueId}" class="description-content-destacado text-gray-500 mt-2 text-xs sm:text-sm">
-                  <p class="text-gray-400 text-xs sm:text-sm mb-1">Marca: ${product.brand}</p>
-                  ${product.description}
-                </div>
 
-              <div>
-                <p class="text-xs sm:text-sm md:text-base mt-1">
-                  <strong class="font-semibold">Ahora:</strong> S/${product.price_end.toFixed(2)} 
-                  <span class="line-through text-gray-500"> (S/${product.price.toFixed(2)})</span>
-                </p>
-              </div>
-              <div class="flex justify-between items-center mt-1">
-                <p class="text-gray-600">
-                  <span class="text-xs sm:text-sm md:text-base ${product.message_stock === 'Disponible' ? 'text-green-500' : product.message_stock === 'Limitado' ? 'text-yellow-500' : 'text-red-500'}">
-                    ${product.message_stock}
-                  </span>
-                </p>
-                <button class="bg-gray-100 text-gray-600 px-2 py-1 rounded" onclick="addToCart(${JSON.stringify(product).replace(/"/g, '&quot;')})">
+                <!-- Botón del carrito -->
+                <button class="bg-black text-white px-2 py-1 rounded" onclick="addToCart(${JSON.stringify(product).replace(/"/g, '&quot;')})">
                   <i class="fas fa-shopping-cart effect text-sm"></i>
                 </button>
               </div>
+
+                <!-- Contenido descripción oculto -->
+                <div id="${uniqueId}" class="description-content-destacado text-gray-300 pl-4 text-xs sm:text-sm">
+                  <p class="text-gray-300 text-xs sm:text-sm mb-1">Marca: ${product.brand}</p>
+                  <p class="pb-2 pr-1">${product.description}</p>
+                </div>
+              </div>
+
+              
           `;
           carouselDestacados.appendChild(productCard);
         });

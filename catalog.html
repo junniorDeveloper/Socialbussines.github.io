@@ -9,8 +9,6 @@
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <!-- icon -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- sweetalert2 -->
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <!-- alertifyjs -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css"/>
@@ -23,31 +21,31 @@
     <script src="interface.js"></script> 
 </head>
 
-<body id="body-top" class="bg-gray-100 font-sans">
+<body id="body-top" class="bg-white font-sans">
 
     <!-- MENU DE NAVEGACION -->
-    <nav class="navbar bg-white" id="navbar">
+    <nav class="navbar" id="navbar">
         <a class="navbar-brand text-white" href="#body-top">
             <img src="img/logo/copilogonew.png"
-                class="navbar-logo">
+                class="navbar-logo logo-biker-img">
             J&L Biker Cañete
         </a>
         <div class="content-list">
             <ul class="nav-list">
-                <li><a href="#" id="darkModeToggle" class="nav-link text-white">Modo Oscuro</a></li>
-                <li><a href="#" id="btn-todos" class="nav-link text-white">Contactanos</a></li>
-                <li><a href="#" id="btn-todos" class="nav-link text-white">Ubicanos</a></li>
-                <li><a href="#listProduct" class="nav-link text-white " onclick="filterProducts('todos'); scrollToProducts()"><samp>General</samp></a></li>
-                <li><a href="#listProduct" class="nav-link text-white" onclick="filterProducts('exploradoras'); scrollToProducts()"><samp>Exploradoras</samp></a></li>
-                <li><a href="#listProduct" class="nav-link text-white" onclick="filterProducts('focos'); scrollToProducts()"><samp>Focos</samp></a></li>
-                <li><a href="#listProduct" class="nav-link text-white" onclick="filterProducts('herrajes'); scrollToProducts()"><samp>Herrajes</samp></a></li>
-                <li><a href="#listProduct" class="nav-link text-white" onclick="filterProducts('indumentaria'); scrollToProducts()"><samp>Indumentaria</samp></a></li>
-                <li><a href="#listProduct" class="nav-link text-white" onclick="filterProducts('cascos'); scrollToProducts()"><samp>Cascos</samp></a></li>
-                <li><a href="#listProduct" class="nav-link text-white" onclick="filterProducts('accesorios'); scrollToProducts()"><samp>Accesorios</samp></a></li>
-                <li><a href="#listProduct" class="nav-link text-white" onclick="filterProducts('inoxidables'); scrollToProducts()"><samp>Inoxidables</samp></a></li>
-                <li><a href="#listProduct" class="nav-link text-white" onclick="filterProducts('espejos'); scrollToProducts()"><samp>Espejos</samp></a></li>
-                <li><a href="#listProduct" class="nav-link text-white" onclick="filterProducts('protectores'); scrollToProducts()"><samp>Protectores</samp></a></li>
-                <li><a href="#listProduct" class="nav-link text-white" onclick="filterProducts('stickers'); scrollToProducts()"><samp>Stickers</samp></a></li>
+                <li><a href="#" id="darkModeToggle" class="nav-link text-white">Modo Oscuro</a><div class="line"></div></li>
+                <li><a href="#" id="btn-todos" class="nav-link text-white">Contactanos</a><div class="line"></div></li>
+                <li><a href="#" id="btn-todos" class="nav-link text-white">Ubicanos</a><div class="line"></div></li>
+                <li><a href="#listProduct" class="nav-link text-white " onclick="filterProducts('todos'); scrollToProducts()"><samp>General</samp></a><div class="line"></div></li>
+                <li><a href="#listProduct" class="nav-link text-white" onclick="filterProducts('exploradoras'); scrollToProducts()"><samp>Exploradoras</samp></a><div class="line"></div></li>
+                <li><a href="#listProduct" class="nav-link text-white" onclick="filterProducts('focos'); scrollToProducts()"><samp>Focos</samp></a><div class="line"></div></li>
+                <li><a href="#listProduct" class="nav-link text-white" onclick="filterProducts('herrajes'); scrollToProducts()"><samp>Herrajes</samp></a><div class="line"></div></li>
+                <li><a href="#listProduct" class="nav-link text-white" onclick="filterProducts('indumentaria'); scrollToProducts()"><samp>Indumentaria</samp></a><div class="line"></div></li>
+                <li><a href="#listProduct" class="nav-link text-white" onclick="filterProducts('cascos'); scrollToProducts()"><samp>Cascos</samp></a><div class="line"></div></li>
+                <li><a href="#listProduct" class="nav-link text-white" onclick="filterProducts('accesorios'); scrollToProducts()"><samp>Accesorios</samp></a><div class="line"></div></li>
+                <li><a href="#listProduct" class="nav-link text-white" onclick="filterProducts('inoxidables'); scrollToProducts()"><samp>Inoxidables</samp></a><div class="line"></div></li>
+                <li><a href="#listProduct" class="nav-link text-white" onclick="filterProducts('espejos'); scrollToProducts()"><samp>Espejos</samp></a><div class="line"></div></li>
+                <li><a href="#listProduct" class="nav-link text-white" onclick="filterProducts('protectores'); scrollToProducts()"><samp>Protectores</samp></a><div class="line"></div></li>
+                <li><a href="#listProduct" class="nav-link text-white" onclick="filterProducts('stickers'); scrollToProducts()"><samp>Stickers</samp></a><div class="line"></div></li>
             </ul>
         </div>
     </nav>

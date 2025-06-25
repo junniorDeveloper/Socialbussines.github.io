@@ -91,7 +91,7 @@ window.addToCart = function (product) {
                     alt="Producto agotado" style="width: 250px; margin: 0 auto 10px auto; display: block;"  />
                 <p>Actualmente este producto está <strong>agotado</strong>. ¡Gracias por tu interés!</p>
             </div>`
-        ).set('transition', 'slide');
+        ).set('transition', 'fade');
         
         return;
     }
@@ -121,7 +121,7 @@ window.addToCart = function (product) {
         }
     ).set({
         labels: { ok: 'Agregar', cancel: 'Cancelar' },
-        transition: 'slide',
+        transition: 'fade',
         reverseButtons: true
     });
 };
@@ -150,7 +150,7 @@ window.removeFromCart = function (index) {
         }
     ).set({
         labels: { ok: 'Sí, eliminar', cancel: 'Cancelar' },
-        transition: 'slide',
+        transition: 'fade',
         reverseButtons: true
     });
 };
@@ -180,7 +180,7 @@ function clearCart() {
         }
     ).set({
         labels: { ok: 'Sí, vaciar', cancel: 'Cancelar' },
-        transition: 'slide', // puedes cambiar a 'pulse' o 'slide'
+        transition: 'fade', // puedes cambiar a 'pulse' o 'fade'
         reverseButtons: true
     });
 }
