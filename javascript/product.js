@@ -53,35 +53,48 @@ function loadMoreProducts() {
     nextProducts.forEach((product, index) => {
         const uniqueId = `desc-${currentIndex + index}`; 
         const productDiv = document.createElement('div');
-        productDiv.className = 'bg-white shadow-md overflow-hidden transition-transform transform scroll-item';
+        productDiv.className = 'bg-white overflow-hidden transition-transform transform scroll-item border';
         productDiv.innerHTML = `
             <div class="h-72 w-full flex items-center justify-center">
                 <img src="https://qiziyaqqptpwcarbywsx.supabase.co/storage/v1/object/public/imagenes/products/${product.image}" alt="${product.name}" class="w-64 h-64 object-cover">
             </div>
 
-            <div class="p-4">
-                <h2 class="text-lg font-semibold truncate-text text-gray-600 scroll-item">${product.name}</h2>
+            <div class="p-4 ">
+                <div class="flex items-center ">
+                    <p class="scroll-item text-sm flex ">
+                        <span class="status-icon w-2 h-2 rounded-full 
+                            ${product.message_stock === 'Disponible' ? 'bg-green-500' : 
+                            product.message_stock === 'Limitado' ? 'bg-yellow-500' : 'bg-red-500'}">
+                        </span>
+                    </p>
+                    <h2 class="text-lg font-semibold truncate-text text-black scroll-item ml-2">
+                        ${product.name}
+                    </h2>
+                </div>
+
                 
-                <p class="text-gray-600 scroll-item">
-                    <span class="${product.message_stock === 'Disponible' ? 'text-green-500' : product.message_stock === 'Limitado' ? 'text-yellow-500' : 'text-red-500'}">
-                        ${product.message_stock}
-                    </span>
-                </p>
-                <button class="mt-2 text-gray-500 scroll-item" onclick="toggleDescription('${uniqueId}')">
+                <button class="text-sm mt-1 text-black scroll-item" onclick="toggleDescription('${uniqueId}')">
                     <i class="fas fa-eye"></i> Ver descripción
                 </button>
-                <div id="${uniqueId}" class="description-content text-gray-500 mt-2 text-sm">
-                    <p class="text-gray-400 text-sm mb-2">Marca: ${product.brand}</p>
+
+                <div id="${uniqueId}" class="description-content text-gray-500 text-sm">
+                    <p class="text-black text-sm mb-1 scroll-item">Marca: ${product.brand}</p>
+                    <p class="scroll-item text-sm">
+                        <span class="${product.message_stock === 'Disponible' ? 'text-green-500' : product.message_stock === 'Limitado' ? 'text-yellow-500' : 'text-red-500'}">
+                            ${product.message_stock}
+                        </span>
+                    </p>
                     ${product.description}
                 </div>
+                
                 <div class="flex items-center justify-between">
                     <div>
-                        <p class="text-small mt-2 scroll-item">
-                            <strong class="font-semibold">Precio:</strong> S/${product.price_end.toFixed(2)} 
-                            <span class="line-through text-gray-500"> (S/${product.price.toFixed(2)})</span>
+                        <p class="text-small scroll-item">
+                            <span class="font-semibold text-black mr-2">Precio: S/${product.price_end.toFixed(2)} </span>
+                            <span class="line-through text-black"> (S/${product.price.toFixed(2)})</span>
                         </p>
                     </div>
-                    <button class="mt-2 bg-gray-100 text-gray-600 px-4 py-2 scroll-item" onclick="addToCart(${JSON.stringify(product).replace(/"/g, '&quot;')})">
+                    <button class="bg-white text-black px-4 py-2 scroll-item" onclick="addToCart(${JSON.stringify(product).replace(/"/g, '&quot;')})">
                         <i class="fas fa-shopping-cart effect"></i>
                     </button>
                 </div>
@@ -101,8 +114,6 @@ function loadMoreProducts() {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('visible');
-            } else {
-                entry.target.classList.remove('visible');
             }
         });
     }, observerOptions);

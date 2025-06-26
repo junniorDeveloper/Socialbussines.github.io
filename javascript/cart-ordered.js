@@ -101,7 +101,6 @@ window.addToCart = function (product) {
         `<div style="text-align: center;">
             <img src="https://qiziyaqqptpwcarbywsx.supabase.co/storage/v1/object/public/imagenes/products/${product.image}" 
                 alt="Producto disponible" style="width: 250px; margin: 0 auto 10px auto; display: block;"  />
-            <p>¿Deseas agregar "${product.name}" al carrito?</p>
         </div>`,
         
         function () {

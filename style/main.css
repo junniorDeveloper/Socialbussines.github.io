@@ -2,13 +2,13 @@ html{
   scroll-behavior: smooth;
 }
 
-.scroll-item{
+.scroll-item {
   opacity: 0;
   transform: translateY(25px);
   transition: all 0.5s ease-out;
 }
 
-.scroll-item.visible{
+.scroll-item.visible {
   opacity: 1;
   transform: translateY(0);
 }
@@ -19,6 +19,11 @@ html{
     background: linear-gradient(0deg, rgba(0, 0, 0, 1) 27%, rgba(41, 41, 41, 0.68) 66%, rgba(255, 255, 255, 0) 100%);
   }
 
+  .product-gradient{
+    background: #c7c7c7;
+    background: linear-gradient(0deg, rgba(199, 199, 199, 1) 0%, rgba(84, 84, 84, 1) 27%, rgba(0, 0, 0, 1) 78%);
+
+  }
 
 
 /* MUESTRA (...) CUANDO LA INFORMACION EXEDE DE COLUMNA */
@@ -79,16 +84,16 @@ html{
      position: fixed;
      bottom: 20px;
      right: 20px;
-     background-color: #4073e0;
-     color: white;
-     border: none;
+     background-color: #ffffff;
+     color: rgb(0, 0, 0);
+     border: 1px solid rgb(199, 199, 199);
      border-radius: 50%;
      width: 60px;
      height: 60px;
      display: flex;
      align-items: center;
      justify-content: center;
-     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
      cursor: pointer;
  }
  

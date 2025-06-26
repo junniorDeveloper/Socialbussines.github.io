@@ -120,23 +120,13 @@
     
     
     <!-- LISTADO DE LOS PRODUCTOS -->
-    <div id="listProduct" class="container mx-auto p-6">
-
-        <!-- TITULO ESTATICO -->
-        <!-- <div class="sticky top-0 z-10 bg-gray-100 flex items-center justify-between mb-2 border-b-2 border-gray-300 pt-4 pb-4 scroll-item">
-            <h2 class="text-lg md:text-xl font-semibold text-gray-600">
-                Nuestros Productos
-            </h2>
-            <button class="bg-blue-500 text-white text-sm px-3 py-1 rounded hover:bg-blue-600" onclick="filterProducts('todos'); scrollToProducts()" href="#listProduct" >
-                Ver todo
-            </button>
-        </div> -->
+    <div id="listProduct" class="container mx-auto p-6 bg-black mb-10">
 
         <div class="flex items-center justify-between mb-2 border-b-2 border-gray-300 pb-2 scroll-item">
-            <h2 class="text-lg md:text-xl font-semibold text-gray-600 ">
+            <h2 class="text-lg md:text-xl font-semibold text-white ">
                 Nuestros Productos
             </h2>
-            <button class="bg-blue-500 text-white text-sm px-3 py-1 rounded hover:bg-blue-600" onclick="filterProducts('todos'); scrollToProducts()" href="#listProduct">
+            <button class="bg-white text-black text-sm px-3 py-1 rounded" onclick="filterProducts('todos'); scrollToProducts()" href="#listProduct">
                 Ver todo
             </button>
         </div>
@@ -148,7 +138,7 @@
         
         <!-- Botón Ver más -->
         <div class="flex justify-center mt-6">
-            <button id="loadMoreBtn" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 text-sm scroll-item">
+            <button id="loadMoreBtn" class="bg-white text-black px-4 py-1 rounded text-sm scroll-item">
                 Ver más
             </button>
         </div>
@@ -161,7 +151,7 @@
     <div class="floating-button relative" id="cartButton">
         <i class="fas fa-shopping-cart"></i>
         <span id="cartCount"
-            class="absolute -top-1 -right-1 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded-full hidden">0</span>
+            class="absolute -top-1 -right-1 bg-gray-400 text-white text-xs font-bold px-2 py-1 rounded-full hidden">0</span>
     </div>
 
     <!-- FONDO GRIS SUAVE Y MODAL CARRITO CENTRADO -->
