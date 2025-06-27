@@ -20,7 +20,7 @@ window.addEventListener("scroll", function () {
         let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
 
         if (scrollTop > lastScrollTop) {
-            navbar.style.top = "-150px"; // Oculta el menú
+            navbar.style.top = "-120px"; // Oculta el menú
         } else {
             navbar.style.top = "0"; // Muestra el menú
         }

@@ -19,7 +19,7 @@
     /* Por defecto (escritorio) */
     #banner {
       background-size: cover;
-      height: 1000px;
+      height: 800px;
       background-image: url('img/banner/one.webp');
     }
 
@@ -27,24 +27,27 @@
     @media (max-width: 640px) {
       #banner {
         height: 700px;
-      }
+      } 
     }
   </style>
 </head>
 
-<body class="bg-white">
+<body>
 
-  <div class="flex justify-center bg-black">
+  <div class="flex justify-center bg-black container mx-auto">
     <div class="w-full">
       <!-- Banner con fondo dinámico -->
       <div id="banner" class="relative fade-bg overflow-hidden transition duration-500 ease-in-out bg-center">
 
         <!-- Fondo oscuro + título -->
-        <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
-          <!-- <h1 class="text-white text-3xl font-bold">Explora Japón</h1> -->
+        <div id="banner-content" class="absolute inset-0 bg-black bg-opacity-40 flex flex-col  md:items-start md:justify-start md:pl-10 md:pt-40 md:pb-0 items-center justify-end pb-40">
+          <h1 id="banner-title" class="text-white md:text-4xl text-3xl font-extrabold">Desafia tus Limites</h1>
+          <p id="banner-subtitle" class="text-white text-lg mt-2 text-center">
+            La libertad se encuentra en cada kilómetro recorrido.
+          </p>
         </div>
 
-        <!-- Miniaturas dentro del banner -->
+
         <!-- Miniaturas dentro del banner (deslizables horizontalmente) -->
         <div class="absolute bottom-4 left-0 right-0 flex justify-center">
           <div
@@ -75,24 +78,64 @@
         'img/banner/tree.jpg'
       ];
 
+      const texts = [
+        {
+          title: "Desafia tus Limites",
+          subtitle: "La libertad se encuentra en cada kilómetro recorrido.",
+          containerClasses: "absolute inset-0 bg-black bg-opacity-40 flex flex-col  md:items-start md:justify-start md:pl-10 md:pt-40 md:pb-0 items-center justify-end pb-40",
+          titleClasses: "text-white md:text-4xl text-3xl font-extrabold",
+          subtitleClasses: "text-white text-lg mt-2 text-center"
+        },
+        {
+          title: "Siente la Aventura",
+          subtitle: "Cada ruta te lleva a una nueva historia.",
+          containerClasses: "absolute inset-0 bg-black bg-opacity-60 flex flex-col md:items-start md:justify-center md:pl-10 md:pb-0  items-center justify-end pb-40 ",
+          titleClasses: "text-white md:text-4xl text-3xl font-extrabold",
+          subtitleClasses: "text-white text-lg mt-2"
+        },
+        {
+          title: "Paisajes que Inspiran",
+          subtitle: "Explora y conecta con lo natural.",
+          containerClasses: "absolute inset-0 bg-black bg-opacity-40 flex flex-col  md:items-center md:justify-start pt-40 md:pb-0 items-center justify-start",
+          titleClasses: "text-white md:text-4xl text-3xl font-extrabold",
+          subtitleClasses: "text-white text-lg mt-2"
+        }
+      ];
+
       let currentIndexx = 0;
       const banner = document.getElementById('banner');
 
       let intervalId = null;
       let userInactiveTimeoutId = null;
 
-      function fadeToImage(url) {
+      const bannerContent = document.getElementById('banner-content');
+      const bannerTitle = document.getElementById('banner-title');
+      const bannerSubtitle = document.getElementById('banner-subtitle');
+
+      function fadeToImage(url, textData) {
         banner.classList.add('fade-out');
         setTimeout(() => {
           banner.style.backgroundImage = `url('${url}')`;
+          
+          // Actualiza textos
+          bannerTitle.textContent = textData.title;
+          bannerSubtitle.textContent = textData.subtitle;
+
+          // Actualiza clases
+          bannerContent.className = textData.containerClasses;
+          bannerTitle.className = textData.titleClasses;
+          bannerSubtitle.className = textData.subtitleClasses;
+
           banner.classList.remove('fade-out');
         }, 1000);
       }
 
+
       function rotateBackground() {
         currentIndexx = (currentIndexx + 1) % images.length;
-        fadeToImage(images[currentIndexx]);
+        fadeToImage(images[currentIndexx], texts[currentIndexx]);
       }
+
 
       function startRotation() {
         if (!intervalId) {
@@ -108,17 +151,15 @@
       }
 
       function userSetBackground(index) {
-        stopRotation(); // Detiene la rotación automática
-        clearTimeout(userInactiveTimeoutId); // Reinicia el temporizador de inactividad
+        stopRotation();
+        clearTimeout(userInactiveTimeoutId);
         currentIndexx = index;
-        fadeToImage(images[currentIndexx]);
+        fadeToImage(images[currentIndexx], texts[currentIndexx]);
 
-        // Reanuda después de 10 segundos de inactividad
         userInactiveTimeoutId = setTimeout(() => {
           startRotation();
         }, 8000);
       }
-
       // Inicia la rotación automática al cargar
       startRotation();
     </script>
