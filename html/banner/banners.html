@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Banner con efecto fade</title>
+  <!-- Tailwind CSS v2.2.19 -->
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <style>
+    .fade-bg {
+      transition: opacity 0.8s ease-in-out;
+      opacity: 1;
+    }
+
+    .fade-bg.fade-out {
+      opacity: 0;
+    }
+
+    /* Por defecto (escritorio) */
+    #banner {
+      background-size: cover;
+      height: 800px;
+      background-image: url('img/banner/one.jpg');
+    }
+
+    /* Se aleja más en móviles */
+    @media (max-width: 640px) {
+      #banner {
+        height: 700px;
+      }
+    }
+  </style>
+</head>
+
+<body class="bg-white">
+
+  <div class="flex justify-center bg-black">
+    <div class="w-full">
+      <!-- Banner con fondo dinámico -->
+      <div id="banner" class="relative fade-bg overflow-hidden transition duration-500 ease-in-out bg-center">
+
+        <!-- Fondo oscuro + título -->
+        <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+          <!-- <h1 class="text-white text-3xl font-bold">Explora Japón</h1> -->
+        </div>
+
+        <!-- Miniaturas dentro del banner -->
+        <!-- Miniaturas dentro del banner (deslizables horizontalmente) -->
+        <div class="absolute bottom-4 left-0 right-0 flex justify-center">
+          <div
+            class="bg-black bg-opacity-50 px-3 py-2 rounded-lg overflow-x-auto whitespace-nowrap no-scrollbar max-w-full">
+            <div class="inline-flex space-x-2">
+              <img src="img/banner/one.jpg"
+                class="w-20 h-14 object-cover cursor-pointer rounded border-2 border-transparent hover:border-white transition duration-300"
+                onclick="userSetBackground(0)" />
+              <img src="img/banner/two.jpg"
+                class="w-20 h-14 object-cover cursor-pointer rounded border-2 border-transparent hover:border-white transition duration-300"
+                onclick="userSetBackground(1)" />
+              <img src="img/banner/tree.jpg"
+                class="w-20 h-14 object-cover cursor-pointer rounded border-2 border-transparent hover:border-white transition duration-300"
+                onclick="userSetBackground(2)" />
+              <img src="img/banner/for.jpg"
+                class="w-20 h-14 object-cover cursor-pointer rounded border-2 border-transparent hover:border-white transition duration-300"
+                onclick="userSetBackground(3)" />
+              <img src="img/banner/five.jpg"
+                class="w-20 h-14 object-cover cursor-pointer rounded border-2 border-transparent hover:border-white transition duration-300"
+                onclick="userSetBackground(4)" />
+            </div>
+          </div>
+
+
+        </div>
+      </div>
+    </div>
+
+    <script>
+      const images = [
+        'img/banner/one.jpg',
+        'img/banner/two.jpg',
+        'img/banner/tree.jpg',
+        'img/banner/for.jpg',
+        'img/banner/five.jpg',
+      ];
+
+      let currentIndexx = 0;
+      const banner = document.getElementById('banner');
+
+      let intervalId = null;
+      let userInactiveTimeoutId = null;
+
+      function fadeToImage(url) {
+        banner.classList.add('fade-out');
+        setTimeout(() => {
+          banner.style.backgroundImage = `url('${url}')`;
+          banner.classList.remove('fade-out');
+        }, 1000);
+      }
+
+      function rotateBackground() {
+        currentIndexx = (currentIndexx + 1) % images.length;
+        fadeToImage(images[currentIndexx]);
+      }
+
+      function startRotation() {
+        if (!intervalId) {
+          intervalId = setInterval(rotateBackground, 5000);
+        }
+      }
+
+      function stopRotation() {
+        if (intervalId) {
+          clearInterval(intervalId);
+          intervalId = null;
+        }
+      }
+
+      function userSetBackground(index) {
+        stopRotation(); // Detiene la rotación automática
+        clearTimeout(userInactiveTimeoutId); // Reinicia el temporizador de inactividad
+        currentIndexx = index;
+        fadeToImage(images[currentIndexx]);
+
+        // Reanuda después de 10 segundos de inactividad
+        userInactiveTimeoutId = setTimeout(() => {
+          startRotation();
+        }, 8000);
+      }
+
+      // Inicia la rotación automática al cargar
+      startRotation();
+    </script>
+</body>
+
+</html>

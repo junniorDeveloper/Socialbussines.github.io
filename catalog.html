@@ -5,20 +5,29 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>J&L Biker Cañete</title>
-    <!-- tailwind -->
+
+    <!-- TAILWIND -->
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <!-- icon -->
+    <!-- ICONOS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-    <!-- alertifyjs -->
+    <!-- ALERTIFY JS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css"/>
     <!-- Tema opcional -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/default.min.css"/>
     <script src="https://cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
 
+    <!-- STYLE CSS DE LA PAGINA -->
     <link rel="stylesheet" href="style/navar.css">
     <link rel="stylesheet" href="style/main.css">
+    
+
+    <!-- SCRIPT DE LA INTERFACE DE LA API -->
     <script src="interface.js"></script> 
+
+    
+    <!-- SCRIPT DE LA LISTA DE PRODUCTOS -->
+    <script src="javascript/product.js"></script>
 </head>
 
 <body id="body-top" class="bg-white font-sans">
@@ -32,7 +41,6 @@
         </a>
         <div class="content-list">
             <ul class="nav-list">
-                <li><a href="#" id="darkModeToggle" class="nav-link text-white">Modo Oscuro</a><div class="line"></div></li>
                 <li><a href="#" id="btn-todos" class="nav-link text-white">Contactanos</a><div class="line"></div></li>
                 <li><a href="#" id="btn-todos" class="nav-link text-white">Ubicanos</a><div class="line"></div></li>
                 <li><a href="#listProduct" class="nav-link text-white " onclick="filterProducts('todos'); scrollToProducts()"><samp>General</samp></a><div class="line"></div></li>
@@ -50,152 +58,178 @@
         </div>
     </nav>
 
+    <!-- SCRIPT DE MENU DE NAVEGACION -->
     <script src="javascript/menu.js"></script>
-    <script src="javascript/darkmode.js"></script>
-
-
-
-        
-  <!-- MUESTRA LAS SECCIONES DE CATEGORIAS DESDE html/category.html -->
-  <div id="SectionDestacados"></div>
-
-  <script>
-    fetch("html/section/destacado.html")
-      .then(res => res.text())
-      .then(html => {
-        const container = document.getElementById("SectionDestacados");
-        container.innerHTML = html;
-
-        // Evalúa los <script> del contenido cargado
-        const scripts = container.querySelectorAll("script");
-        scripts.forEach(script => {
-          const newScript = document.createElement("script");
-          newScript.textContent = script.textContent;
-          document.body.appendChild(newScript);
-        });
-      });
-  </script>
-
-  <!-- MUESTRA LAS SECCIONES DE CATEGORIAS DESDE html/category.html -->
-  <div id="SectionNuevos"></div>
-
-  <script>
-    fetch("html/section/nuevos.html")
-      .then(res => res.text())
-      .then(html => {
-        const container = document.getElementById("SectionNuevos");
-        container.innerHTML = html;
-
-        // Evalúa los <script> del contenido cargado
-        const scripts = container.querySelectorAll("script");
-        scripts.forEach(script => {
-          const newScript = document.createElement("script");
-          newScript.textContent = script.textContent;
-          document.body.appendChild(newScript);
-        });
-      });
-  </script>
-
-
     
-  <!-- MUESTRA LAS SECCIONES DE CATEGORIAS DESDE html/category.html -->
-  <div id="Categorys"></div>
 
-  <script>
-    fetch("html/category/category.html")
-      .then(res => res.text())
-      .then(html => {
-        const container = document.getElementById("Categorys");
-        container.innerHTML = html;
+<!--------------------------------------------------------------------------------------------------------------------------------------------------------------------->
+<!----------------------------------------------------------------- COMPONENTES DE LA PAGINA -------------------------------------------------------------------------->
+<!--------------------------------------------------------------------------------------------------------------------------------------------------------------------->
 
-        // Evalúa los <script> del contenido cargado
-        const scripts = container.querySelectorAll("script");
-        scripts.forEach(script => {
-          const newScript = document.createElement("script");
-          newScript.textContent = script.textContent;
-          document.body.appendChild(newScript);
-        });
-      });
-  </script>
+    <!-- MUESTRA LAS SECCION BANNER -->
+    <div id="SectionBanner"></div>
+
+    <script>
+        fetch("html/banner/banners.html")
+            .then(res => res.text())
+            .then(html => {
+                const container = document.getElementById("SectionBanner");
+                container.innerHTML = html;
+
+                // Evalúa los <script> del contenido cargado
+                const scripts = container.querySelectorAll("script");
+                scripts.forEach(script => {
+                    const newScript = document.createElement("script");
+                    newScript.textContent = script.textContent;
+                    document.body.appendChild(newScript);
+                });
+            });
+    </script>
+
+
+    <!-- MUESTRA LAS SECCION PRODUCTOS DESTACADOS -->
+    <div id="SectionDestacados"></div>
+
+    <script>
+        fetch("html/section/destacado.html")
+            .then(res => res.text())
+            .then(html => {
+                const container = document.getElementById("SectionDestacados");
+                container.innerHTML = html;
+
+                // Evalúa los <script> del contenido cargado
+                const scripts = container.querySelectorAll("script");
+                scripts.forEach(script => {
+                    const newScript = document.createElement("script");
+                    newScript.textContent = script.textContent;
+                    document.body.appendChild(newScript);
+                });
+            });
+    </script>
+
+
+    <!-- MUESTRA LAS SECCIO DE NUEVOS INGRESOS -->
+    <div id="SectionNuevos"></div>
+
+    <script>
+        fetch("html/section/nuevos.html")
+            .then(res => res.text())
+            .then(html => {
+                const container = document.getElementById("SectionNuevos");
+                container.innerHTML = html;
+
+                // Evalúa los <script> del contenido cargado
+                const scripts = container.querySelectorAll("script");
+                scripts.forEach(script => {
+                    const newScript = document.createElement("script");
+                    newScript.textContent = script.textContent;
+                    document.body.appendChild(newScript);
+                });
+            });
+    </script>
+
+
+    <!-- MUESTRA LAS SECCION DE CATEGORIAS -->
+    <div id="Categorys"></div>
+
+    <script>
+        fetch("html/category/category.html")
+            .then(res => res.text())
+            .then(html => {
+                const container = document.getElementById("Categorys");
+                container.innerHTML = html;
+
+                // Evalúa los <script> del contenido cargado
+                const scripts = container.querySelectorAll("script");
+                scripts.forEach(script => {
+                    const newScript = document.createElement("script");
+                    newScript.textContent = script.textContent;
+                    document.body.appendChild(newScript);
+                });
+            });
+    </script>
     
     
     <!-- LISTADO DE LOS PRODUCTOS -->
     <div id="listProduct" class="container mx-auto p-6 bg-black mb-10">
-
+    
         <div class="flex items-center justify-between mb-2 border-b-2 border-gray-300 pb-2 scroll-item">
             <h2 class="text-lg md:text-xl font-semibold text-white ">
                 Nuestros Productos
             </h2>
-            <button class="bg-white text-black text-sm px-3 py-1 rounded" onclick="filterProducts('todos'); scrollToProducts()" href="#listProduct">
+            <button class="bg-white text-black text-sm px-3 py-1 rounded"
+                onclick="filterProducts('todos'); scrollToProducts()" href="#listProduct">
                 Ver todo
             </button>
         </div>
-
-
-        <div id="product-list"
-            class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 items-start mt-6">
+    
+        <div id="product-list" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 items-start mt-6">
         </div>
-        
+    
         <!-- Botón Ver más -->
         <div class="flex justify-center mt-6">
             <button id="loadMoreBtn" class="bg-white text-black px-4 py-1 rounded text-sm scroll-item">
                 Ver más
             </button>
         </div>
-        
+    
     </div>
 
 
-
-    <!-- BOTON FLOTANTE DE CARRITO DE COMPRAS -->
+    <!-- BOTON FLOTANTE DE CARRITO DE PRODUCTOS -->
     <div class="floating-button relative" id="cartButton">
         <i class="fas fa-shopping-cart"></i>
         <span id="cartCount"
             class="absolute -top-1 -right-1 bg-gray-400 text-white text-xs font-bold px-2 py-1 rounded-full hidden">0</span>
     </div>
 
-    <!-- FONDO GRIS SUAVE Y MODAL CARRITO CENTRADO -->
+
+    <!-- MODAL DEL CARRITO DE PRODUCTOS -->
     <div id="cartOverlay" class="fixed inset-0 bg-gray-600 bg-opacity-60 flex items-center justify-center z-50 hidden">
         <div id="cart" class="bg-white shadow-lg p-6 w-[500px] xl:w-1/4 max-h-[90vh] overflow-y-auto">
-            <h2 class="text-lg font-semibold mb-4">Carrito de Compras</h2>
+            <h2 class="text-lg font-semibold mb-4">Carrito de Productos</h2>
             <div class="overflow-y-auto max-h-96 ">
                 <div class="space-y-6" id="cartItems"></div>
             </div>
             <div class="mt-4">
                 <p id="totalPrice" class="font-bold text-gray-800 text-sm md:text-base flex flex-col gap-1"></p>
-                <button onclick="shareCartAsText()" class="mt-2 bg-green-500 text-white px-4 py-2 rounded flex items-center justify-center w-full">
+                <button onclick="shareCartAsText()"
+                    class="mt-2 bg-green-500 text-white px-4 py-2 rounded flex items-center justify-center w-full">
                     <i class="fab fa-whatsapp mr-2"></i> Compartir por WhatsApp
                 </button>
-                <button onclick="clearCart()" class="mt-2 bg-red-500 text-white px-4 py-2 rounded flex items-center justify-center w-full">
+                <button onclick="clearCart()"
+                    class="mt-2 bg-red-500 text-white px-4 py-2 rounded flex items-center justify-center w-full">
                     <i class="fas fa-trash-alt mr-2"></i> Vaciar Carrito
                 </button>
             </div>
         </div>
     </div>
 
-    <script src="javascript/product.js"></script>
+    <!-- SCRIPT DEL CARRITO DE PRODUCTOS -->
     <script src="javascript/cart-ordered.js"></script>
 
-      <!-- MUESTRA LAS SECCIONES DE CATEGORIAS DESDE html/category.html -->
+
+    <!-- MUESTRA LAS SECCION DE FOOTER -->
     <div id="Footer"></div>
 
     <script>
         fetch("html/footer/footer.html")
-        .then(res => res.text())
-        .then(html => {
-            const container = document.getElementById("Footer");
-            container.innerHTML = html;
+            .then(res => res.text())
+            .then(html => {
+                const container = document.getElementById("Footer");
+                container.innerHTML = html;
 
-            // Evalúa los <script> del contenido cargado
-            const scripts = container.querySelectorAll("script");
-            scripts.forEach(script => {
-            const newScript = document.createElement("script");
-            newScript.textContent = script.textContent;
-            document.body.appendChild(newScript);
+                // Evalúa los <script> del contenido cargado
+                const scripts = container.querySelectorAll("script");
+                scripts.forEach(script => {
+                    const newScript = document.createElement("script");
+                    newScript.textContent = script.textContent;
+                    document.body.appendChild(newScript);
+                });
             });
-        });
     </script>
         
+
 
 </body>
 
