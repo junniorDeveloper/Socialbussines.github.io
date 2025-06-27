@@ -19,8 +19,8 @@
     /* Por defecto (escritorio) */
     #banner {
       background-size: cover;
-      height: 800px;
-      background-image: url('img/banner/one.jpg');
+      height: 1000px;
+      background-image: url('img/banner/one.webp');
     }
 
     /* Se aleja más en móviles */
@@ -50,21 +50,16 @@
           <div
             class="bg-black bg-opacity-50 px-3 py-2 rounded-lg overflow-x-auto whitespace-nowrap no-scrollbar max-w-full">
             <div class="inline-flex space-x-2">
-              <img src="img/banner/one.jpg"
+              <img src="img/banner/one.webp"
                 class="w-20 h-14 object-cover cursor-pointer rounded border-2 border-transparent hover:border-white transition duration-300"
                 onclick="userSetBackground(0)" />
-              <img src="img/banner/two.jpg"
+              <img src="img/banner/two.webp"
                 class="w-20 h-14 object-cover cursor-pointer rounded border-2 border-transparent hover:border-white transition duration-300"
                 onclick="userSetBackground(1)" />
               <img src="img/banner/tree.jpg"
                 class="w-20 h-14 object-cover cursor-pointer rounded border-2 border-transparent hover:border-white transition duration-300"
                 onclick="userSetBackground(2)" />
-              <img src="img/banner/for.jpg"
-                class="w-20 h-14 object-cover cursor-pointer rounded border-2 border-transparent hover:border-white transition duration-300"
-                onclick="userSetBackground(3)" />
-              <img src="img/banner/five.jpg"
-                class="w-20 h-14 object-cover cursor-pointer rounded border-2 border-transparent hover:border-white transition duration-300"
-                onclick="userSetBackground(4)" />
+              
             </div>
           </div>
 
@@ -75,11 +70,9 @@
 
     <script>
       const images = [
-        'img/banner/one.jpg',
-        'img/banner/two.jpg',
-        'img/banner/tree.jpg',
-        'img/banner/for.jpg',
-        'img/banner/five.jpg',
+        'img/banner/one.webp',
+        'img/banner/two.webp',
+        'img/banner/tree.jpg'
       ];
 
       let currentIndexx = 0;

@@ -1,5 +1,5 @@
 body{
-    margin-top: 150px;
+    margin-top: 0px;
 }
 
 /* BORDE A IMG PNG */
@@ -95,7 +95,7 @@ body{
 
 @media(max-width: 768px) {
     body {
-        margin-top: 150px;
+        margin-top: 0px;
     }
 
     .navbar {
