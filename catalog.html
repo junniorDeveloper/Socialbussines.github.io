@@ -87,6 +87,26 @@
             });
     </script>
 
+    <!-- MUESTRA LAS SECCION BANNER -->
+    <div id="SectionTabs"></div>
+
+    <script>
+        fetch("html/tabs/tabs.html")
+            .then(res => res.text())
+            .then(html => {
+                const container = document.getElementById("SectionTabs");
+                container.innerHTML = html;
+
+                // Evalúa los <script> del contenido cargado
+                const scripts = container.querySelectorAll("script");
+                scripts.forEach(script => {
+                    const newScript = document.createElement("script");
+                    newScript.textContent = script.textContent;
+                    document.body.appendChild(newScript);
+                });
+            });
+    </script>
+
 
     <!-- MUESTRA LAS SECCION PRODUCTOS DESTACADOS -->
     <div id="SectionDestacados"></div>

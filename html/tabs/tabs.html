@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tabs Mejoradas</title>
+</head>
+
+<body>
+    <div class="container mx-auto p-6">
+
+        <!-- Título -->
+        <h2 class="text-lg md:text-xl pl-4 font-semibold text-gray-600 mb-4 border-b-2 border-gray-300 pb-2 w-fit scroll-item">
+            Sobre Nosotros
+        </h2>
+
+        <div class="flex flex-col md:flex-row space-x-0 lg:space-x-4 mb-4">
+            <button class="tab-button w-full md:w-auto mb-2 md:mb-0 py-2 px-4 bg-black text-sm md:text-base text-white font-semibold  focus:outline-none" onclick="openTab('Historia')">Historia del negocio</button>
+            <button class="tab-button w-full md:w-auto mb-2 md:mb-0 py-2 px-4 bg-black text-sm md:text-base text-white font-semibold focus:outline-none" onclick="openTab('Testimonios')">Testimonios</button>
+            <button class="tab-button w-full md:w-auto mb-2 md:mb-0 py-2 px-4 bg-black text-sm md:text-base text-white font-semibold focus:outline-none" onclick="openTab('Contactos')">Contactos</button>
+            <button class="tab-button w-full md:w-auto mb-2 md:mb-0 py-2 px-4 bg-black text-sm md:text-base text-white font-semibold focus:outline-none" onclick="openTab('Mapa')">Mapa de ubicación</button>
+            <button class="tab-button w-full md:w-auto py-2 px-4 bg-red-600 text-white text-sm md:text-base font-semibold focus:outline-none" onclick="closeTabs()">Cerrar sección</button>
+        </div>
+
+       <div id="Historia" class="content-tab bg-white shadow-lg p-6 border">
+            <div class="relative z-5 bg-white shadow-none md:shadow-lg p-0 md:p-6">
+
+                <div class="flex flex-col lg:flex-row items-center justify-around md:items-center">
+                    <!-- Texto a la izquierda -->
+                    <div class="lg:w-3/5  md:p-8">
+                        <h2 class="md:text-2xl text-lg font-semibold text-gray-800 mb-4">Nuestra Historia</h2>
+                        <p class="text-gray-600 text-sm md:text-base leading-relaxed mb-4">
+                           Desde su fundación en 2020, nuestro negocio nació de una pasión intensa por la libertad, la aventura y el estilo de vida biker. Lo que comenzó como un sueño compartido entre amigos, pronto se convirtió en una comunidad vibrante que valoraba la confianza y la personalidad en cada accesorio que ofrecíamos.
+                        </p>
+
+                        <p class="text-gray-600 text-sm md:text-base leading-relaxed mb-4">
+                            A lo largo de los años, hemos crecido gracias al apoyo y fidelidad de nuestra comunidad local. Cada producto que diseñamos y seleccionamos refleja ese espíritu audaz y libre que nos caracteriza, pensando en cada viajero que busca acompañantes confiables en sus caminos.
+                        </p>
+
+                        <p class="text-gray-600 text-sm md:text-base leading-relaxed mb-4">
+                            Nuestro compromiso es seguir ofreciendo accesorios con carácter, destinados a quienes viven la aventura sobre dos ruedas. Porque para nosotros, no es solo un negocio, sino una forma de compartir esa pasión que nos impulsa a explorar sin límites y a vivir cada viaje con intensidad.
+                        </p>
+                    </div>
+
+                    <!-- Imagen a la derecha -->
+                    <div class="sm:w-80 flex items-center border">
+                        <img src="https://www.shutterstock.com/image-vector/motorcycle-classic-biker-helmet-logo-600nw-2482496613.jpg" alt="Historia" class="w-full shadow-sm object-cover">
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div id="Testimonios" class="content-tab hidden p-4 bg-white shadow">
+            <h2 class="text-xl font-bold mb-2">Testimonios</h2>
+            <p class="mb-4">"Excelente servicio y atención al cliente. ¡Altamente recomendados!" - Juan Pérez</p>
+            <p class="mb-4">"La calidad de los productos es excepcional." - María López</p>
+        </div>
+
+        <div id="Contactos" class="content-tab hidden p-4 bg-white shadow">
+            <h2 class="text-xl font-bold mb-2">Contactos</h2>
+            <p class="mb-4">Puedes contactarnos a través de:</p>
+            <ul class="list-disc pl-5">
+                <li>Email: contacto@empresa.com</li>
+                <li>Teléfono: (01) 234-5678</li>
+                <li>Dirección: Av. Principal 123, Ciudad</li>
+            </ul>
+        </div>
+
+        <div id="Mapa" class="content-tab hidden p-4 bg-white shadow">
+            <h2 class="text-xl font-bold mb-2">Mapa de ubicación</h2>
+            <p class="mb-4">Encuentra nuestra ubicación en el siguiente mapa:</p>
+            <iframe src="https://www.google.com/maps/embed?pb=!1m21!1m12!1m3!1d243.0260090148206!2d-76.38531004413285!3d-12.945202006433302!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m6!3e6!4m0!4m3!3m2!1d-12.945195798088244!2d-76.3855316616371!5e0!3m2!1ses!2spe!4v1751078764059!5m2!1ses!2spe" width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+        </div>
+    </div>
+
+    <script>
+        function openTab(tabName) {
+            var i;
+            var x = document.getElementsByClassName("content-tab");
+            for (i = 0; i < x.length; i++) {
+                x[i].classList.add("hidden");
+            }
+            document.getElementById(tabName).classList.remove("hidden");
+        }
+
+        function closeTabs() {
+            var sections = document.getElementsByClassName("content-tab");
+            for (var i = 0; i < sections.length; i++) {
+                sections[i].classList.add("hidden");
+            }
+        }
+    </script>
+
+</body>
+
+</html>
