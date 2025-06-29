@@ -2,6 +2,20 @@ let cart = [];
 const savedCart = localStorage.getItem('cart');
 cart = savedCart ? JSON.parse(savedCart) : [];
 
+function changeQuantity(index, delta) {
+     if (cart[index]) {
+        const newQuantity = cart[index].quantity + delta;
+
+        // Impide que la cantidad baje de 1
+        if (newQuantity < 1) {
+            return; // No hace nada si intenta bajar de 1
+        }
+
+        cart[index].quantity = newQuantity;
+        updateCart();
+    }
+}
+
 
 // FUNCION PARA ACTUALIZAR AL AGREGAR UN PRODUCTO AL CARRITO Y ESTRUCTURA DE LA LISTA
 const updateCart = () => {
@@ -25,10 +39,17 @@ const updateCart = () => {
                     <p class="text-sm md:text-base text-gray-600">Unidad: S/${item.price_end.toFixed(2)}</p>
                     <p class="text-sm md:text-base text-gray-600">Precio: S/${itemTotal.toFixed(2)}</p>
                 </div>
-                <div class="px-2 py-1">
-                    <button class="text-black ocultar-al-capturar" onclick="removeFromCart(${index})">
-                        <i class="fas fa-trash-alt"></i>
+                <div class="flex flex-col space-y-1 ">
+                    <button class="px-1 mb-1 text-red-600 ocultar-al-capturar" onclick="removeFromCart(${index})">
+                        <i class="fas fa-times"></i>
                     </button>
+                    <button class="md:px-1 text-white bg-gray-300 ocultar-al-capturar" onclick="changeQuantity(${index}, 1)">
+                        <i class="fas fa-chevron-up"></i>
+                    </button>
+                    <button class="md:px-1 text-white bg-gray-300 ocultar-al-capturar" onclick="changeQuantity(${index}, -1)">
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    
                 </div>
             `;
         cartItemsDiv.appendChild(productCard);
@@ -39,7 +60,7 @@ const updateCart = () => {
     // CONTADOR DE NOTIFICACION DEL CARRO DE COMPRAS
     const updateCartCount = () => {
         const cartCount = document.getElementById('cartCount');
-        const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+        const totalItems = cart.length; 
 
         if (totalItems > 0) {
             cartCount.innerText = totalItems;
@@ -123,10 +144,10 @@ window.addToCart = function (product) {
 
 
 // FUNCION PARA ACTUALIZAR CANTIDAD AL PULSAR AGREGAR
-window.updateQuantity = function (index, quantity) {
-    cart[index].quantity = parseInt(quantity);
-    updateCart();
-};
+// window.updateQuantity = function (index, quantity) {
+//     cart[index].quantity = parseInt(quantity);
+//     updateCart();
+// };
 
 // FUNCIÓN PARA ELIMINAR UN PRODUCTO DEL CARRITO USANDO ALERTIFYJS
 window.removeFromCart = function (index) {
