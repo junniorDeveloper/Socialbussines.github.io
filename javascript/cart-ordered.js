@@ -1,4 +1,3 @@
-
 let cart = [];
 const savedCart = localStorage.getItem('cart');
 cart = savedCart ? JSON.parse(savedCart) : [];
@@ -17,7 +16,7 @@ const updateCart = () => {
         totalOriginal += item.price * item.quantity;
 
         const productCard = document.createElement('div');
-        productCard.className = 'bg-white overflow-hidden flex items-center';
+        productCard.className = 'bg-white overflow-hidden flex items-center py-2';
         productCard.innerHTML = `
                 <img src="https://qiziyaqqptpwcarbywsx.supabase.co/storage/v1/object/public/imagenes/products/${item.image}" alt="${item.name}" class="w-20 h-20 object-contain mr-2 ml-2">
                 <div class="flex-1">
@@ -26,9 +25,9 @@ const updateCart = () => {
                     <p class="text-sm md:text-base text-gray-600">Unidad: S/${item.price_end.toFixed(2)}</p>
                     <p class="text-sm md:text-base text-gray-600">Precio: S/${itemTotal.toFixed(2)}</p>
                 </div>
-                <div class="px-4 py-2">
-                    <button class="text-red-500" onclick="removeFromCart(${index})">
-                        <i class="fas fa-trash"></i>
+                <div class="px-2 py-1">
+                    <button class="text-black" onclick="removeFromCart(${index})">
+                        <i class="fas fa-trash-alt"></i>
                     </button>
                 </div>
             `;
@@ -55,6 +54,7 @@ const updateCart = () => {
     // LOCAL STORAGE
     localStorage.setItem('cart', JSON.stringify(cart));
 };
+
 
 window.onload = () => {
     updateCart();
@@ -189,13 +189,30 @@ function clearCart() {
 document.getElementById('cartButton').addEventListener('click', () => {
     const overlay = document.getElementById('cartOverlay');
     overlay.classList.toggle('hidden');
+    // Controlar el scroll del body
+    if (overlay.classList.contains('hidden')) {
+        document.body.classList.remove('overflow-hidden'); // Habilitar scroll
+    } else {
+        document.body.classList.add('overflow-hidden'); // Deshabilitar scroll
+    }
     updateCart();
 });
 
-// CERRAR MODAL AL HACER CLIC FUERA DEL CARRITO
+// CERRAR MODAL AL HACER CLIC FUERA DEL CONTENEDOR DEL CARRITO
 document.getElementById('cartOverlay').addEventListener('click', (e) => {
     if (e.target === e.currentTarget) {
-        e.currentTarget.classList.add('hidden');
+        closeCart();
     }
 });
 
+// CERRAR MODAL AL HACER CLIC EN EL BOTÓN DE CIERRE
+document.getElementById('closeCart').addEventListener('click', () => {
+    closeCart();
+});
+
+// FUNCIÓN DE CIERRE REUTILIZABLE
+function closeCart() {
+    const overlay = document.getElementById('cartOverlay');
+    overlay.classList.add('hidden');
+    document.body.classList.remove('overflow-hidden');
+}

@@ -10,6 +10,8 @@
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <!-- ICONOS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Canva Captura pantalla -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 
     <!-- ALERTIFY JS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css"/>
@@ -206,29 +208,58 @@
 
 
     <!-- MODAL DEL CARRITO DE PRODUCTOS -->
-    <div id="cartOverlay" class="fixed inset-0 bg-gray-600 bg-opacity-60 flex items-center justify-center z-50 hidden">
-        <div id="cart" class="bg-white shadow-lg p-6 w-[500px] xl:w-1/4 max-h-[90vh] overflow-y-auto">
-            <h2 class="text-lg font-semibold mb-4">Carrito de Productos</h2>
+    <div id="cartOverlay" class="fixed inset-0 bg-black bg-opacity-80  md:bg-opacity-60 flex items-center justify-center z-50 hidden">
+        <div id="cart" class="bg-white p-6 w-full md:w-1/2 lg:w-2/5 xl:w-1/3 h-auto overflow-y-auto border">
+            <div class="flex items-center justify-between mb-2 border-b-2 border-black pb-2 scroll-item">
+                <h2 class="text-lg font-semibold text-black  w-fit scroll-item">
+                    Carrito de Productos
+                </h2>
+                <button id="closeCart" class="ocultar-al-capturar bg-black text-white text-sm md:text-base px-2 py-1 ">
+                    <!-- Icono de cerrar -->
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <!-- Contenido de cada producto -->
             <div class="overflow-y-auto max-h-96 ">
                 <div class="space-y-6" id="cartItems"></div>
             </div>
+
             <div class="mt-4">
-                <p id="totalPrice" class="font-bold text-gray-800 text-sm md:text-base flex flex-col gap-1"></p>
-                <button onclick="shareCartAsText()"
-                    class="mt-2 bg-green-500 text-white px-4 py-2 rounded flex items-center justify-center w-full">
-                    <i class="fab fa-whatsapp mr-2"></i> Compartir por WhatsApp
-                </button>
-                <button onclick="clearCart()"
-                    class="mt-2 bg-red-500 text-white px-4 py-2 rounded flex items-center justify-center w-full">
-                    <i class="fas fa-trash-alt mr-2"></i> Vaciar Carrito
-                </button>
+                <p id="totalPrice" class="font-bold text-gray-800 text-sm md:text-base mt-2 flex flex-col gap-1 items-end"></p>
+
+                <div class="flex items-center justify-between mt-4">
+                    <button onclick="clearCart()"
+                        class="ocultar-al-capturar text-sm md:text-base bg-red-500 text-white px-2 py-1 md:px-4 md:py-2  flex items-center justify-center">
+                        <i class="fas fa-trash-alt mr-2"></i> Vaciar
+                    </button>
+                    <div class="flex  space-x-1">
+                        <button  onclick="captureCart()"
+                            class="ocultar-al-capturar text-sm md:text-base bg-black text-white px-2 py-1 md:px-4 md:py-2 flex items-center justify-center">
+                            <i class="fas fa-download mr-2"></i>Guardar
+                        </button>
+                        <button onclick="shareCartAsText()"
+                            class="ocultar-al-capturar text-sm md:text-base bg-green-500 text-white px-2 py-1 md:px-4 md:py-2 flex items-center justify-center">
+                            <i class="fab fa-whatsapp mr-2"></i>Compartir
+                        </button>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 
+    <!-- Overlay de carga -->
+    <div id="loadingOverlay" class="fixed inset-0 bg-black bg-opacity-100 z-50 hidden flex items-center justify-center">
+        <p class="text-white text-xl md:text-3xl font-semibold animate-pulse tracking-wide">
+            Descargando imagen...
+        </p>
+    </div>
+
+
     <!-- SCRIPT DEL CARRITO DE PRODUCTOS -->
     <script src="javascript/cart-ordered.js"></script>
 
+    <script src="javascript/screenshot.js"></script>
 
     <!-- MUESTRA LAS SECCION DE FOOTER -->
     <div id="Footer"></div>
