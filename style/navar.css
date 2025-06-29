@@ -1,5 +1,5 @@
 body{
-    margin-top: 100px;
+    margin-top: 120px;
 }
 
 /* BORDE A IMG PNG */
@@ -94,6 +94,11 @@ body{
     text-decoration: none; /* Sin subrayado */
 }
 
+@media(max-width: 1024px) {
+    body {
+        margin-top: 80px;
+    }
+}
 
 @media(max-width: 768px) {
     body {

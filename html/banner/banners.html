@@ -5,70 +5,77 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Banner con efecto fade</title>
-  
+ 
   <style>
     .fade-bg {
       transition: opacity 0.8s ease-in-out;
       opacity: 1;
     }
-
+  
     .fade-bg.fade-out {
       opacity: 0;
     }
-
-    /* Por defecto (escritorio) */
+  
     #banner {
-      background-size: cover;
-      height: 800px;
-      background-image: url('img/banner/one.webp');
+      position: relative;
+      overflow: hidden;
+      height: 80vh;
     }
-
-    /* Se aleja más en móviles */
+  
+    .bg-inner {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-size: cover;
+      background-position: center;
+      transition: transform 0.2s ease;
+      z-index: 0;
+    }
+  
+    #banner-content {
+      position: relative;
+      z-index: 0;
+    }
+  
     @media (max-width: 640px) {
       #banner {
-        height: 700px;
-      } 
+        height: 80vh;
+      }
     }
   </style>
+
 </head>
 
 <body>
 
-  <div class="flex justify-center bg-black container mx-auto">
+  <div class="flex justify-center bg-black lg:container mx-auto">
     <div class="w-full">
-      <!-- Banner con fondo dinámico -->
-      <div id="banner" class="relative fade-bg overflow-hidden transition duration-500 ease-in-out bg-center">
+      <div id="banner" class="fade-bg">
 
-        <!-- Fondo oscuro + título -->
-        <div id="banner-content" class="absolute inset-0 bg-black bg-opacity-40 flex flex-col  md:items-start md:justify-start md:pl-10 md:pt-40 md:pb-0 items-center justify-end pb-40">
+        <!-- Fondo escalable -->
+        <div id="bg-inner" class="bg-inner" style="background-image: url('img/banner/one.webp')"></div>
+
+        <!-- Contenido visible -->
+        <div id="banner-content" class="w-full h-full absolute inset-0 bg-black bg-opacity-40 flex flex-col  md:items-start md:justify-start md:pl-10 md:pt-40 md:pb-0 items-center justify-end pb-40">
           <h1 id="banner-title" class="text-white md:text-4xl text-3xl font-extrabold">Desafia tus Limites</h1>
-          <p id="banner-subtitle" class="text-white text-lg mt-2 text-center">
-            La libertad se encuentra en cada kilómetro recorrido.
-          </p>
+          <p id="banner-subtitle" class="text-white text-lg mt-2 text-center">La libertad se encuentra en cada kilómetro recorrido.</p>
         </div>
 
-
-        <!-- Miniaturas dentro del banner (deslizables horizontalmente) -->
+        <!-- Miniaturas -->
         <div class="absolute bottom-4 left-0 right-0 flex justify-center">
-          <div
-            class="bg-black bg-opacity-50 px-3 py-2 rounded-lg overflow-x-auto whitespace-nowrap no-scrollbar max-w-full">
+          <div class="bg-black bg-opacity-50 px-3 py-2 rounded-lg overflow-x-auto whitespace-nowrap no-scrollbar max-w-full">
             <div class="inline-flex space-x-2">
-              <img src="img/banner/one.webp"
-                class="w-20 h-14 object-cover cursor-pointer rounded border-2 border-transparent hover:border-white transition duration-300"
-                onclick="userSetBackground(0)" />
-              <img src="img/banner/two.webp"
-                class="w-20 h-14 object-cover cursor-pointer rounded border-2 border-transparent hover:border-white transition duration-300"
-                onclick="userSetBackground(1)" />
-              <img src="img/banner/tree.jpg"
-                class="w-20 h-14 object-cover cursor-pointer rounded border-2 border-transparent hover:border-white transition duration-300"
-                onclick="userSetBackground(2)" />
-              
+              <img src="img/banner/one.webp" class="w-20 h-14 object-cover cursor-pointer rounded border-2 border-transparent hover:border-white transition duration-300" onclick="userSetBackground(0)" />
+              <img src="img/banner/two.webp" class="w-20 h-14 object-cover cursor-pointer rounded border-2 border-transparent hover:border-white transition duration-300" onclick="userSetBackground(1)" />
+              <img src="img/banner/tree.jpg" class="w-20 h-14 object-cover cursor-pointer rounded border-2 border-transparent hover:border-white transition duration-300" onclick="userSetBackground(2)" />
             </div>
           </div>
-
-
         </div>
+
       </div>
+
     </div>
 
     <script>
@@ -82,21 +89,21 @@
         {
           title: "Desafia tus Limites",
           subtitle: "La libertad se encuentra en cada kilómetro recorrido.",
-          containerClasses: "absolute inset-0 bg-black bg-opacity-40 flex flex-col  md:items-start md:justify-start md:pl-10 md:pt-40 md:pb-0 items-center justify-end pb-40",
+          containerClasses: "w-full h-full absolute inset-0 bg-black bg-opacity-40 flex flex-col  md:items-start md:justify-start md:pl-10 md:pt-40 md:pb-0 items-center justify-end pb-40",
           titleClasses: "text-white md:text-4xl text-3xl font-extrabold",
           subtitleClasses: "text-white text-lg mt-2 text-center"
         },
         {
           title: "Siente la Aventura",
           subtitle: "Cada ruta te lleva a una nueva historia.",
-          containerClasses: "absolute inset-0 bg-black bg-opacity-60 flex flex-col md:items-start md:justify-center md:pl-10 md:pb-0  items-center justify-end pb-40 ",
+          containerClasses: "w-full h-full absolute inset-0 bg-black bg-opacity-60 flex flex-col md:items-start md:justify-center md:pl-10 md:pb-0  items-center justify-end pb-40 ",
           titleClasses: "text-white md:text-4xl text-3xl font-extrabold",
           subtitleClasses: "text-white text-lg mt-2"
         },
         {
           title: "Paisajes que Inspiran",
           subtitle: "Explora y conecta con lo natural.",
-          containerClasses: "absolute inset-0 bg-black bg-opacity-40 flex flex-col  md:items-center md:justify-start pt-40 md:pb-0 items-center justify-start",
+          containerClasses: "w-full h-full absolute inset-0 bg-black bg-opacity-40 flex flex-col  md:items-center md:justify-start pt-40 md:pb-0 items-center justify-start",
           titleClasses: "text-white md:text-4xl text-3xl font-extrabold",
           subtitleClasses: "text-white text-lg mt-2"
         }
@@ -104,6 +111,7 @@
 
       let currentIndexx = 0;
       const banner = document.getElementById('banner');
+      const bgInner = document.getElementById('bg-inner');
 
       let intervalId = null;
       let userInactiveTimeoutId = null;
@@ -112,16 +120,19 @@
       const bannerTitle = document.getElementById('banner-title');
       const bannerSubtitle = document.getElementById('banner-subtitle');
 
+      window.addEventListener('scroll', () => {
+        const scrollPosition = window.scrollY;
+        const scale = 1 + scrollPosition / 1000;
+        bgInner.style.transform = `scale(${scale})`;
+      });
+
       function fadeToImage(url, textData) {
         banner.classList.add('fade-out');
         setTimeout(() => {
-          banner.style.backgroundImage = `url('${url}')`;
-          
-          // Actualiza textos
+          bgInner.style.backgroundImage = `url('${url}')`;
           bannerTitle.textContent = textData.title;
           bannerSubtitle.textContent = textData.subtitle;
 
-          // Actualiza clases
           bannerContent.className = textData.containerClasses;
           bannerTitle.className = textData.titleClasses;
           bannerSubtitle.className = textData.subtitleClasses;
@@ -160,6 +171,7 @@
           startRotation();
         }, 8000);
       }
+
       // Inicia la rotación automática al cargar
       startRotation();
     </script>
