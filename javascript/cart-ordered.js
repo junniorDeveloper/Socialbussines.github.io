@@ -26,7 +26,7 @@ const updateCart = () => {
                     <p class="text-sm md:text-base text-gray-600">Precio: S/${itemTotal.toFixed(2)}</p>
                 </div>
                 <div class="px-2 py-1">
-                    <button class="text-black" onclick="removeFromCart(${index})">
+                    <button class="text-black ocultar-al-capturar" onclick="removeFromCart(${index})">
                         <i class="fas fa-trash-alt"></i>
                     </button>
                 </div>
@@ -62,17 +62,13 @@ window.onload = () => {
 
 // FUNCION PARA ENVIA TEXTO DEL PEDIDO POR WHATSAPP
 const shareCartAsText = () => {
-    let message = '*Mi carrito de compras:*\n\n';
+    let message = '*Mi carrito de compras:*\n';
 
-    cart.forEach(item => {
-        message += `• *${item.name}*\n  Cantidad: ${item.quantity}\n  Precio: S/ ${(item.price_end * item.quantity).toFixed(2)}\n\n`;
-    });
+    // Mensaje que expresa interés en realizar el pedido
+    message += '¡Hola! Me gustaría hacer un pedido con los siguientes productos.';
 
-    const total = cart.reduce((sum, item) => sum + item.price_end * item.quantity, 0);
-    message += `*Total:* S/ ${total.toFixed(2)}\n\n`;
-
-    // Mensaje adicional
-    message += 'Hola, estoy interesado en realizar este pedido.';
+    // Se puede añadir un texto que indique que hay una imagen del pedido
+    message += '\nAdjunto la imagen con los detalles del pedido.';
 
     // Número en formato internacional sin el signo +
     const phone = '51967212987';

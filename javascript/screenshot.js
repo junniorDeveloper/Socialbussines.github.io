@@ -36,9 +36,10 @@ function captureCart() {
             loadingOverlay.classList.add('hidden');
 
             // Descargar imagen
+            const randomCode = Math.floor(100000 + Math.random() * 900000);
             const link = document.createElement('a');
             link.href = canvas.toDataURL('image/png');
-            link.download = 'carrito.png';
+            link.download = `${randomCode}-carrito.png`;
             link.click();
         });
     }, 200); // Espera breve para asegurar que el cambio tenga efecto
