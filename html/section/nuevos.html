@@ -41,13 +41,13 @@
 
         <!-- Botón Atrás fuera del carrusel -->
         <button id="prevBtnNuevos"
-            class="hidden sm:block absolute -left-6 top-1/2 transform -translate-y-1/2 z-10 bg-black text-white px-3 py-2 text-sm sm:text-base scroll-item">
+            class="hidden sm:block absolute -left-6 top-1/2 transform -translate-y-1/2 z-10 bg-black-gray text-white px-3 py-2 text-sm sm:text-base scroll-item">
             <i class="fas fa-arrow-left"></i>
         </button>
 
         <!-- Botón Siguiente fuera del carrusel -->
         <button id="nextBtnNuevos"
-            class="hidden sm:block absolute -right-6 top-1/2 transform -translate-y-1/2 z-10 bg-black text-white px-3 py-2 text-sm sm:text-base scroll-item">
+            class="hidden sm:block absolute -right-6 top-1/2 transform -translate-y-1/2 z-10 bg-black-gray text-white px-3 py-2 text-sm sm:text-base scroll-item">
             <i class="fas fa-arrow-right"></i>
         </button>
 
@@ -84,20 +84,24 @@
                     productCard.innerHTML = `
                         <div class="relative">
                             <img src="https://qiziyaqqptpwcarbywsx.supabase.co/storage/v1/object/public/imagenes/products/${product.image}" alt="${product.name}" class="w-full h-48 md:h-64 object-cover">
-                            <div class="absolute bottom-0 left-0 right-0 bg-black gradient px-2 py-3">
-                            <h3 class="text-sm md:text-base font-semibold text-white truncate-text ">${product.name}</h3>
-                            <div>
-                                <p class="text-xs sm:text-sm md:text-base mt-0 ">
-                                <span class="text-white mr-2">Ahora: S/${product.price_end.toFixed(2)} </span> 
-                                <span class="line-through text-white"> (S/${product.price.toFixed(2)})</span>
-                                </p>
-                            </div>
+                            <div class="absolute bottom-0 left-0 right-0 gradient px-2 py-3">
+                                <h3 class="text-sm md:text-base font-semibold text-white truncate-text ">${product.name}</h3>
+                                <div>
+                                    <p class="text-xs sm:text-sm md:text-base mt-0 ">
+                                    <span class="text-white mr-2">Ahora: S/${product.price_end.toFixed(2)} </span> 
+                                    ${product.price_end !== product.price
+                                        ? `<span class="line-through text-white"> (S/${product.price.toFixed(2)})</span>`
+                                        : ''}
+                                    </p>
+                                    </p>
+                                </div>
+
                             </div>
                         </div>
 
                         <div class="px-2 flex justify-between items-center mb-1">
                             <!-- Botón Ver descripción -->
-                            <button class=" text-white text-xs sm:text-sm" onclick="toggleDescriptionDestacado('${uniqueId}')">
+                            <button class=" text-white text-xs sm:text-sm" onclick="toggleDescriptionNuevo('${uniqueId}')">
                             <i class="fas fa-eye"></i> Ver descripción
                             </button>
 
@@ -108,7 +112,7 @@
                         </div>
 
                         <!-- Contenido descripción oculto -->
-                        <div id="${uniqueId}" class="description-content-destacado text-gray-300 pl-4 text-xs sm:text-sm">
+                        <div id="${uniqueId}" class="description-content-nuevo text-gray-300 pl-4 text-xs sm:text-sm">
                             <p class="text-gray-300 text-xs sm:text-sm mb-1">Marca: ${product.brand}</p>
                             <p class="pb-2 pr-1">${product.description}</p>
                             </div>
@@ -142,17 +146,17 @@
 
         // FUNCION PARA MOSTRAR/OCULTAR LA DESCRIPCION DE LOS PRODUCTOS
         window.toggleDescriptionNuevo = function (id) {
-        const allDescriptions = document.querySelectorAll('.description-content-nuevo');
-        allDescriptions.forEach(desc => {
-            if (desc.id !== id) {
-            desc.classList.remove('show');
-            }
-        });
+            const allDescriptions = document.querySelectorAll('.description-content-nuevo');
+            allDescriptions.forEach(desc => {
+                if (desc.id !== id) {
+                desc.classList.remove('show');
+                }
+            });
 
-        const description = document.getElementById(id);
-        if (description) {
-            description.classList.toggle('show');
-        }
+            const description = document.getElementById(id);
+            if (description) {
+                description.classList.toggle('show');
+            }
         };
 
         // Cargar productos al iniciar

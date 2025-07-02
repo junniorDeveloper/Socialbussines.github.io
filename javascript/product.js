@@ -55,9 +55,22 @@ function loadMoreProducts() {
         const productDiv = document.createElement('div');
         productDiv.className = 'bg-white overflow-hidden transition-transform transform scroll-item border';
         productDiv.innerHTML = `
-            <div class="h-72 w-full flex items-center justify-center">
-                <img src="https://qiziyaqqptpwcarbywsx.supabase.co/storage/v1/object/public/imagenes/products/${product.image}" alt="${product.name}" class="w-64 h-64 object-cover">
+            <div class="relative">
+                <div class="h-72 w-full flex items-center justify-center">
+                    <img src="https://qiziyaqqptpwcarbywsx.supabase.co/storage/v1/object/public/imagenes/products/${product.image}" alt="${product.name}" class="w-64 h-64 object-cover">
+                </div>
+                ${product.price_end < product.price
+                    ? `
+                    <span class="absolute top-0 right-0 mt-2 mr-2 md:mt-1 md:mr-1 flex h-8 w-10 rounded bg-red-700 z-10 items-center justify-center">
+                    <span class="absolute top-0 right-0 left-0 bottom-0 animate-soft-ping rounded bg-red-600 opacity-75"></span>
+                        <span class="text-sm font-bold text-white z-10">
+                            -${Math.round(((product.price - product.price_end) / product.price) * 100)}%
+                        </span>
+                    </span>`
+                    : ''
+                }
             </div>
+
 
             <div class="p-4 ">
                 <div class="flex items-center ">
@@ -90,8 +103,10 @@ function loadMoreProducts() {
                 <div class="flex items-center justify-between">
                     <div>
                         <p class="text-small scroll-item">
-                            <span class="font-semibold text-black mr-2">Precio: S/${product.price_end.toFixed(2)} </span>
-                            <span class="line-through text-black"> (S/${product.price.toFixed(2)})</span>
+                            <span class="font-semibold text-black mr-2">Precio: S/${product.price_end.toFixed(2)}</span>
+                            ${product.price_end !== product.price
+                                ? `<span class="line-through text-black"> (S/${product.price.toFixed(2)})</span>`
+                                : ''}
                         </p>
                     </div>
                     <button class="bg-white text-black px-4 py-2 scroll-item" onclick="addToCart(${JSON.stringify(product).replace(/"/g, '&quot;')})">

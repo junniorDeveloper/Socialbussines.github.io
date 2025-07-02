@@ -8,8 +8,9 @@ body{
   } */
 
 
+
 .navbar {
-    background-color: #000000; /* Color de fondo */
+    background-color: #171717; /* Color de fondo */
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     transition: top 0.3s ease; /* Transición suave */
     z-index: 20;

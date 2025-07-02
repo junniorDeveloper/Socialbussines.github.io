@@ -17,13 +17,13 @@
     }
 
   /* para que no crescan las card */
-  .description-content-destacado {
+  .description-content-ofertas {
     overflow: hidden;
     max-height: 0;
     transition: max-height 0.3s ease;
   }
 
-  .description-content-destacado.show {
+  .description-content-ofertas.show {
     max-height: 300px;
   }
 
@@ -34,27 +34,27 @@
   <div class="container mx-auto px-4 mt-8">
     <!-- Título -->
     <h2 class="text-lg md:text-xl pl-4 font-semibold text-gray-600 mb-2 border-b-2 border-gray-300 pb-2 w-fit scroll-item">
-      Destacados
+      Productos en Ofertas
     </h2>
 
     <!-- Contenedor relativo sin padding horizontal -->
     <div class="relative py-4">
       <!-- Botón Atrás -->
-      <button id="prevBtnDestacados"
-        class="hidden sm:block absolute -left-6 top-1/2 transform -translate-y-1/2 z-10 bg-black text-white px-3 py-2 text-sm sm:text-base scroll-item">
+      <button id="prevBtnOfertas"
+        class="hidden sm:block absolute -left-6 top-1/2 transform -translate-y-1/2 z-10 bg-black-gray text-white px-3 py-2 text-sm sm:text-base scroll-item">
         <i class="fas fa-arrow-left"></i>
       </button>
 
       <!-- Botón Siguiente -->
-      <button id="nextBtnDestacados"
-        class="hidden sm:block absolute -right-6 top-1/2 transform -translate-y-1/2 z-10 bg-black text-white px-3 py-2 text-sm sm:text-base scroll-item">
+      <button id="nextBtnOfertas"
+        class="hidden sm:block absolute -right-6 top-1/2 transform -translate-y-1/2 z-10 bg-black-gray text-white px-3 py-2 text-sm sm:text-base scroll-item">
         <i class="fas fa-arrow-right"></i>
       </button>
 
       <!-- Carrusel -->
       <div class="overflow-hidden px-4">
-        <!-- <div id="carouselDestacados" class="flex overflow-x-auto no-scrollbar scroll-smooth space-x-4 scroll-item"> -->
-          <div id="carouselDestacados" class="flex overflow-x-auto no-scrollbar scroll-smooth space-x-4 scroll-item items-start">
+        <!-- <div id="carouselOfertas" class="flex overflow-x-auto no-scrollbar scroll-smooth space-x-4 scroll-item"> -->
+          <div id="carouselOfertas" class="flex overflow-x-auto no-scrollbar scroll-smooth space-x-4 scroll-item items-start">
 
           <!-- Aquí se insertarán los productos dinámicamente -->
         </div>
@@ -63,17 +63,17 @@
   </div>
 
   <script>
-    const carouselDestacados = document.getElementById('carouselDestacados');
-    const gapDestacados = 16;
-    let slideWidthDestacados;
+    const carouselOfertas = document.getElementById('carouselOfertas');
+    const gapOfertas = 16;
+    let slideWidthOfertas;
 
-    async function loadCarouselDestacados() {
+    async function loadCarouselOfertas() {
       try {
         const products = await fetchProducts();
 
-        const destacados = products.filter(product => product.section === "destacado");
+        const ofertas = products.filter(product => product.section === "ofertas");
 
-        destacados.forEach(product => {
+        ofertas.forEach(product => {
           const productCard = document.createElement('div');
           productCard.className = "product-card w-44 md:w-64 flex-shrink-0 bg-black overflow-hidden";
 
@@ -81,12 +81,26 @@
           productCard.innerHTML = `
               <div class="relative">
                 <img src="https://qiziyaqqptpwcarbywsx.supabase.co/storage/v1/object/public/imagenes/products/${product.image}" alt="${product.name}" class="w-full h-48 md:h-64 object-cover">
-                <div class="absolute bottom-0 left-0 right-0 bg-black gradient px-2 py-3">
+                ${product.price_end < product.price
+                  ? `
+                  <span class="absolute top-0 right-0 mt-1 mr-1 flex h-5 w-7 rounded bg-red-700 z-10 items-center justify-center">
+                    <span class="absolute top-0 right-0 left-0 bottom-0 animate-soft-ping rounded bg-red-600 opacity-75"></span>
+                    <span class="text-sm font-semibold text-white z-10 py-2 px-2">
+                      -${Math.round(((product.price - product.price_end) / product.price) * 100)}%
+                    </span>
+                  </span>`
+                  : ''
+                }
+
+
+                <div class="absolute bottom-0 left-0 right-0 gradient px-2 py-3">
                   <h3 class="text-sm md:text-base font-semibold text-white truncate-text ">${product.name}</h3>
                   <div>
                     <p class="text-xs sm:text-sm md:text-base mt-0 ">
                       <span class="text-white mr-2">Ahora: S/${product.price_end.toFixed(2)} </span> 
-                      <span class="line-through text-white"> (S/${product.price.toFixed(2)})</span>
+                      ${product.price_end !== product.price
+                        ? `<span class="line-through text-white"> (S/${product.price.toFixed(2)})</span>`
+                        : ''}
                     </p>
                   </div>
                 </div>
@@ -94,7 +108,7 @@
 
               <div class="px-2 flex justify-between items-center mb-1">
                 <!-- Botón Ver descripción -->
-                <button class=" text-white text-xs sm:text-sm" onclick="toggleDescriptionDestacado('${uniqueId}')">
+                <button class=" text-white text-xs sm:text-sm" onclick="toggleDescriptionOfertas('${uniqueId}')">
                   <i class="fas fa-eye"></i> Ver descripción
                 </button>
 
@@ -105,7 +119,7 @@
               </div>
 
                 <!-- Contenido descripción oculto -->
-                <div id="${uniqueId}" class="description-content-destacado text-gray-300 pl-4 text-xs sm:text-sm">
+                <div id="${uniqueId}" class="description-content-ofertas text-gray-300 pl-4 text-xs sm:text-sm">
                   <p class="text-gray-300 text-xs sm:text-sm mb-1">Marca: ${product.brand}</p>
                   <p class="pb-2 pr-1">${product.description}</p>
                 </div>
@@ -113,35 +127,34 @@
 
               
           `;
-          carouselDestacados.appendChild(productCard);
+          carouselOfertas.appendChild(productCard);
         });
 
-        if (destacados.length > 0) {
-          slideWidthDestacados = carouselDestacados.querySelector('.flex-shrink-0').offsetWidth + gapDestacados;
+        if (ofertas.length > 0) {
+          slideWidthOfertas = carouselOfertas.querySelector('.flex-shrink-0').offsetWidth + gapOfertas;
         }
       } catch (error) {
-        console.error("Error al cargar productos destacados:", error);
+        console.error("Error al cargar productos ofertas:", error);
       }
     }
 
-    document.getElementById('nextBtnDestacados').addEventListener('click', () => {
-      carouselDestacados.scrollBy({ left: slideWidthDestacados, behavior: 'smooth' });
+    document.getElementById('nextBtnOfertas').addEventListener('click', () => {
+      carouselOfertas.scrollBy({ left: slideWidthOfertas, behavior: 'smooth' });
     });
 
-    document.getElementById('prevBtnDestacados').addEventListener('click', () => {
-      carouselDestacados.scrollBy({ left: -slideWidthDestacados, behavior: 'smooth' });
+    document.getElementById('prevBtnOfertas').addEventListener('click', () => {
+      carouselOfertas.scrollBy({ left: -slideWidthOfertas, behavior: 'smooth' });
     });
 
     window.addEventListener('resize', () => {
-      slideWidthDestacados = carouselDestacados.querySelector('.flex-shrink-0').offsetWidth + gapDestacados;
+      slideWidthOfertas = carouselOfertas.querySelector('.flex-shrink-0').offsetWidth + gapOfertas;
     });
-
 
 
 
     // FUNCION PARA MOSTRAR/OCULTAR LA DESCRIPCION DE LOS PRODUCTOS
-    window.toggleDescriptionDestacado = function (id) {
-      const allDescriptions = document.querySelectorAll('.description-content-destacado');
+    window.toggleDescriptionOfertas = function (id) {
+      const allDescriptions = document.querySelectorAll('.description-content-ofertas');
       allDescriptions.forEach(desc => {
         if (desc.id !== id) {
           desc.classList.remove('show');
@@ -155,7 +168,7 @@
     };
 
 
-    loadCarouselDestacados();
+    loadCarouselOfertas();
   </script>
 </body>
 

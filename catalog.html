@@ -38,7 +38,7 @@
     <nav class="navbar" id="navbar">
         <a class="navbar-brand text-white" href="#body-top">
             <img src="img/logo/copilogonew.png"
-                class="navbar-logo logo-biker-img ">
+                class="navbar-logo logo-biker-img "> <hr>
             J&L Biker Cañete
         </a>
         <div class="content-list">
@@ -110,14 +110,14 @@
     </script>
 
 
-    <!-- MUESTRA LAS SECCION PRODUCTOS DESTACADOS -->
-    <div id="SectionDestacados"></div>
+    <!-- MUESTRA LAS SECCIO DE NUEVOS INGRESOS -->
+    <div id="SectionNuevos"></div>
 
     <script>
-        fetch("html/section/destacado.html")
+        fetch("html/section/nuevos.html")
             .then(res => res.text())
             .then(html => {
-                const container = document.getElementById("SectionDestacados");
+                const container = document.getElementById("SectionNuevos");
                 container.innerHTML = html;
 
                 // Evalúa los <script> del contenido cargado
@@ -129,16 +129,16 @@
                 });
             });
     </script>
-    
 
-    <!-- MUESTRA LAS SECCIO DE NUEVOS INGRESOS -->
-    <div id="SectionNuevos"></div>
+
+    <!-- MUESTRA LAS SECCION PRODUCTOS DESTACADOS -->
+    <div id="SectionOfertas"></div>
 
     <script>
-        fetch("html/section/nuevos.html")
+        fetch("html/section/ofertas.html")
             .then(res => res.text())
             .then(html => {
-                const container = document.getElementById("SectionNuevos");
+                const container = document.getElementById("SectionOfertas");
                 container.innerHTML = html;
 
                 // Evalúa los <script> del contenido cargado
@@ -174,7 +174,7 @@
     
     
     <!-- LISTADO DE LOS PRODUCTOS -->
-    <div id="listProduct" class="container mx-auto p-6 bg-black mt-8 mb-10">
+    <div id="listProduct" class="container mx-auto p-6 bg-black-gray mt-8 mb-10">
     
         <div class="flex items-center justify-between mb-2 border-b-2 border-gray-300 pb-2 scroll-item">
             <h2 class="text-lg md:text-xl font-semibold text-white ">
