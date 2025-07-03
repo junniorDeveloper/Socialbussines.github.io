@@ -101,6 +101,9 @@ const shareCartAsText = async () => {
     try {
         await captureCart(); // Espera a que termine la captura
 
+         // Espera 2 segundos antes de abrir WhatsApp
+        await new Promise(resolve => setTimeout(resolve, 2500));
+
         let message = '*Mi carrito de compras:*\n';
         message += '¡Hola! Me gustaría hacer un pedido con los siguientes productos.';
         message += '\nAdjunto la imagen con los detalles del pedido.';
