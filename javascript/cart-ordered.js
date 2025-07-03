@@ -34,16 +34,16 @@ const updateCart = () => {
                 <img src="https://qiziyaqqptpwcarbywsx.supabase.co/storage/v1/object/public/imagenes/products/${item.image}" alt="${item.name}" class="w-20 h-20 object-contain mr-2 ml-2">
                 <div class="flex-1">
                     <h3 class="text-sm md:text-base font-semibold">${item.name}</h3>
-                    <div class="flex items-center gap-2">
+                    <div class="flex items-center">
                         <label for="qty-${index}" class="text-sm md:text-base text-gray-600">Cantidad:</label>
                         <input id="qty-${index}" type="number" min="1" value="${item.quantity}" onchange="updateQuantityDirect(${index}, this.value)"
-                            class="w-14 text-center text-sm md:text-base text-gray-600"
+                            class="w-8 md:w-12 text-center px-0 text-sm md:text-base text-gray-600 appearance-none"
                         />
                     </div>
                     <p class="text-sm md:text-base text-gray-600">Precio unitario: S/${item.price_end.toFixed(2)}</p>
                     <p class="text-sm md:text-base text-gray-600">Subtotal: S/${itemTotal.toFixed(2)}</p>
                 </div>
-                <div class="flex items-center mr-3">
+                <div class="flex items-center mr-1 md:mr-3">
                     <button class="p-2 text-red-600 ocultar-al-capturar" onclick="removeFromCart(${index})">
                         <i class="fas fa-times"></i>
                     </button>
