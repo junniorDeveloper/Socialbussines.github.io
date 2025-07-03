@@ -82,19 +82,35 @@ window.onload = () => {
 };
 
 // FUNCION PARA ENVIA TEXTO DEL PEDIDO POR WHATSAPP
-const shareCartAsText = () => {
-    let message = '*Mi carrito de compras:*\n';
+// const shareCartAsText = () => {
+//     let message = '*Mi carrito de compras:*\n';
 
-    // Mensaje que expresa interés en realizar el pedido
-    message += '¡Hola! Me gustaría hacer un pedido con los siguientes productos.';
+//     // Mensaje que expresa interés en realizar el pedido
+//     message += '¡Hola! Me gustaría hacer un pedido con los siguientes productos.';
 
-    // Se puede añadir un texto que indique que hay una imagen del pedido
-    message += '\nAdjunto la imagen con los detalles del pedido.';
+//     // Se puede añadir un texto que indique que hay una imagen del pedido
+//     message += '\nAdjunto la imagen con los detalles del pedido.';
 
-    // Número en formato internacional sin el signo +
-    const phone = '51967212987';
-    const url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
-    window.open(url, '_blank');
+//     // Número en formato internacional sin el signo +
+//     const phone = '51967212987';
+//     const url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
+//     window.open(url, '_blank');
+// };
+
+const shareCartAsText = async () => {
+    try {
+        await captureCart(); // Espera a que termine la captura
+
+        let message = '*Mi carrito de compras:*\n';
+        message += '¡Hola! Me gustaría hacer un pedido con los siguientes productos.';
+        message += '\nAdjunto la imagen con los detalles del pedido.';
+
+        const phone = '51967212987';
+        const url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
+        window.open(url, '_blank');
+    } catch (error) {
+        console.error('Error al capturar el carrito:', error);
+    }
 };
 
 
