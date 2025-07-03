@@ -2,18 +2,17 @@ let cart = [];
 const savedCart = localStorage.getItem('cart');
 cart = savedCart ? JSON.parse(savedCart) : [];
 
-function changeQuantity(index, delta) {
-     if (cart[index]) {
-        const newQuantity = cart[index].quantity + delta;
+function updateQuantityDirect(index, newValue) {
+  const value = parseInt(newValue);
 
-        // Impide que la cantidad baje de 1
-        if (newQuantity < 1) {
-            return; // No hace nada si intenta bajar de 1
-        }
+  if (isNaN(value) || value < 1) {
+    alertify.alert('Cantidad inválida', 'La cantidad debe ser un número mayor o igual a 1.');
+    updateCart(); // Restaurar valor actual
+    return;
+  }
 
-        cart[index].quantity = newQuantity;
-        updateCart();
-    }
+  cart[index].quantity = value;
+  updateCart();
 }
 
 
@@ -35,21 +34,19 @@ const updateCart = () => {
                 <img src="https://qiziyaqqptpwcarbywsx.supabase.co/storage/v1/object/public/imagenes/products/${item.image}" alt="${item.name}" class="w-20 h-20 object-contain mr-2 ml-2">
                 <div class="flex-1">
                     <h3 class="text-sm md:text-base font-semibold">${item.name}</h3>
-                    <p class="text-sm md:text-base text-gray-600">Cantidad: ${item.quantity}</p>
-                    <p class="text-sm md:text-base text-gray-600">Unidad: S/${item.price_end.toFixed(2)}</p>
-                    <p class="text-sm md:text-base text-gray-600">Precio: S/${itemTotal.toFixed(2)}</p>
+                    <div class="flex items-center gap-2">
+                        <label for="qty-${index}" class="text-sm md:text-base text-gray-600">Cantidad:</label>
+                        <input id="qty-${index}" type="number" min="1" value="${item.quantity}" onchange="updateQuantityDirect(${index}, this.value)"
+                            class="w-14 text-center text-sm md:text-base text-gray-600"
+                        />
+                    </div>
+                    <p class="text-sm md:text-base text-gray-600">Precio unitario: S/${item.price_end.toFixed(2)}</p>
+                    <p class="text-sm md:text-base text-gray-600">Subtotal: S/${itemTotal.toFixed(2)}</p>
                 </div>
-                <div class="flex flex-col space-y-1 ">
-                    <button class="px-1 mb-1 text-red-600 ocultar-al-capturar" onclick="removeFromCart(${index})">
+                <div class="flex items-center mr-3">
+                    <button class="p-2 text-red-600 ocultar-al-capturar" onclick="removeFromCart(${index})">
                         <i class="fas fa-times"></i>
                     </button>
-                    <button class="md:px-1 text-white bg-gray-300 ocultar-al-capturar" onclick="changeQuantity(${index}, 1)">
-                        <i class="fas fa-chevron-up"></i>
-                    </button>
-                    <button class="md:px-1 text-white bg-gray-300 ocultar-al-capturar" onclick="changeQuantity(${index}, -1)">
-                        <i class="fas fa-chevron-down"></i>
-                    </button>
-                    
                 </div>
             `;
         cartItemsDiv.appendChild(productCard);
@@ -115,44 +112,6 @@ window.onload = async () => {
   updateCart();
 };
 
-
-
-
-// FUNCION PARA ENVIA TEXTO DEL PEDIDO POR WHATSAPP
-// const shareCartAsText = () => {
-//     let message = '*Mi carrito de compras:*\n';
-
-//     // Mensaje que expresa interés en realizar el pedido
-//     message += '¡Hola! Me gustaría hacer un pedido con los siguientes productos.';
-
-//     // Se puede añadir un texto que indique que hay una imagen del pedido
-//     message += '\nAdjunto la imagen con los detalles del pedido.';
-
-//     // Número en formato internacional sin el signo +
-//     const phone = '51967212987';
-//     const url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
-//     window.open(url, '_blank');
-// };
-
-// const shareCartAsText = async () => {
-//     try {
-//         await captureCart(); // Espera a que termine la captura
-
-//          // Espera 2 segundos antes de abrir WhatsApp
-//         await new Promise(resolve => setTimeout(resolve, 3000));
-
-//         let message = '*Mi carrito de compras:*\n';
-//         message += '¡Hola! Me gustaría hacer un pedido con los siguientes productos.';
-//         message += '\nAdjunto la imagen con los detalles del pedido.';
-
-//         const phone = '51980439371';
-//         const url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
-//         window.open(url, '_blank');
-//     } catch (error) {
-//         console.error('Error al capturar el carrito:', error);
-//     }
-// };
-
 // Codifica carrito directamente en la URL
 async function shortenUrl(longUrl) {
   try {
@@ -167,32 +126,34 @@ async function shortenUrl(longUrl) {
 
 
 const shareCartLink = async () => {
-  const phone = '51967212987';
+    if (!cart || cart.length === 0) {
+        alertify.alert('Carrito vacío', 'No puedes compartir un carrito vacío.');
+        return; // Detiene la ejecución si el carrito está vacío
+    }
 
-  // Generar carrito minimizado (solo id y cantidad para que sea corto)
-  const minimalCart = cart.map(item => ({
-    id_product: item.id_product,
-    quantity: item.quantity
-  }));
+    const phone = '51967212987';
 
-  // Codificar en base64 seguro
-  const encodedCart = btoa(unescape(encodeURIComponent(JSON.stringify(minimalCart))));
+    // Generar carrito minimizado (solo id y cantidad para que sea corto)
+    const minimalCart = cart.map(item => ({
+        id_product: item.id_product,
+        quantity: item.quantity
+    }));
 
-  // Crear URL con el carrito en query
-  const longUrl = `${window.location.origin + window.location.pathname}?sharedCart=${encodeURIComponent(encodedCart)}`;
+    // Codificar en base64 seguro
+    const encodedCart = btoa(unescape(encodeURIComponent(JSON.stringify(minimalCart))));
 
-  // Acortar la URL usando TinyURL sin cuenta
-  const shortUrl = await shortenUrl(longUrl);
+    // Crear URL con el carrito en query
+    const longUrl = `${window.location.origin + window.location.pathname}?sharedCart=${encodeURIComponent(encodedCart)}`;
 
-  // Mensaje con enlace acortado
-  const message = `¡Hola! Te comparto mi carrito de compras. Puedes verlo aquí: ${shortUrl}`;
-  const url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
+    // Acortar la URL usando TinyURL sin cuenta
+    const shortUrl = await shortenUrl(longUrl);
 
-  window.open(url, '_blank');
+    // Mensaje con enlace acortado
+    const message = `¡Hola! Te comparto mi carrito de compras. Puedes verlo aquí: ${shortUrl}`;
+    const url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
+
+    window.open(url, '_blank');
 };
-
-
-
 
 
 // FUNCIÓN PARA AGREGAR PRODUCTOS AL CARRITO USANDO ALERTIFYJS
@@ -228,23 +189,13 @@ window.addToCart = function (product) {
             alertify.set('notifier','position', 'top-center');
             alertify.success('¡Producto agregado al carrito!');
         },
-        function () {
-            // alertify.set('notifier','position', 'top-center');
-            // alertify.error('Operación cancelada');
-        }
+        function () {}
     ).set({
         labels: { ok: 'Agregar', cancel: 'Cancelar' },
         transition: 'fade',
         reverseButtons: true
     });
 };
-
-
-// FUNCION PARA ACTUALIZAR CANTIDAD AL PULSAR AGREGAR
-// window.updateQuantity = function (index, quantity) {
-//     cart[index].quantity = parseInt(quantity);
-//     updateCart();
-// };
 
 // FUNCIÓN PARA ELIMINAR UN PRODUCTO DEL CARRITO USANDO ALERTIFYJS
 window.removeFromCart = function (index) {
@@ -257,10 +208,7 @@ window.removeFromCart = function (index) {
             alertify.set('notifier','position', 'top-center');
             alertify.success('Producto eliminado del carrito.');
         },
-        function () {
-            // alertify.set('notifier','position', 'top-center');
-            // alertify.error('Operación cancelada');
-        }
+        function () {}
     ).set({
         labels: { ok: 'Sí, eliminar', cancel: 'Cancelar' },
         transition: 'fade',
@@ -287,10 +235,7 @@ function clearCart() {
             alertify.set('notifier','position', 'top-center');
             alertify.success('Carrito vaciado');
         },
-        function () {
-            // alertify.set('notifier','position', 'top-center');
-            // alertify.error('Operación cancelada');
-        }
+        function () {}
     ).set({
         labels: { ok: 'Sí, vaciar', cancel: 'Cancelar' },
         transition: 'fade', // puedes cambiar a 'pulse' o 'fade'
