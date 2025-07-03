@@ -76,10 +76,47 @@ const updateCart = () => {
     localStorage.setItem('cart', JSON.stringify(cart));
 };
 
+// Funciones seguras para codificación UTF-8 en Base64
+function encodeCartToBase64(cart) {
+    return btoa(unescape(encodeURIComponent(JSON.stringify(cart))));
+}
 
-window.onload = () => {
-    updateCart();
+function decodeCartFromBase64(encoded) {
+    return JSON.parse(decodeURIComponent(escape(atob(encoded))));
+}
+
+window.onload = async () => {
+  const urlParams = new URLSearchParams(window.location.search);
+  const sharedCartParam = urlParams.get('sharedCart');
+
+  if (sharedCartParam) {
+    try {
+      const minimalCart = JSON.parse(decodeURIComponent(escape(atob(sharedCartParam))));
+
+      // 🔁 Buscar detalles de producto desde tu fuente (puede ser un array local o una API)
+      const allProducts = await fetchProducts(); // tu función de catálogo
+      cart = minimalCart.map(item => {
+        const fullData = allProducts.find(p => p.id_product === item.id_product);
+        return {
+          ...fullData,
+          quantity: item.quantity
+        };
+      });
+
+      localStorage.setItem('cart', JSON.stringify(cart));
+    } catch (e) {
+      console.error('Error al cargar carrito desde URL:', e);
+    }
+  } else {
+    const savedCart = localStorage.getItem('cart');
+    cart = savedCart ? JSON.parse(savedCart) : [];
+  }
+
+  updateCart();
 };
+
+
+
 
 // FUNCION PARA ENVIA TEXTO DEL PEDIDO POR WHATSAPP
 // const shareCartAsText = () => {
@@ -97,24 +134,65 @@ window.onload = () => {
 //     window.open(url, '_blank');
 // };
 
-const shareCartAsText = async () => {
-    try {
-        await captureCart(); // Espera a que termine la captura
+// const shareCartAsText = async () => {
+//     try {
+//         await captureCart(); // Espera a que termine la captura
 
-         // Espera 2 segundos antes de abrir WhatsApp
-        await new Promise(resolve => setTimeout(resolve, 2500));
+//          // Espera 2 segundos antes de abrir WhatsApp
+//         await new Promise(resolve => setTimeout(resolve, 3000));
 
-        let message = '*Mi carrito de compras:*\n';
-        message += '¡Hola! Me gustaría hacer un pedido con los siguientes productos.';
-        message += '\nAdjunto la imagen con los detalles del pedido.';
+//         let message = '*Mi carrito de compras:*\n';
+//         message += '¡Hola! Me gustaría hacer un pedido con los siguientes productos.';
+//         message += '\nAdjunto la imagen con los detalles del pedido.';
 
-        const phone = '51967212987';
-        const url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
-        window.open(url, '_blank');
-    } catch (error) {
-        console.error('Error al capturar el carrito:', error);
-    }
+//         const phone = '51980439371';
+//         const url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
+//         window.open(url, '_blank');
+//     } catch (error) {
+//         console.error('Error al capturar el carrito:', error);
+//     }
+// };
+
+// Codifica carrito directamente en la URL
+async function shortenUrl(longUrl) {
+  try {
+    const response = await fetch(`https://tinyurl.com/api-create.php?url=${encodeURIComponent(longUrl)}`);
+    const shortUrl = await response.text(); // Respuesta es solo el enlace
+    return shortUrl;
+  } catch (error) {
+    console.error('Error al acortar la URL:', error);
+    return longUrl; // Usa la URL larga si hay un error
+  }
+}
+
+
+const shareCartLink = async () => {
+  const phone = '51967212987';
+
+  // Generar carrito minimizado (solo id y cantidad para que sea corto)
+  const minimalCart = cart.map(item => ({
+    id_product: item.id_product,
+    quantity: item.quantity
+  }));
+
+  // Codificar en base64 seguro
+  const encodedCart = btoa(unescape(encodeURIComponent(JSON.stringify(minimalCart))));
+
+  // Crear URL con el carrito en query
+  const longUrl = `${window.location.origin + window.location.pathname}?sharedCart=${encodeURIComponent(encodedCart)}`;
+
+  // Acortar la URL usando TinyURL sin cuenta
+  const shortUrl = await shortenUrl(longUrl);
+
+  // Mensaje con enlace acortado
+  const message = `¡Hola! Te comparto mi carrito de compras. Puedes verlo aquí: ${shortUrl}`;
+  const url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
+
+  window.open(url, '_blank');
 };
+
+
+
 
 
 // FUNCIÓN PARA AGREGAR PRODUCTOS AL CARRITO USANDO ALERTIFYJS
