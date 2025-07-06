@@ -2,6 +2,10 @@ html{
   scroll-behavior: smooth;
 }
 
+body{
+    margin-top: 50px;
+}
+
 .bg-black-gray{
   background-color: #171717;
 }

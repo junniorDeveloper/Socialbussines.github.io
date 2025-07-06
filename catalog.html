@@ -20,7 +20,6 @@
     <script src="https://cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
 
     <!-- STYLE CSS DE LA PAGINA -->
-    <link rel="stylesheet" href="style/navar.css">
     <link rel="stylesheet" href="style/main.css">
     
 
@@ -33,36 +32,26 @@
 </head>
 
 <body id="body-top" class="bg-white font-sans">
+        
+    <!-- MUESTRA LAS SECCION BANNER -->
+    <div id="SectionMenu"></div>
 
-    <!-- MENU DE NAVEGACION -->
-    <nav class="navbar" id="navbar">
-        <a class="navbar-brand text-white" href="#body-top">
-            <img src="img/logo/copilogonew.png"
-                class="navbar-logo logo-biker-img "> <hr>
-            J&L Biker Cañete
-        </a>
-        <div class="content-list">
-            <ul class="nav-list">
-                <li><a href="#" id="btn-todos" class="nav-link text-white">Contactanos</a><div class="line"></div></li>
-                <li><a href="#" id="btn-todos" class="nav-link text-white">Ubicanos</a><div class="line"></div></li>
-                <li><a href="#listProduct" class="nav-link text-white " onclick="filterProducts('todos'); scrollToProducts()"><samp>General</samp></a><div class="line"></div></li>
-                <li><a href="#listProduct" class="nav-link text-white" onclick="filterProducts('exploradoras'); scrollToProducts()"><samp>Exploradoras</samp></a><div class="line"></div></li>
-                <li><a href="#listProduct" class="nav-link text-white" onclick="filterProducts('focos'); scrollToProducts()"><samp>Focos</samp></a><div class="line"></div></li>
-                <li><a href="#listProduct" class="nav-link text-white" onclick="filterProducts('herrajes'); scrollToProducts()"><samp>Herrajes</samp></a><div class="line"></div></li>
-                <li><a href="#listProduct" class="nav-link text-white" onclick="filterProducts('indumentaria'); scrollToProducts()"><samp>Indumentaria</samp></a><div class="line"></div></li>
-                <li><a href="#listProduct" class="nav-link text-white" onclick="filterProducts('cascos'); scrollToProducts()"><samp>Cascos</samp></a><div class="line"></div></li>
-                <li><a href="#listProduct" class="nav-link text-white" onclick="filterProducts('accesorios'); scrollToProducts()"><samp>Accesorios</samp></a><div class="line"></div></li>
-                <li><a href="#listProduct" class="nav-link text-white" onclick="filterProducts('inoxidables'); scrollToProducts()"><samp>Inoxidables</samp></a><div class="line"></div></li>
-                <li><a href="#listProduct" class="nav-link text-white" onclick="filterProducts('espejos'); scrollToProducts()"><samp>Espejos</samp></a><div class="line"></div></li>
-                <li><a href="#listProduct" class="nav-link text-white" onclick="filterProducts('protectores'); scrollToProducts()"><samp>Protectores</samp></a><div class="line"></div></li>
-                <li><a href="#listProduct" class="nav-link text-white" onclick="filterProducts('stickers'); scrollToProducts()"><samp>Stickers</samp></a><div class="line"></div></li>
-            </ul>
-        </div>
-    </nav>
+    <script>
+        fetch("html/menu/menu.html")
+            .then(res => res.text())
+            .then(html => {
+                const container = document.getElementById("SectionMenu");
+                container.innerHTML = html;
 
-    <!-- SCRIPT DE MENU DE NAVEGACION -->
-    <script src="javascript/menu.js"></script>
-    
+                // Evalúa los <script> del contenido cargado
+                const scripts = container.querySelectorAll("script");
+                scripts.forEach(script => {
+                    const newScript = document.createElement("script");
+                    newScript.textContent = script.textContent;
+                    document.body.appendChild(newScript);
+                });
+            });
+    </script>
 
 <!--------------------------------------------------------------------------------------------------------------------------------------------------------------------->
 <!----------------------------------------------------------------- COMPONENTES DE LA PAGINA -------------------------------------------------------------------------->
@@ -110,14 +99,14 @@
     </script>
 
 
-    <!-- MUESTRA LAS SECCIO DE NUEVOS INGRESOS -->
-    <div id="SectionNuevos"></div>
+    <!-- MUESTRA LAS SECCION PRODUCTOS DESTACADOS -->
+    <div id="SectionOfertas"></div>
 
     <script>
-        fetch("html/section/nuevos.html")
+        fetch("html/section/ofertas.html")
             .then(res => res.text())
             .then(html => {
-                const container = document.getElementById("SectionNuevos");
+                const container = document.getElementById("SectionOfertas");
                 container.innerHTML = html;
 
                 // Evalúa los <script> del contenido cargado
@@ -131,14 +120,14 @@
     </script>
 
 
-    <!-- MUESTRA LAS SECCION PRODUCTOS DESTACADOS -->
-    <div id="SectionOfertas"></div>
+    <!-- MUESTRA LAS SECCIO DE NUEVOS INGRESOS -->
+    <div id="SectionNuevos"></div>
 
     <script>
-        fetch("html/section/ofertas.html")
+        fetch("html/section/nuevos.html")
             .then(res => res.text())
             .then(html => {
-                const container = document.getElementById("SectionOfertas");
+                const container = document.getElementById("SectionNuevos");
                 container.innerHTML = html;
 
                 // Evalúa los <script> del contenido cargado
