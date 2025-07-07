@@ -21,87 +21,105 @@
   <!-- Sidebar deslizante -->
   <div id="sidebar" class="fixed top-0 right-0 w-72 max-w-full h-full bg-white shadow-lg transform translate-x-full transition-transform duration-300 z-50 overflow-y-auto">
     <div class="flex justify-between items-center px-4 py-4 border-b">
-      <span class="text-lg font-semibold text-black">Menú</span>
+      <span class="text-lg font-semibold text-gray-600">Menú</span>
       <button onclick="toggleSidebar()" class="text-xl text-gray-600">
         <i class="fa-solid fa-xmark"></i>
       </button>
     </div>
 
-    <nav class="flex flex-col px-4 py-2 space-y-2">
+    <nav class="flex flex-col px-4 py-2 space-y-2 border">
 
-      <a href="#body-top" class="flex items-center space-x-2 py-2 hover:text-red-700" onclick="toggleSidebar()">
+      <!-- inicio -->
+      <a href="#body-top" class="flex items-center font-semibold text-gray-600 space-x-2 py-2 hover:text-red-700 border-b boder-black" onclick="toggleSidebar()">
         <i class="fa-solid fa-house"></i><span>Inicio</span>
       </a>
 
-      <a href="#SectionOfertas" class="flex items-center space-x-2 py-2 hover:text-red-700" onclick="toggleSidebar()">
+      <!-- ofertas -->
+      <a href="#SectionOfertas" class="flex items-center font-semibold text-gray-600 space-x-2 py-2 hover:text-red-700 border-b boder-black" onclick="toggleSidebar()">
         <i class="fa-solid fa-tags"></i><span>Ofertas</span>
       </a>
 
-      <!-- accesorios -->
+      <!-- acordion accesorios -->
       <div>
-        <button onclick="toggleAccordion('accesorios')" class="flex justify-between items-center w-full py-2 hover:text-red-700">
+        <button onclick="toggleAccordion('accesorios')" class="flex justify-between items-center font-semibold text-gray-600 w-full py-2 hover:text-red-700 border-b boder-black">
           <div class="flex items-center space-x-2">
             <i class="fas fa-motorcycle"></i><span>Accesorios</span>
           </div>
           <i class="fas fa-chevron-down transition-transform" id="icon-accesorios"></i>
         </button>
         <div id="submenu-accesorios" class="hidden ml-6 mt-1 text-sm text-gray-700">
-          <a href="#listProduct" class="block py-1 hover:text-red-700" onclick="filterProducts('exploradoras'); scrollToProducts(); toggleSidebar()">Exploradoras</a>
-          <a href="#listProduct" class="block py-1 hover:text-red-700" onclick="filterProducts('accesorios'); scrollToProducts(); toggleSidebar()">Accesorios</a>
-          <a href="#listProduct" class="block py-1 hover:text-red-700" onclick="filterProducts('stickers'); scrollToProducts(); toggleSidebar()">Stickers</a>
+          <a href="#listProduct" class="block py-3 font-semibold hover:text-red-700" onclick="filterProducts('exploradoras'); scrollToProducts(); toggleSidebar()">Exploradoras</a>
+          <a href="#listProduct" class="block py-3 font-semibold hover:text-red-700" onclick="filterProducts('accesorios'); scrollToProducts(); toggleSidebar()">Accesorios</a>
+          <a href="#listProduct" class="block py-3 font-semibold hover:text-red-700" onclick="filterProducts('stickers'); scrollToProducts(); toggleSidebar()">Stickers</a>
         </div>
       </div>
 
-      <!-- Préstamos -->
+      <!-- acordion proteccion -->
       <div>
-        <button onclick="toggleAccordion('proteccion')" class="flex justify-between items-center w-full py-2 hover:text-red-700">
+        <button onclick="toggleAccordion('proteccion')" class="flex justify-between items-center font-semibold text-gray-600 w-full py-2 hover:text-red-700 border-b boder-black">
           <div class="flex items-center space-x-2">
             <i class="fa-solid fa-shield-halved"></i><span>Protección</span>
           </div>
           <i class="fas fa-chevron-down transition-transform" id="icon-proteccion"></i>
         </button>
         <div id="submenu-proteccion" class="hidden ml-6 mt-1 text-sm text-gray-700">
-          <a href="#listProduct" class="block py-1 hover:text-red-700" onclick="filterProducts('herrajes'); scrollToProducts(); toggleSidebar()">Herrajes</a>
-          <a href="#listProduct" class="block py-1 hover:text-red-700" onclick="filterProducts('indumentaria'); scrollToProducts(); toggleSidebar()">Indumentaria</a>
-          <a href="#listProduct" class="block py-1 hover:text-red-700" onclick="filterProducts('cascos'); scrollToProducts(); toggleSidebar()">Cascos</a>
-          <a href="#listProduct" class="block py-1 hover:text-red-700" onclick="filterProducts('protectores'); scrollToProducts(); toggleSidebar()">Protectores</a>
+          <a href="#listProduct" class="block py-3 font-semibold hover:text-red-700" onclick="filterProducts('herrajes'); scrollToProducts(); toggleSidebar()">Herrajes</a>
+          <a href="#listProduct" class="block py-3 font-semibold hover:text-red-700" onclick="filterProducts('indumentaria'); scrollToProducts(); toggleSidebar()">Indumentaria</a>
+          <a href="#listProduct" class="block py-3 font-semibold hover:text-red-700" onclick="filterProducts('cascos'); scrollToProducts(); toggleSidebar()">Cascos</a>
+          <a href="#listProduct" class="block py-3 font-semibold hover:text-red-700" onclick="filterProducts('protectores'); scrollToProducts(); toggleSidebar()">Protectores</a>
         </div>
       </div>
 
       <!-- componente -->
       <div>
-        <button onclick="toggleAccordion('componente')" class="flex justify-between items-center w-full py-2 hover:text-red-700">
+        <button onclick="toggleAccordion('componente')" class="flex justify-between items-center font-semibold text-gray-600 w-full py-2 hover:text-red-700 border-b boder-black">
           <div class="flex items-center space-x-2">
             <i class="fas fa-cogs"></i><span>Componentes</span>
           </div>
           <i class="fas fa-chevron-down transition-transform" id="icon-componente"></i>
         </button>
         <div id="submenu-componente" class="hidden ml-6 mt-1 text-sm text-gray-700">
-          <a href="#listProduct" class="block py-1 hover:text-red-700" onclick="filterProducts('inoxidable'); scrollToProducts(); toggleSidebar()">Inoxidables</a>
-          <a href="#listProduct" class="block py-1 hover:text-red-700" onclick="filterProducts('espejos'); scrollToProducts(); toggleSidebar()">Espejos</a>
-          <a href="#listProduct" class="block py-1 hover:text-red-700" onclick="filterProducts('focos'); scrollToProducts(); toggleSidebar()">Focos</a>
+          <a href="#listProduct" class="block py-3 font-semibold hover:text-red-700" onclick="filterProducts('inoxidable'); scrollToProducts(); toggleSidebar()">Inoxidables</a>
+          <a href="#listProduct" class="block py-3 font-semibold hover:text-red-700" onclick="filterProducts('espejos'); scrollToProducts(); toggleSidebar()">Espejos</a>
+          <a href="#listProduct" class="block py-3 font-semibold hover:text-red-700" onclick="filterProducts('focos'); scrollToProducts(); toggleSidebar()">Focos</a>
         </div>
       </div>
 
-      <!-- Otros items -->
-      
-      
+      <!-- Facebook -->
       <a href="https://www.facebook.com/profile.php?id=100063971775345&mibextid=ZbWKwL" target="_blank"
-        class="flex items-center space-x-2 py-2 hover:text-red-700" onclick="toggleSidebar()">
+        class="flex items-center font-semibold text-gray-600 space-x-2 py-2 hover:text-red-700 border-b boder-black" onclick="toggleSidebar()">
         <i class="fa-brands fa-facebook"></i><span>Facebook</span>
       </a>
+      <!-- Tiktok -->
       <a href="https://www.tiktok.com/@jylbikercanete?lang=es" target="_blank"
-        class="flex items-center space-x-2 py-2 hover:text-red-700" onclick="toggleSidebar()">
+        class="flex items-center font-semibold text-gray-600 space-x-2 py-2 hover:text-red-700 border-b boder-black" onclick="toggleSidebar()">
         <i class="fa-brands fa-tiktok"></i><span>Tik Tok</span>
       </a>
+      <!-- whatsapp -->
       <a href="https://wa.me/51917652861" target="_blank"
-        class="flex items-center space-x-2 py-2 hover:text-red-700" onclick="toggleSidebar()">
+        class="flex items-center font-semibold text-gray-600 space-x-2 py-2 hover:text-red-700 border-b boder-black" onclick="toggleSidebar()">
         <i class="fa-brands fa-whatsapp"></i><span>WhatsApp</span>
       </a>
-      <a href="https://maps.app.goo.gl/GWvbBvZX8QNx2gNj7" target="_blank" class="flex items-center space-x-2 py-2 hover:text-red-700" onclick="toggleSidebar()">
+      <!-- maps -->
+      <a href="https://maps.app.goo.gl/GWvbBvZX8QNx2gNj7" target="_blank" 
+        class="flex items-center font-semibold text-gray-600 space-x-2 py-2 hover:text-red-700 border-b boder-black" onclick="toggleSidebar()">
         <i class="fa-solid fa-map-location-dot"></i><span>Ubicanos</span>
       </a>
     </nav>
+
+    <!-- <nav class="flex flex-col px-4 py-2 space-y-2 border">
+      
+      <a href="https://maps.app.goo.gl/GWvbBvZX8QNx2gNj7" target="_blank" 
+        class="flex items-center font-semibold text-gray-600 space-x-2 py-2 hover:text-red-700 border-b boder-black" onclick="toggleSidebar()">
+        <i class="fa-solid fa-map-location-dot"></i><span>Ubicanos</span>
+      </a>
+      
+      <a href="https://wa.me/51917652861" target="_blank"
+        class="flex items-center font-semibold text-gray-600 space-x-2 py-2 hover:text-red-700 border-b boder-black" onclick="toggleSidebar()">
+        <i class="fa-brands fa-whatsapp"></i><span>WhatsApp</span>
+      </a>
+    </nav> -->
+    
   </div>
 
 
