@@ -3,7 +3,13 @@ html{
 }
 
 body{
+    margin-top: 100px;
+}
+
+@media screen and (max-width: 1024px) {
+  body {
     margin-top: 50px;
+  }
 }
 
 .bg-black-gray{
@@ -163,3 +169,4 @@ body{
 .effect {
   animation: rotate 2s infinite;
 }
+

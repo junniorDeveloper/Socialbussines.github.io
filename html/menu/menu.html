@@ -4,12 +4,25 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Menú</title>
+
+  <style>
+  .accordion-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.8s ease-out; /* Transición suave */
+  }
+
+  .accordion-content.open {
+    max-height: 500px; /* Ajusta según el contenido */
+  }
+</style>
+
 </head>
 <body class="bg-gray-100">
 
   <!-- Navbar superior fijo -->
   <header class="fixed top-0 left-0 w-full bg-black shadow z-10 flex items-center justify-between px-4 py-3">
-    <div class="flex items-center space-x-2">
+    <div class="flex items-center space-x-3">
       <img src="img/logo/copilogonew.png" alt="Logo" class="w-auto h-8">
       <span class="font-semibold text-white text-lg">Biker Cañete</span>
     </div>
@@ -19,106 +32,102 @@
   </header>
 
   <!-- Sidebar deslizante -->
-  <div id="sidebar" class="fixed top-0 right-0 w-72 max-w-full h-full bg-white shadow-lg transform translate-x-full transition-transform duration-300 z-50 overflow-y-auto">
+  <div id="sidebar" class="fixed top-0 right-0 w-72 max-w-full h-full bg-white shadow-lg transform translate-x-full transition-transform duration-500 z-50 overflow-y-auto">
     <div class="flex justify-between items-center px-4 py-4 border-b">
-      <span class="text-lg font-semibold text-gray-600">Menú</span>
-      <button onclick="toggleSidebar()" class="text-xl text-gray-600">
+      <span class="text-lg  text-gray-500">Menú</span>
+      <button onclick="toggleSidebar()" class="text-xl text-gray-500">
         <i class="fa-solid fa-xmark"></i>
       </button>
     </div>
 
-    <nav class="flex flex-col px-4 py-2 space-y-2 border">
+    <nav class="flex flex-col px-4 py-2 space-y-2">
 
       <!-- inicio -->
-      <a href="#body-top" class="flex items-center font-semibold text-gray-600 space-x-2 py-2 hover:text-red-700 border-b boder-black" onclick="toggleSidebar()">
-        <i class="fa-solid fa-house"></i><span>Inicio</span>
+      <a href="#body-top" class="flex items-center  text-gray-500 space-x-3 py-2 hover:text-black border-b boder-black" onclick="toggleSidebar()">
+        <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="1"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-home"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M5 12l-2 0l9 -9l9 9l-2 0" /><path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" /><path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" /></svg>
+        <span>Inicio</span>
       </a>
 
       <!-- ofertas -->
-      <a href="#SectionOfertas" class="flex items-center font-semibold text-gray-600 space-x-2 py-2 hover:text-red-700 border-b boder-black" onclick="toggleSidebar()">
-        <i class="fa-solid fa-tags"></i><span>Ofertas</span>
+      <a href="#SectionOfertas" class="flex items-center  text-gray-500 space-x-3 py-2 hover:text-black border-b boder-black" onclick="toggleSidebar()">
+        <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="1"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-tags"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 8v4.172a2 2 0 0 0 .586 1.414l5.71 5.71a2.41 2.41 0 0 0 3.408 0l3.592 -3.592a2.41 2.41 0 0 0 0 -3.408l-5.71 -5.71a2 2 0 0 0 -1.414 -.586h-4.172a2 2 0 0 0 -2 2z" /><path d="M18 19l1.592 -1.592a4.82 4.82 0 0 0 0 -6.816l-4.592 -4.592" /><path d="M7 10h-.01" /></svg>
+        <span>Ofertas</span>
       </a>
 
       <!-- acordion accesorios -->
       <div>
-        <button onclick="toggleAccordion('accesorios')" class="flex justify-between items-center font-semibold text-gray-600 w-full py-2 hover:text-red-700 border-b boder-black">
-          <div class="flex items-center space-x-2">
-            <i class="fas fa-motorcycle"></i><span>Accesorios</span>
+        <button onclick="toggleAccordion('accesorios')" class="flex justify-between items-center  text-gray-500 w-full py-2 hover:text-black border-b">
+          <div class="flex items-center space-x-3">
+            <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="1"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-motorbike"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M5 16m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0" /><path d="M19 16m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0" /><path d="M7.5 14h5l4 -4h-10.5m1.5 4l4 -4" /><path d="M13 6h2l1.5 3l2 4" /></svg>
+            <span>Accesorios</span>
           </div>
           <i class="fas fa-chevron-down transition-transform" id="icon-accesorios"></i>
         </button>
-        <div id="submenu-accesorios" class="hidden ml-6 mt-1 text-sm text-gray-700">
-          <a href="#listProduct" class="block py-3 font-semibold hover:text-red-700" onclick="filterProducts('exploradoras'); scrollToProducts(); toggleSidebar()">Exploradoras</a>
-          <a href="#listProduct" class="block py-3 font-semibold hover:text-red-700" onclick="filterProducts('accesorios'); scrollToProducts(); toggleSidebar()">Accesorios</a>
-          <a href="#listProduct" class="block py-3 font-semibold hover:text-red-700" onclick="filterProducts('stickers'); scrollToProducts(); toggleSidebar()">Stickers</a>
+        <div id="submenu-accesorios" class="accordion-content ml-6 mt-1 text-sm text-gray-700">
+          <a href="#listProduct" class="block py-3  hover:text-black" onclick="filterProducts('exploradoras'); scrollToProducts(); toggleSidebar()">Exploradoras</a>
+          <a href="#listProduct" class="block py-3  hover:text-black" onclick="filterProducts('accesorios'); scrollToProducts(); toggleSidebar()">Accesorios</a>
+          <a href="#listProduct" class="block py-3  hover:text-black" onclick="filterProducts('stickers'); scrollToProducts(); toggleSidebar()">Stickers</a>
         </div>
       </div>
 
       <!-- acordion proteccion -->
       <div>
-        <button onclick="toggleAccordion('proteccion')" class="flex justify-between items-center font-semibold text-gray-600 w-full py-2 hover:text-red-700 border-b boder-black">
-          <div class="flex items-center space-x-2">
-            <i class="fa-solid fa-shield-halved"></i><span>Protección</span>
+        <button onclick="toggleAccordion('proteccion')" class="flex justify-between items-center  text-gray-500 w-full py-2 hover:text-black border-b boder-black">
+          <div class="flex items-center space-x-3">
+            <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="1"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-shield-heart"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 21a12 12 0 0 1 -8.5 -15a12 12 0 0 0 8.5 -3a12 12 0 0 0 8.5 3a12.01 12.01 0 0 1 .378 5" /><path d="M18 22l3.35 -3.284a2.143 2.143 0 0 0 .005 -3.071a2.242 2.242 0 0 0 -3.129 -.006l-.224 .22l-.223 -.22a2.242 2.242 0 0 0 -3.128 -.006a2.143 2.143 0 0 0 -.006 3.071l3.355 3.296z" /></svg>
+            <span>Protección</span>
           </div>
           <i class="fas fa-chevron-down transition-transform" id="icon-proteccion"></i>
         </button>
-        <div id="submenu-proteccion" class="hidden ml-6 mt-1 text-sm text-gray-700">
-          <a href="#listProduct" class="block py-3 font-semibold hover:text-red-700" onclick="filterProducts('herrajes'); scrollToProducts(); toggleSidebar()">Herrajes</a>
-          <a href="#listProduct" class="block py-3 font-semibold hover:text-red-700" onclick="filterProducts('indumentaria'); scrollToProducts(); toggleSidebar()">Indumentaria</a>
-          <a href="#listProduct" class="block py-3 font-semibold hover:text-red-700" onclick="filterProducts('cascos'); scrollToProducts(); toggleSidebar()">Cascos</a>
-          <a href="#listProduct" class="block py-3 font-semibold hover:text-red-700" onclick="filterProducts('protectores'); scrollToProducts(); toggleSidebar()">Protectores</a>
+        <div id="submenu-proteccion" class="accordion-content ml-6 mt-1 text-sm text-gray-700">
+          <a href="#listProduct" class="block py-3  hover:text-black" onclick="filterProducts('herrajes'); scrollToProducts(); toggleSidebar()">Herrajes</a>
+          <a href="#listProduct" class="block py-3  hover:text-black" onclick="filterProducts('indumentaria'); scrollToProducts(); toggleSidebar()">Indumentaria</a>
+          <a href="#listProduct" class="block py-3  hover:text-black" onclick="filterProducts('cascos'); scrollToProducts(); toggleSidebar()">Cascos</a>
+          <a href="#listProduct" class="block py-3  hover:text-black" onclick="filterProducts('protectores'); scrollToProducts(); toggleSidebar()">Protectores</a>
         </div>
       </div>
 
       <!-- componente -->
       <div>
-        <button onclick="toggleAccordion('componente')" class="flex justify-between items-center font-semibold text-gray-600 w-full py-2 hover:text-red-700 border-b boder-black">
-          <div class="flex items-center space-x-2">
-            <i class="fas fa-cogs"></i><span>Componentes</span>
+        <button onclick="toggleAccordion('componente')" class="flex justify-between items-center  text-gray-500 w-full py-2 hover:text-black border-b boder-black">
+          <div class="flex items-center space-x-3">
+            <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="1"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-settings-cog"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12.003 21c-.732 .001 -1.465 -.438 -1.678 -1.317a1.724 1.724 0 0 0 -2.573 -1.066c-1.543 .94 -3.31 -.826 -2.37 -2.37a1.724 1.724 0 0 0 -1.065 -2.572c-1.756 -.426 -1.756 -2.924 0 -3.35a1.724 1.724 0 0 0 1.066 -2.573c-.94 -1.543 .826 -3.31 2.37 -2.37c1 .608 2.296 .07 2.572 -1.065c.426 -1.756 2.924 -1.756 3.35 0a1.724 1.724 0 0 0 2.573 1.066c1.543 -.94 3.31 .826 2.37 2.37a1.724 1.724 0 0 0 1.065 2.572c.886 .215 1.325 .957 1.318 1.694" /><path d="M9 12a3 3 0 1 0 6 0a3 3 0 0 0 -6 0" /><path d="M19.001 19m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" /><path d="M19.001 15.5v1.5" /><path d="M19.001 21v1.5" /><path d="M22.032 17.25l-1.299 .75" /><path d="M17.27 20l-1.3 .75" /><path d="M15.97 17.25l1.3 .75" /><path d="M20.733 20l1.3 .75" /></svg>
+            <span>Componentes</span>
           </div>
           <i class="fas fa-chevron-down transition-transform" id="icon-componente"></i>
         </button>
-        <div id="submenu-componente" class="hidden ml-6 mt-1 text-sm text-gray-700">
-          <a href="#listProduct" class="block py-3 font-semibold hover:text-red-700" onclick="filterProducts('inoxidable'); scrollToProducts(); toggleSidebar()">Inoxidables</a>
-          <a href="#listProduct" class="block py-3 font-semibold hover:text-red-700" onclick="filterProducts('espejos'); scrollToProducts(); toggleSidebar()">Espejos</a>
-          <a href="#listProduct" class="block py-3 font-semibold hover:text-red-700" onclick="filterProducts('focos'); scrollToProducts(); toggleSidebar()">Focos</a>
+        <div id="submenu-componente" class="accordion-content ml-6 mt-1 text-sm text-gray-700">
+          <a href="#listProduct" class="block py-3  hover:text-black" onclick="filterProducts('inoxidable'); scrollToProducts(); toggleSidebar()">Inoxidables</a>
+          <a href="#listProduct" class="block py-3  hover:text-black" onclick="filterProducts('espejos'); scrollToProducts(); toggleSidebar()">Espejos</a>
+          <a href="#listProduct" class="block py-3  hover:text-black" onclick="filterProducts('focos'); scrollToProducts(); toggleSidebar()">Focos</a>
         </div>
       </div>
 
       <!-- Facebook -->
       <a href="https://www.facebook.com/profile.php?id=100063971775345&mibextid=ZbWKwL" target="_blank"
-        class="flex items-center font-semibold text-gray-600 space-x-2 py-2 hover:text-red-700 border-b boder-black" onclick="toggleSidebar()">
-        <i class="fa-brands fa-facebook"></i><span>Facebook</span>
+        class="flex items-center  text-gray-500 space-x-3 py-2 hover:text-black border-b boder-black" onclick="toggleSidebar()">
+        <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="1"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-brand-facebook"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M7 10v4h3v7h4v-7h3l1 -4h-4v-2a1 1 0 0 1 1 -1h3v-4h-3a5 5 0 0 0 -5 5v2h-3" /></svg>
+        <span>Facebook</span>
       </a>
       <!-- Tiktok -->
       <a href="https://www.tiktok.com/@jylbikercanete?lang=es" target="_blank"
-        class="flex items-center font-semibold text-gray-600 space-x-2 py-2 hover:text-red-700 border-b boder-black" onclick="toggleSidebar()">
-        <i class="fa-brands fa-tiktok"></i><span>Tik Tok</span>
+        class="flex items-center  text-gray-500 space-x-3 py-2 hover:text-black border-b boder-black" onclick="toggleSidebar()">
+        <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="1"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-brand-tiktok"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M21 7.917v4.034a9.948 9.948 0 0 1 -5 -1.951v4.5a6.5 6.5 0 1 1 -8 -6.326v4.326a2.5 2.5 0 1 0 4 2v-11.5h4.083a6.005 6.005 0 0 0 4.917 4.917z" /></svg>
+        <span>Tik Tok</span>
       </a>
       <!-- whatsapp -->
       <a href="https://wa.me/51917652861" target="_blank"
-        class="flex items-center font-semibold text-gray-600 space-x-2 py-2 hover:text-red-700 border-b boder-black" onclick="toggleSidebar()">
-        <i class="fa-brands fa-whatsapp"></i><span>WhatsApp</span>
+        class="flex items-center  text-gray-500 space-x-3 py-2 hover:text-black border-b boder-black" onclick="toggleSidebar()">
+        <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="1"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-brand-whatsapp"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 21l1.65 -3.8a9 9 0 1 1 3.4 2.9l-5.05 .9" /><path d="M9 10a.5 .5 0 0 0 1 0v-1a.5 .5 0 0 0 -1 0v1a5 5 0 0 0 5 5h1a.5 .5 0 0 0 0 -1h-1a.5 .5 0 0 0 0 1" /></svg>
+        <span>WhatsApp</span>
       </a>
       <!-- maps -->
       <a href="https://maps.app.goo.gl/GWvbBvZX8QNx2gNj7" target="_blank" 
-        class="flex items-center font-semibold text-gray-600 space-x-2 py-2 hover:text-red-700 border-b boder-black" onclick="toggleSidebar()">
-        <i class="fa-solid fa-map-location-dot"></i><span>Ubicanos</span>
+        class="flex items-center  text-gray-500 space-x-3 py-2 hover:text-black border-b boder-black" onclick="toggleSidebar()">
+        <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="1"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-map-2"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 18.5l-3 -1.5l-6 3v-13l6 -3l6 3l6 -3v7.5" /><path d="M9 4v13" /><path d="M15 7v5.5" /><path d="M21.121 20.121a3 3 0 1 0 -4.242 0c.418 .419 1.125 1.045 2.121 1.879c1.051 -.89 1.759 -1.516 2.121 -1.879z" /><path d="M19 18v.01" /></svg>
+        <span>Ubicanos</span>
       </a>
     </nav>
-
-    <!-- <nav class="flex flex-col px-4 py-2 space-y-2 border">
-      
-      <a href="https://maps.app.goo.gl/GWvbBvZX8QNx2gNj7" target="_blank" 
-        class="flex items-center font-semibold text-gray-600 space-x-2 py-2 hover:text-red-700 border-b boder-black" onclick="toggleSidebar()">
-        <i class="fa-solid fa-map-location-dot"></i><span>Ubicanos</span>
-      </a>
-      
-      <a href="https://wa.me/51917652861" target="_blank"
-        class="flex items-center font-semibold text-gray-600 space-x-2 py-2 hover:text-red-700 border-b boder-black" onclick="toggleSidebar()">
-        <i class="fa-brands fa-whatsapp"></i><span>WhatsApp</span>
-      </a>
-    </nav> -->
     
   </div>
 
@@ -129,12 +138,36 @@
       sidebar.classList.toggle('translate-x-full');
     }
 
+    let currentOpenAccordion = null; // Variable para rastrear el acordeón abierto
+
     function toggleAccordion(id) {
       const submenu = document.getElementById('submenu-' + id);
       const icon = document.getElementById('icon-' + id);
-      submenu.classList.toggle('hidden');
-      icon.classList.toggle('rotate-180');
+
+      // Cierra el acordeón actualmente abierto, si existe y no es el que se está abriendo
+      if (currentOpenAccordion && currentOpenAccordion !== id) {
+        const openSubmenu = document.getElementById('submenu-' + currentOpenAccordion);
+        const openIcon = document.getElementById('icon-' + currentOpenAccordion);
+        
+        // Cierra el acordeón anterior con un retraso para permitir la transición
+        openSubmenu.classList.remove('open'); // Cierra el acordeón anterior
+        openIcon.classList.remove('rotate-180'); // Restaura el icono
+
+        // Espera a que la transición de cierre termine antes de abrir el nuevo
+        setTimeout(() => {
+          submenu.classList.toggle('open'); // Alterna el acordeón actual
+          icon.classList.toggle('rotate-180');
+          currentOpenAccordion = submenu.classList.contains('open') ? id : null;
+        }, 300); // Debe coincidir con la duración de la transición CSS
+      } else {
+        // Alterna el acordeón actual si no hay otro abierto
+        submenu.classList.toggle('open');
+        icon.classList.toggle('rotate-180');
+        currentOpenAccordion = submenu.classList.contains('open') ? id : null;
+      }
     }
+
+
   </script>
 </body>
 </html>
