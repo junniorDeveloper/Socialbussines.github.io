@@ -21,6 +21,7 @@
 
     <!-- STYLE CSS DE LA PAGINA -->
     <link rel="stylesheet" href="style/main.css">
+    <link rel="stylesheet" href="html/banner/banners.css">
     
 
     <!-- SCRIPT DE LA INTERFACE DE LA API -->
@@ -79,13 +80,13 @@
     </script>
 
     <!-- MUESTRA LAS SECCION BANNER -->
-    <div id="SectionTabs"></div>
+    <div id="SectionHistory"></div>
 
     <script>
-        fetch("html/tabs/tabs.html")
+        fetch("html/history/history.html")
             .then(res => res.text())
             .then(html => {
-                const container = document.getElementById("SectionTabs");
+                const container = document.getElementById("SectionHistory");
                 container.innerHTML = html;
 
                 // Evalúa los <script> del contenido cargado

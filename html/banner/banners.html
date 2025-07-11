@@ -1,180 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Banner con efecto fade</title>
- 
-  <style>
-    .fade-bg {
-      transition: opacity 0.8s ease-in-out;
-      opacity: 1;
-    }
-  
-    .fade-bg.fade-out {
-      opacity: 0;
-    }
-  
-    #banner {
-      position: relative;
-      overflow: hidden;
-      height: 80vh;
-    }
-  
-    .bg-inner {
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background-size: cover;
-      background-position: center;
-      transition: transform 0.2s ease;
-      z-index: 0;
-    }
-  
-    #banner-content {
-      position: relative;
-      z-index: 0;
-    }
-  
-    @media (max-width: 640px) {
-      #banner {
-        height: 80vh;
-      }
-    }
-  </style>
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
 </head>
-
 <body>
-
-  <div class="flex justify-center bg-black lg:container mx-auto">
-    <div class="w-full">
-      <div id="banner" class="fade-bg">
-
-        <!-- Fondo escalable -->
-        <div id="bg-inner" class="bg-inner" style="background-image: url('img/banner/one.webp')"></div>
-
-        <!-- Contenido visible -->
-        <div id="banner-content" class="w-full h-full absolute inset-0 bg-black bg-opacity-40 flex flex-col  md:items-start md:justify-start md:pl-10 md:pt-40 md:pb-0 items-center justify-end pb-40">
-          <h1 id="banner-title" class="text-white md:text-4xl text-3xl font-extrabold">Desafia tus Limites</h1>
-          <p id="banner-subtitle" class="text-white text-lg mt-2 text-center">La libertad se encuentra en cada kilómetro recorrido.</p>
+    
+<!-- Hero Section -->
+<section id="inicio" class="w-full hero-bg min-h-screen flex items-center justify-center relative overflow-hidden">
+    <div class="text-center relative">
+        <div class="animate-fadeIn">
+            <h1 class="text-3xl md:text-5xl font-bold text-white mb-2 md:mb-6 text-shadow">
+                Accesorios <span class="text-red-500">Premium</span>
+                <br>para tu Motocicleta
+            </h1>
+            <p class="text-base md:text-2xl text-gray-300 mb-4 md:mb-8 max-w-3xl mx-auto text-shadow">
+                Equipamos tu pasión con los mejores accesorios. Calidad, estilo y seguridad en cada kilómetro.
+            </p>
+            <button class="red-gradient text-white px-8 py-4 rounded-full text-lg font-semibold btn-hover">
+                Explora Nuestros Productos
+            </button>
         </div>
-
-        <!-- Miniaturas -->
-        <div class="absolute bottom-4 left-0 right-0 flex justify-center">
-          <div class="bg-black bg-opacity-50 px-3 py-2 rounded-lg overflow-x-auto whitespace-nowrap no-scrollbar max-w-full">
-            <div class="inline-flex space-x-2">
-              <img src="img/banner/one.webp" class="w-20 h-14 object-cover cursor-pointer rounded border-2 border-transparent hover:border-white transition duration-300" onclick="userSetBackground(0)" />
-              <img src="img/banner/two.webp" class="w-20 h-14 object-cover cursor-pointer rounded border-2 border-transparent hover:border-white transition duration-300" onclick="userSetBackground(1)" />
-              <img src="img/banner/tree.jpg" class="w-20 h-14 object-cover cursor-pointer rounded border-2 border-transparent hover:border-white transition duration-300" onclick="userSetBackground(2)" />
-            </div>
-          </div>
+    </div>
+    <div class="flex justify-center absolute bottom-10 w-full">
+        <div class="text-white animate-bounce">
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+            </svg>
         </div>
-
-      </div>
-
     </div>
 
-    <script>
-      const images = [
-        'img/banner/one.webp',
-        'img/banner/two.webp',
-        'img/banner/tree.jpg'
-      ];
-
-      const texts = [
-        {
-          title: "Desafia tus Limites",
-          subtitle: "La libertad se encuentra en cada kilómetro recorrido.",
-          containerClasses: "w-full h-full absolute inset-0 bg-black bg-opacity-40 flex flex-col  md:items-start md:justify-start md:pl-10 md:pt-40 md:pb-0 items-center justify-end pb-40",
-          titleClasses: "text-white md:text-4xl text-3xl font-extrabold",
-          subtitleClasses: "text-white text-lg mt-2 text-center"
-        },
-        {
-          title: "Siente la Aventura",
-          subtitle: "Cada ruta te lleva a una nueva historia.",
-          containerClasses: "w-full h-full absolute inset-0 bg-black bg-opacity-60 flex flex-col md:items-start md:justify-center md:pl-10 md:pb-0  items-center justify-end pb-40 ",
-          titleClasses: "text-white md:text-4xl text-3xl font-extrabold",
-          subtitleClasses: "text-white text-lg mt-2"
-        },
-        {
-          title: "Paisajes que Inspiran",
-          subtitle: "Explora y conecta con lo natural.",
-          containerClasses: "w-full h-full absolute inset-0 bg-black bg-opacity-40 flex flex-col  md:items-center md:justify-start pt-40 md:pb-0 items-center justify-start",
-          titleClasses: "text-white md:text-4xl text-3xl font-extrabold",
-          subtitleClasses: "text-white text-lg mt-2"
-        }
-      ];
-
-      let currentIndexx = 0;
-      const banner = document.getElementById('banner');
-      const bgInner = document.getElementById('bg-inner');
-
-      let intervalId = null;
-      let userInactiveTimeoutId = null;
-
-      const bannerContent = document.getElementById('banner-content');
-      const bannerTitle = document.getElementById('banner-title');
-      const bannerSubtitle = document.getElementById('banner-subtitle');
-
-      window.addEventListener('scroll', () => {
-        const scrollPosition = window.scrollY;
-        const scale = 1 + scrollPosition / 1000;
-        bgInner.style.transform = `scale(${scale})`;
-      });
-
-      function fadeToImage(url, textData) {
-        banner.classList.add('fade-out');
-        setTimeout(() => {
-          bgInner.style.backgroundImage = `url('${url}')`;
-          bannerTitle.textContent = textData.title;
-          bannerSubtitle.textContent = textData.subtitle;
-
-          bannerContent.className = textData.containerClasses;
-          bannerTitle.className = textData.titleClasses;
-          bannerSubtitle.className = textData.subtitleClasses;
-
-          banner.classList.remove('fade-out');
-        }, 1000);
-      }
-
-
-      function rotateBackground() {
-        currentIndexx = (currentIndexx + 1) % images.length;
-        fadeToImage(images[currentIndexx], texts[currentIndexx]);
-      }
-
-
-      function startRotation() {
-        if (!intervalId) {
-          intervalId = setInterval(rotateBackground, 5000);
-        }
-      }
-
-      function stopRotation() {
-        if (intervalId) {
-          clearInterval(intervalId);
-          intervalId = null;
-        }
-      }
-
-      function userSetBackground(index) {
-        stopRotation();
-        clearTimeout(userInactiveTimeoutId);
-        currentIndexx = index;
-        fadeToImage(images[currentIndexx], texts[currentIndexx]);
-
-        userInactiveTimeoutId = setTimeout(() => {
-          startRotation();
-        }, 8000);
-      }
-
-      // Inicia la rotación automática al cargar
-      startRotation();
-    </script>
+</section>
 </body>
-
 </html>
