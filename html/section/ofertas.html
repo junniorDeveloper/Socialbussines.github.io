@@ -16,46 +16,133 @@
       scrollbar-width: none;
     }
 
-  /* para que no crescan las card */
-  .description-content-ofertas {
-    overflow: hidden;
-    max-height: 0;
-    transition: max-height 0.3s ease;
-  }
+    /* para que no crescan las card */
+    .description-content-ofertas {
+      overflow: hidden;
+      max-height: 0;
+      transition: max-height 0.3s ease;
+    }
 
-  .description-content-ofertas.show {
-    max-height: 300px;
-  }
+    .description-content-ofertas.show {
+      max-height: 300px;
+    }
+
+    /* Estilos mejorados para las tarjetas */
+    .product-card {
+      backdrop-filter: blur(10px);
+      background: linear-gradient(145deg, rgba(20, 20, 20, 0.95), rgba(10, 10, 10, 0.98));
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .product-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.4);
+      border-color: rgba(239, 68, 68, 0.3);
+    }
+
+    .product-image {
+      transition: transform 0.3s ease;
+    }
+
+    .product-card:hover .product-image {
+      transform: scale(1.05);
+    }
+
+    .gradient {
+      background: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.8) 100%);
+    }
+
+    .price-badge {
+      background: linear-gradient(135deg, #ef4444, #dc2626);
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #ef4444, #dc2626);
+      transition: all 0.3s ease;
+    }
+
+    .btn-primary:hover {
+      background: linear-gradient(135deg, #dc2626, #b91c1c);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(239, 68, 68, 0.4);
+    }
+
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      transition: all 0.3s ease;
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.2);
+      transform: translateY(-1px);
+    }
+
+    .truncate-text {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .animate-soft-ping {
+      animation: soft-ping 1s cubic-bezier(0, 0, 0.2, 1) infinite;
+    }
+
+    @keyframes soft-ping {
+      75%, 100% {
+        transform: scale(1.1);
+        opacity: 0;
+      }
+    }
+
+    .glass-effect {
+      backdrop-filter: blur(8px);
+      background: rgba(0, 0, 0, 0.6);
+    }
+
+    .text-glow {
+      text-shadow: 0 0 10px rgba(239, 68, 68, 0.5);
+    }
+
+    .card-content {
+      background: linear-gradient(180deg, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.9) 100%);
+    }
 
   </style>
 </head>
 
 <body>
-  <div class="container mx-auto px-4 mt-8">
+  <div class="container mx-auto py-10 px-4">
     <!-- Título -->
-    <h2 class="text-lg md:text-xl pl-4 font-bold text-gray-500 mb-2 border-b-2 border-gray-500 pb-2 w-fit scroll-item">
-      Productos en Ofertas
+    <h2 class="text-3xl md:text-4xl ml-4 font-bold text-gray-900 mb-6 decorative-line">
+      Ofertas <span class="text-red-500">Exclusivas</span>
     </h2>
 
+    <!-- <i class="fas fa-tag mr-1"></i>  -->
     <!-- Contenedor relativo sin padding horizontal -->
-    <div class="relative py-4">
+    <div class="relative">
       <!-- Botón Atrás -->
       <button id="prevBtnOfertas"
-        class="hidden sm:block absolute -left-6 top-1/2 transform -translate-y-1/2 z-10 bg-black-gray text-white px-3 py-2 text-sm sm:text-base scroll-item">
+        class="hidden sm:block absolute -left-6 top-1/2 transform -translate-y-1/2 bg-black-gray text-white px-3 py-2 text-sm sm:text-base rounded-full scroll-item hover:bg-red-600 transition-colors">
         <i class="fas fa-arrow-left"></i>
       </button>
 
       <!-- Botón Siguiente -->
       <button id="nextBtnOfertas"
-        class="hidden sm:block absolute -right-6 top-1/2 transform -translate-y-1/2 z-10 bg-black-gray text-white px-3 py-2 text-sm sm:text-base scroll-item">
+        class="hidden sm:block absolute -right-6 top-1/2 transform -translate-y-1/2 bg-black-gray text-white px-3 py-2 text-sm sm:text-base rounded-full scroll-item hover:bg-red-600 transition-colors">
         <i class="fas fa-arrow-right"></i>
       </button>
 
       <!-- Carrusel -->
       <div class="overflow-hidden px-4">
-        <!-- <div id="carouselOfertas" class="flex overflow-x-auto no-scrollbar scroll-smooth space-x-4 scroll-item"> -->
-          <div id="carouselOfertas" class="flex overflow-x-auto no-scrollbar scroll-smooth space-x-4 scroll-item items-start">
-
+        <div id="carouselOfertas" class="flex bg-white overflow-x-auto no-scrollbar scroll-smooth space-x-10 scroll-item items-start py-5  md:py-10 px-2">
           <!-- Aquí se insertarán los productos dinámicamente -->
         </div>
       </div>
@@ -75,57 +162,61 @@
 
         ofertas.forEach(product => {
           const productCard = document.createElement('div');
-          productCard.className = "product-card w-44 md:w-64 flex-shrink-0 bg-black overflow-hidden";
+          productCard.className = "product-card w-48 md:w-64 flex-shrink-0 overflow-hidden rounded-xl";
 
           const uniqueId = `desc-${product.id_product}`;
           productCard.innerHTML = `
-              <div class="relative">
-                <img src="https://qiziyaqqptpwcarbywsx.supabase.co/storage/v1/object/public/imagenes/products/${product.image}" alt="${product.name}" class="w-full h-48 md:h-64 object-cover">
+              <div class="relative overflow-hidden rounded-t-xl">
+                <img src="https://qiziyaqqptpwcarbywsx.supabase.co/storage/v1/object/public/imagenes/products/${product.image}" alt="${product.name}" class="product-image w-full h-48 md:h-64 object-cover">
                 ${product.price_end < product.price
                   ? `
-                  <span class="absolute top-0 right-0 mt-1 mr-1 flex h-5 w-7 rounded bg-red-700 z-10 items-center justify-center">
-                    <span class="absolute top-0 right-0 left-0 bottom-0 animate-soft-ping rounded bg-red-600 opacity-75"></span>
-                    <span class="text-sm font-semibold text-white z-10 py-2 px-2">
+                  <div class="absolute top-3 right-3 price-badge rounded-full px-3 py-1 shadow-lg">
+                    <span class="absolute inset-0 animate-soft-ping rounded-full bg-red-500 opacity-75"></span>
+                    <span class="relative text-xs font-bold text-white">
                       -${Math.round(((product.price - product.price_end) / product.price) * 100)}%
                     </span>
-                  </span>`
+                  </div>`
                   : ''
                 }
+                <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+              </div>
 
+              <div class="card-content px-4 py-4">
+                <h3 class="text-sm md:text-base font-bold text-white truncate-text mb-2">${product.name}</h3>
+                <div class="mb-4">
+                  <p class="text-xs sm:text-sm md:text-base">
+                    <span class="text-red-400 font-bold text-lg">S/${product.price_end.toFixed(2)}</span>
+                    ${product.price_end !== product.price
+                      ? `<span class="line-through text-gray-400 text-sm ml-2">S/${product.price.toFixed(2)}</span>`
+                      : ''}
+                  </p>
+                </div>
 
-                <div class="absolute bottom-0 left-0 right-0 gradient px-2 py-3">
-                  <h3 class="text-sm md:text-base font-semibold text-white truncate-text ">${product.name}</h3>
-                  <div>
-                    <p class="text-xs sm:text-sm md:text-base mt-0 ">
-                      <span class="text-white mr-2">Ahora: S/${product.price_end.toFixed(2)} </span> 
-                      ${product.price_end !== product.price
-                        ? `<span class="line-through text-white"> (S/${product.price.toFixed(2)})</span>`
-                        : ''}
+                <div class="flex justify-between items-center gap-2">
+                  <!-- Botón Ver descripción -->
+                  <button class="btn-secondary text-white text-xs sm:text-sm px-3 py-2 rounded-lg flex items-center gap-1" onclick="toggleDescriptionOfertas('${uniqueId}')">
+                    <i class="fas fa-eye"></i>
+                    <span>Ver más</span>
+                  </button>
+
+                  <!-- Botón del carrito -->
+                  <button class="btn-primary text-white px-3 py-2 rounded-lg flex items-center gap-1" onclick="addToCart(${JSON.stringify(product).replace(/"/g, '&quot;')})">
+                    <i class="fas fa-shopping-cart text-sm"></i>
+                    <span class="hidden sm:inline">Agregar</span>
+                  </button>
+                </div>
+
+                <!-- Contenido descripción oculto -->
+                <div id="${uniqueId}" class="description-content-ofertas text-gray-300 mt-3 text-xs sm:text-sm">
+                  <div class="glass-effect p-3 rounded-lg border border-gray-700">
+                    <p class="text-red-400 font-semibold mb-2">
+                      <i class="fas fa-tag mr-1"></i>
+                      Marca: ${product.brand}
                     </p>
+                    <p class="text-gray-300 leading-relaxed">${product.description}</p>
                   </div>
                 </div>
               </div>
-
-              <div class="px-2 flex justify-between items-center mb-1">
-                <!-- Botón Ver descripción -->
-                <button class=" text-white text-xs sm:text-sm" onclick="toggleDescriptionOfertas('${uniqueId}')">
-                  <i class="fas fa-eye"></i> Ver descripción
-                </button>
-
-                <!-- Botón del carrito -->
-                <button class="bg-black text-white px-2 py-1 rounded" onclick="addToCart(${JSON.stringify(product).replace(/"/g, '&quot;')})">
-                  <i class="fas fa-shopping-cart effect text-sm"></i>
-                </button>
-              </div>
-
-                <!-- Contenido descripción oculto -->
-                <div id="${uniqueId}" class="description-content-ofertas text-gray-300 pl-4 text-xs sm:text-sm">
-                  <p class="text-gray-300 text-xs sm:text-sm mb-1">Marca: ${product.brand}</p>
-                  <p class="pb-2 pr-1">${product.description}</p>
-                </div>
-              </div>
-
-              
           `;
           carouselOfertas.appendChild(productCard);
         });
