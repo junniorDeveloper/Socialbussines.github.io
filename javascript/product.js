@@ -53,7 +53,7 @@ function loadMoreProducts() {
     nextProducts.forEach((product, index) => {
         const uniqueId = `desc-${currentIndex + index}`; 
         const productDiv = document.createElement('div');
-        productDiv.className = 'bg-white overflow-hidden transition-transform transform scroll-item border';
+        productDiv.className = 'bg-white overflow-hidden transition-transform transform scroll-item rounded-xl';
         productDiv.innerHTML = `
             <div class="relative">
                 <div class="h-72 w-full flex items-center justify-center">

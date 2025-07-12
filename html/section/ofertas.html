@@ -115,13 +115,16 @@
       background: linear-gradient(180deg, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.9) 100%);
     }
 
+    #SectionOferta{
+      scroll-margin-top: 150px;
+    }
   </style>
 </head>
 
 <body>
-  <div class="container mx-auto py-10 px-4">
+  <div id="SectionOferta" class="container mx-auto py-10 px-4 margin-top-scroll">
     <!-- Título -->
-    <h2 class="text-3xl md:text-4xl ml-4 font-bold text-gray-900 mb-6 decorative-line">
+    <h2 class="text-2xl md:text-3xl ml-6 font-bold text-gray-900 mb-6 decorative-line">
       Ofertas <span class="text-red-500">Exclusivas</span>
     </h2>
 
@@ -130,13 +133,13 @@
     <div class="relative">
       <!-- Botón Atrás -->
       <button id="prevBtnOfertas"
-        class="hidden sm:block absolute -left-6 top-1/2 transform -translate-y-1/2 bg-black-gray text-white px-3 py-2 text-sm sm:text-base rounded-full scroll-item hover:bg-red-600 transition-colors">
+        class="hidden lg:block absolute -left-6 top-1/2 transform -translate-y-1/2 bg-black-gray text-white px-3 py-2 text-sm sm:text-base rounded-full scroll-item hover:bg-red-600 transition-colors">
         <i class="fas fa-arrow-left"></i>
       </button>
 
       <!-- Botón Siguiente -->
       <button id="nextBtnOfertas"
-        class="hidden sm:block absolute -right-6 top-1/2 transform -translate-y-1/2 bg-black-gray text-white px-3 py-2 text-sm sm:text-base rounded-full scroll-item hover:bg-red-600 transition-colors">
+        class="hidden lg:block absolute -right-6 top-1/2 transform -translate-y-1/2 bg-black-gray text-white px-3 py-2 text-sm sm:text-base rounded-full scroll-item hover:bg-red-600 transition-colors">
         <i class="fas fa-arrow-right"></i>
       </button>
 
@@ -162,7 +165,7 @@
 
         ofertas.forEach(product => {
           const productCard = document.createElement('div');
-          productCard.className = "product-card w-48 md:w-64 flex-shrink-0 overflow-hidden rounded-xl";
+          productCard.className = "product-card w-64 md:w-80 flex-shrink-0 overflow-hidden rounded-xl";
 
           const uniqueId = `desc-${product.id_product}`;
           productCard.innerHTML = `

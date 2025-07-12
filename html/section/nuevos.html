@@ -17,13 +17,13 @@
     }
 
     /* para que no crescan las card */
-    .description-content-ofertas {
+    .description-content-nuevo {
       overflow: hidden;
       max-height: 0;
       transition: max-height 0.3s ease;
     }
 
-    .description-content-ofertas.show {
+    .description-content-nuevo.show {
       max-height: 300px;
     }
 
@@ -121,7 +121,7 @@
 <body>
 <div class="container mx-auto pb-10  px-4">
     <!-- Título -->
-    <h2 class="text-3xl md:text-4xl ml-4 font-bold text-gray-900 mb-6 decorative-line">
+    <h2 class="text-2xl md:text-3xl ml-6 font-bold text-gray-900 mb-6 decorative-line">
       Nuevos <span class="text-red-500">ingresos</span>
     </h2>
 
@@ -129,13 +129,13 @@
     <div class="relative">
         <!-- Botón Atrás fuera del carrusel -->
         <button id="prevBtnNuevos"
-            class="hidden sm:block absolute -left-6 top-1/2 transform -translate-y-1/2 bg-black-gray text-white px-3 py-2 text-sm sm:text-base rounded-full scroll-item hover:bg-red-600 transition-colors">
+            class="hidden lg:block absolute -left-6 top-1/2 transform -translate-y-1/2 bg-black-gray text-white px-3 py-2 text-sm sm:text-base rounded-full scroll-item hover:bg-red-600 transition-colors">
             <i class="fas fa-arrow-left"></i>
         </button>
 
         <!-- Botón Siguiente fuera del carrusel -->
         <button id="nextBtnNuevos"
-            class="hidden sm:block absolute -right-6 top-1/2 transform -translate-y-1/2 bg-black-gray text-white px-3 py-2 text-sm sm:text-base rounded-full scroll-item hover:bg-red-600 transition-colors">
+            class="hidden lg:block absolute -right-6 top-1/2 transform -translate-y-1/2 bg-black-gray text-white px-3 py-2 text-sm sm:text-base rounded-full scroll-item hover:bg-red-600 transition-colors">
             <i class="fas fa-arrow-right"></i>
         </button>
 
@@ -165,7 +165,7 @@
 
                 nuevosProducts.forEach(product => {
                     const productCard = document.createElement('div');
-                    productCard.className = "product-card w-48 md:w-64 flex-shrink-0 overflow-hidden rounded-xl";
+                    productCard.className = "product-card w-64 md:w-80 flex-shrink-0 overflow-hidden rounded-xl";
 
                     const uniqueId = `desc-${product.id_product}`;
                     productCard.innerHTML = `
@@ -200,7 +200,7 @@
                             </div>
 
                             <!-- Contenido descripción oculto -->
-                            <div id="${uniqueId}" class="description-content-ofertas text-gray-300 mt-3 text-xs sm:text-sm">
+                            <div id="${uniqueId}" class="description-content-nuevo text-gray-300 mt-3 text-xs sm:text-sm">
                             <div class="glass-effect p-3 rounded-lg border border-gray-700">
                                 <p class="text-red-400 font-semibold mb-2">
                                 <i class="fas fa-tag mr-1"></i>

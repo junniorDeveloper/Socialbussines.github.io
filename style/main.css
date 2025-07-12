@@ -2,6 +2,11 @@ html{
   scroll-behavior: smooth;
 }
 
+/* Aplica un offset al hacer scroll hacia este elemento */
+.margin-top-scroll {
+  scroll-margin-top: 150px;
+}
+
 body{
     margin-top: 50px;
 }
